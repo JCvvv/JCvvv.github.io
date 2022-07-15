@@ -590,7 +590,7 @@ nav ol li {
   }
 }
 .navItem .navItemTitle {
-  font-size: 25px;
+  font-size: 22px;
   transition: 0.3s;
   width: 100%;
   overflow-wrap: break-word;
@@ -967,7 +967,7 @@ nav ol li {
   box-sizing: border-box;
   color: #fff;
   position: relative;
-  font-size: 15px;
+  font-size: 22px;
   height: 40px;
   background-color: unset;
   border: unset;
