@@ -590,6 +590,7 @@ nav ol li {
   }
 }
 .navItem .navItemTitle {
+  font-size: 25px;
   transition: 0.3s;
   width: 100%;
   overflow-wrap: break-word;
