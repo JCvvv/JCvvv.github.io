@@ -495,7 +495,7 @@ nav a {
   height: 40px;
   line-height: 40px;
   display: inline-block;
-  padding: 1.8em 0;
+  padding: 0.8em 0;
   width: 100%;
   color: #fff;
 }
@@ -673,7 +673,7 @@ nav ol li {
     box-sizing: border-box;
   }
   .navItem {
-    width: 120px;
+    width: 180px;
   }
 }
 @media (min-width: 1440px) {
@@ -1892,7 +1892,7 @@ article .recent-excerpt p {
 }
 #post-title h1 {
   display: inline-block;
-  font-size: 2em;
+  font-size: 3em;
 }
 #post-title hr {
   color: #535353;
@@ -1909,23 +1909,23 @@ article .recent-excerpt p {
   left: -1px;
 }
 #post-info {
-  text-align: right;
+  text-align: left;
 }
 #post-info time {
   color: #2bf;
-  font-weight: 900;
+  font-weight: normal;
 }
 #post-info .control {
   text-align: left;
   display: inline-block;
-  width: 90px;
+  width: 120px;
 }
 #post-source span {
   color: #fe2;
   background-color: #555;
 }
 #post-content {
-  margin-bottom: 1em;
+  margin-bottom: 8em;
 }
 #post-content table {
   width: 100%;
@@ -2081,8 +2081,7 @@ article .recent-excerpt p {
   padding: 5px;
   display: flex;
   justify-content: center;
-  border-top: #fe2 solid 2px;
-  border-bottom: #fe2 solid 2px;
+  border-top: rgba(255,255,255,0.66) solid 1.5px;
 }
 #split {
   position: sticky;
@@ -2095,6 +2094,7 @@ article .recent-excerpt p {
   }
 }
 #footer-link {
+  color: rgba(255,255,255,0.66);
   padding: 5px;
   position: sticky;
 }
