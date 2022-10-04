@@ -2123,7 +2123,7 @@ figure.highlight pre .javascript .function {
   }
 }
 .layout.hide-aside {
-  max-width: 1200px;
+  max-width: 1500px;
 }
 @media screen and (min-width: 2000px) {
   .layout.hide-aside {
