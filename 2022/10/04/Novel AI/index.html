@@ -1,0 +1,1732 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Novel AI 魔咒汇总 | 锦尘</title><meta name="keywords" content="技术,小白向,随便聊聊"><meta name="author" content="锦尘"><meta name="copyright" content="锦尘"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="前言　　因为 NovelAI 使用了争议极大的数据源 Danbooru（本身就存有大量没有授权的图片），这里不推荐各位在私用以外的任何场合使用。 　　也许 NovelAI 不是最优秀的 AI 画图产品，但它被开源的模型成为大多数人能接触到的最廉价的ai画图，只要你有足够的算力，并且掌握合适的tag组合方法，再加上一点点可有可无的后期精修，就可以产出大量优秀的二次元作品，这无疑会极大的冲击底层画师的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Novel AI 魔咒汇总">
+<meta property="og:url" content="https://jcvvv.github.io/2022/10/04/Novel%20AI/index.html">
+<meta property="og:site_name" content="锦尘">
+<meta property="og:description" content="前言　　因为 NovelAI 使用了争议极大的数据源 Danbooru（本身就存有大量没有授权的图片），这里不推荐各位在私用以外的任何场合使用。 　　也许 NovelAI 不是最优秀的 AI 画图产品，但它被开源的模型成为大多数人能接触到的最廉价的ai画图，只要你有足够的算力，并且掌握合适的tag组合方法，再加上一点点可有可无的后期精修，就可以产出大量优秀的二次元作品，这无疑会极大的冲击底层画师的">
+<meta property="og:locale">
+<meta property="og:image" content="https://jcvvv.github.io/pic/cover/12.jpg">
+<meta property="article:published_time" content="2022-10-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-10-15T14:54:27.502Z">
+<meta property="article:author" content="锦尘">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="小白向">
+<meta property="article:tag" content="随便聊聊">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jcvvv.github.io/pic/cover/12.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jcvvv.github.io/2022/10/04/Novel%20AI/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Novel AI 魔咒汇总',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-15 22:54:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa-solid fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/pic/cover/12.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锦尘</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa-solid fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Novel AI 魔咒汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-03T16:00:00.000Z" title="发表于 2022-10-04 00:00:00">2022-10-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-15T14:54:27.502Z" title="更新于 2022-10-15 22:54:27">2022-10-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4,098</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Novel AI 魔咒汇总"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>　　因为 NovelAI 使用了争议极大的数据源 Danbooru（本身就存有大量没有授权的图片），这里不推荐各位在私用以外的任何场合使用。</p>
+<p>　　也许 NovelAI 不是最优秀的 AI 画图产品，但它被开源的模型成为大多数人能接触到的最廉价的ai画图，只要你有足够的算力，并且掌握合适的tag组合方法，再加上一点点可有可无的后期精修，就可以产出大量优秀的二次元作品，这无疑会极大的冲击底层画师的生存空间。</p>
+<p>　　Stable Diffusion 开源的那一刻，潘多拉魔盒就打开了，而 Novel AI 模型的泄露，只是这场风波的开始，接下来会进入AI画图的野蛮生长期，会涌入各种魔改的特化模型，逐渐取代流水线作画的底层画师。</p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>　　首先需要下载的东西有模型框架（Stable Diffusion web UI）和训练好的模型（也就是泄露的NovelAI），前者是开源的，通过GitHub下载后可以一键安装配置，后者则需要通过BT等手段下载，嫌麻烦的话可以找一键安装的整合包。</p>
+<p>　　总的泄露模型有50+GB，但其实里面有很多个不同的模型，其实只要里面后缀是latest的那个就行，够用了。</p>
+<h2 id="框架搭建"><a href="#框架搭建" class="headerlink" title="框架搭建"></a>框架搭建</h2><p>　　首先你要有一个Python环境（废话）。</p>
+<p>　　然后到GitHub把这个项目下载或clone下来：<a href="https://link.zhihu.com/?target=https://github.com/AUTOMATIC1111/stable-diffusion-webui">Stable Diffusion web UI</a></p>
+<p>　　然后直接双击运行其中的webui-user.bat，会自动建一个venv虚拟环境并在其中安装包，因为要装的Pytorch什么的还是比较大的，所以要等很久，到此为止框架就基本搭建好了。</p>
+<h2 id="加载模型"><a href="#加载模型" class="headerlink" title="加载模型"></a>加载模型</h2><p>　　在之前下载的模型文件包&#x2F;stableckpt目录下就是我们需要用到的模型，每个文件夹都对应了一个不同的模型，带有sfw的意思是Safe For Work，那么nsfw的意思就是……</p>
+<p>　　将animevae.pt和某个文件夹下的model.ckpt、config.yaml放到stable-diffusion-webui\models\Stable-diffusion\目录下并分别改名为model.vae.pt、model.ckpt、model.yaml即可，其中只有model.ckpt是必须的（下载时也是可以只下载一个model.ckpt文件的），模型的话选择animefull-final-pruned</p>
+<p>　　再次运行webui-user.bat，又加载了一些东西，然后就能看到已经成功跑起来了，浏览器访问提示的URL即可，正常的话是127.0.0.1:7860</p>
+<h2 id="调数详解"><a href="#调数详解" class="headerlink" title="调数详解"></a>调数详解</h2><p><strong>Prompt</strong> 正向参数，绘画会靠近这些参数</p>
+<p><strong>Negative prompt</strong> 反向参数，画会远离这些参数，实际体验下来，反向参数比正向参数要重要的多，并且要给一些特别重要的参数加上强调，这样才能避免一些很掉san的图</p>
+<p><strong>Sampling Steps</strong>是迭代次数，越大越耗时，一般20左右就足够了，太大提升也有限。</p>
+<p><strong>Sampling method</strong>是迭代算法，可以自己试试，感觉Euler和DDIM就不错，不同算法适合的迭代次数不尽相同。</p>
+<p><strong>Width</strong>和<strong>Height</strong>是图像大小，不建议开太大，这个模型不太擅长生成大尺寸图片，特别是你的硬件也不太行的情况。</p>
+<p><strong>Batch count</strong>是连续生成几次，<strong>Batch size</strong>是一次生成几张。例如Batch size&#x3D;2，Batch count&#x3D;3就是每次同时生成两张图片，生成三轮。注意Batch size其实就是利用显卡并行计算，受到显存制约，开太大会爆显存。</p>
+<p><strong>CFG Scale</strong>参数制约度，越高越接近参数（但可能会是强扭的瓜），越低越让AI自由发挥。在img2img中还有一个Denoising strength参数，描述的是图像模仿自由度，越高越自由发挥，越低和参考图像越接近。</p>
+<p><strong>Seed</strong> 是随机种子，可以指定，-1就是随机种子。</p>
+<h2 id="咏唱魔法"><a href="#咏唱魔法" class="headerlink" title="咏唱魔法"></a>咏唱魔法</h2><p>是时候进入正题了，下面就来分享一些魔法，{ }表示优先级上升，（ ）表示优先级下降</p>
+<p>友情提醒：尽量不要写互相矛盾的 tag ，生成姿势复杂的纯色图有大概率肢体错乱，带有body和breasts之类的术式都会有概率导致不穿衣服</p>
+<h3 id="融合咒语"><a href="#融合咒语" class="headerlink" title="融合咒语"></a>融合咒语</h3><p>基本角色名 + 想追加的角色名 + 身体要素 + 1_girl + 追加身体要素 + 背景</p>
+<h3 id="咏唱前缀"><a href="#咏唱前缀" class="headerlink" title="咏唱前缀"></a>咏唱前缀</h3><p>高质量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;best quality&#125;, &#123;&#123;masterpiece&#125;&#125;, &#123;highres&#125;, original, extremely detailed 8K wallpaper, 1_girl, &#123;an extremely delicate and beautiful&#125;</span><br></pre></td></tr></table></figure>
+
+<p>反向模板：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multiple breasts, (mutated hands and fingers:1.5 ), (long body :1.3), (mutation, poorly drawn :1.2) , black-white, bad anatomy, liquid body, liquid tongue, disfigured, malformed, mutated, anatomical nonsense, text font ui, error, malformed hands, long neck, blurred, lowers, lowres, bad anatomy, bad proportions, bad shadow, uncoordinated body, unnatural body, fused breasts, bad breasts, huge breasts, poorly drawn breasts, extra breasts, liquid breasts, heavy breasts, missing breasts, huge haunch, huge thighs, huge calf, bad hands, fused hand, missing hand, disappearing arms, disappearing thigh, disappearing calf, disappearing legs, fused ears, bad ears, poorly drawn ears, extra ears, liquid ears, heavy ears, missing ears, fused animal ears, bad animal ears, poorly drawn animal ears, extra animal ears, liquid animal ears, heavy animal ears, missing animal ears, text, ui, error, missing fingers, missing limb, fused fingers, one hand with more than 5 fingers, one hand with less than 5 fingers, one hand with more than 5 digit, one hand with less than 5 digit, extra digit, fewer digits, fused digit, missing digit, bad digit, liquid digit, colorful tongue, black tongue, cropped, watermark, username, blurry, JPEG artifacts, signature, 3D, 3D game, 3D game scene, 3D character, malformed feet, extra feet, bad feet, poorly drawn feet, fused feet, missing feet, extra shoes, bad shoes, fused shoes, more than two shoes, poorly drawn shoes, bad gloves, poorly drawn gloves, fused gloves, bad cum, poorly drawn cum, fused cum, bad hairs, poorly drawn hairs, fused hairs, big muscles, ugly, bad face, fused face, poorly drawn face, cloned face, big face, long face, bad eyes, fused eyes poorly drawn eyes, extra eyes, malformed limbs, more than 2 nipples, missing nipples, different nipples, fused nipples, bad nipples, poorly drawn nipples, black nipples, colorful nipples, gross proportions. short arm, (((missing arms))), missing thighs, missing calf, missing legs, mutation, duplicate, morbid, mutilated, poorly drawn hands, more than 1 left hand, more than 1 right hand, deformed, (blurry), disfigured, missing legs, extra arms, extra thighs, more than 2 thighs, extra calf, fused calf, extra legs, bad knee, extra knee, more than 2 legs, bad tails, bad mouth, fused mouth, poorly drawn mouth, bad tongue, tongue within mouth, too long tongue, black tongue, big mouth, cracked mouth, bad mouth, dirty face, dirty teeth, dirty pantie, fused pantie, poorly drawn pantie, fused cloth, poorly drawn cloth, bad pantie, yellow teeth, thick lips, bad cameltoe, colorful cameltoe, bad asshole, poorly drawn asshole, fused asshole, missing asshole, bad anus, bad pussy, bad crotch, bad crotch seam, fused anus, fused pussy, fused anus, fused crotch, poorly drawn crotch, fused seam, poorly drawn anus, poorly drawn pussy, poorly drawn crotch, poorly drawn crotch seam, bad thigh gap, missing thigh gap, fused thigh gap, liquid thigh gap, poorly drawn thigh gap, poorly drawn anus, bad collarbone, fused collarbone, missing collarbone, liquid collarbone, strong girl, obesity, worst quality, low quality, normal quality, liquid tentacles, bad tentacles, poorly drawn tentacles, split tentacles, fused tentacles, missing clit, bad clit, fused clit, colorful clit, black clit, liquid clit, QR code, bar code, censored, safety panties, safety knickers, beard, furry ,pony, pubic hair, mosaic, excrement, faeces, shit, futa, testis</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="视角术式"><a href="#视角术式" class="headerlink" title="视角术式"></a>视角术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th align="left">术式描述</th>
+<th align="left">魔法内容</th>
+<th align="left">术式描述</th>
+<th align="left">魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">背后视角</td>
+<td align="left">from behind</td>
+<td align="left">高位视角</td>
+<td align="left">from above</td>
+<td>侧边视角</td>
+<td>from side</td>
+</tr>
+<tr>
+<td align="left">多人背景</td>
+<td align="left">blurry background</td>
+<td align="left">低位视角</td>
+<td align="left">from below</td>
+<td>单人焦点</td>
+<td>solo focus</td>
+</tr>
+<tr>
+<td align="left">背后焦点</td>
+<td align="left">back focus</td>
+<td align="left">pp焦点</td>
+<td align="left">ass focus</td>
+<td>臀部焦点</td>
+<td>hip focus</td>
+</tr>
+<tr>
+<td align="left">足部焦点</td>
+<td align="left">foot focus</td>
+<td align="left">背对</td>
+<td align="left">facing away</td>
+<td>侧脸</td>
+<td>profile</td>
+</tr>
+<tr>
+<td align="left">正面</td>
+<td align="left">straight-on</td>
+<td align="left">第一人称</td>
+<td align="left">first-person view</td>
+<td>主观视角</td>
+<td>pov</td>
+</tr>
+<tr>
+<td align="left">手主观视角</td>
+<td align="left">pov hands</td>
+<td align="left">胯部主观视角</td>
+<td align="left">pov crotch</td>
+<td>三视图</td>
+<td>three sided view</td>
+</tr>
+<tr>
+<td align="left">三视图进阶</td>
+<td align="left">concept art</td>
+<td align="left">三视图进阶</td>
+<td align="left">reference sheet</td>
+<td>三视图进阶</td>
+<td>official art</td>
+</tr>
+<tr>
+<td align="left">多视图</td>
+<td align="left">multiple views</td>
+<td align="left"></td>
+<td align="left"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="画面术式"><a href="#画面术式" class="headerlink" title="画面术式"></a>画面术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全身</td>
+<td>full body</td>
+<td>人物超出框</td>
+<td>out of frame</td>
+<td>插入画面</td>
+<td align="left">cut-in</td>
+</tr>
+<tr>
+<td>上半身</td>
+<td>upper body</td>
+<td>头超出框</td>
+<td>head out of frame</td>
+<td>肩下剪裁</td>
+<td align="left">cropped shoulders</td>
+</tr>
+<tr>
+<td>下半身</td>
+<td>lower body</td>
+<td>足超出框</td>
+<td>feet out of frame</td>
+<td>手臂下剪裁</td>
+<td align="left">cropped arms</td>
+</tr>
+<tr>
+<td>腿下剪裁</td>
+<td>cropped legs</td>
+<td>牛仔特写</td>
+<td>cowboy shot</td>
+<td>人像</td>
+<td align="left">portrait</td>
+</tr>
+<tr>
+<td>特写</td>
+<td>close-up</td>
+<td>躯干下剪裁</td>
+<td>cropped torso upper body</td>
+<td>自拍</td>
+<td align="left">selfiemirror</td>
+</tr>
+<tr>
+<td>表情表</td>
+<td>expressions</td>
+<td>抱枕</td>
+<td>dakimakura (medium)</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="镜头术式"><a href="#镜头术式" class="headerlink" title="镜头术式"></a>镜头术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>斜角镜头</td>
+<td>dutch angle</td>
+<td>强烈镜头</td>
+<td>intense angle</td>
+<td>电影镜头</td>
+<td align="left">cinematic angle</td>
+</tr>
+<tr>
+<td>戏剧性镜头</td>
+<td>dramatic angle</td>
+<td>动态镜头</td>
+<td>dynamic angle</td>
+<td>远景</td>
+<td align="left">wide shot</td>
+</tr>
+<tr>
+<td>透视</td>
+<td>perspective</td>
+<td>正前缩距</td>
+<td>foreshortening</td>
+<td>鱼眼</td>
+<td align="left">fisheye</td>
+</tr>
+<tr>
+<td>颠倒</td>
+<td>upside-down</td>
+<td>运动模糊</td>
+<td>motion blur</td>
+<td>景深</td>
+<td align="left">depth of field</td>
+</tr>
+<tr>
+<td>镜头光晕</td>
+<td>lens flare</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="背景术式"><a href="#背景术式" class="headerlink" title="背景术式"></a>背景术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模糊背景</td>
+<td>blurry background</td>
+<td>简单背景</td>
+<td>simple background</td>
+<td>背光</td>
+<td align="left">backlighting</td>
+</tr>
+<tr>
+<td>旭日纹背景</td>
+<td>sunburst background</td>
+<td>渐变背景</td>
+<td>gradient background</td>
+<td>投影阴影</td>
+<td align="left">drop shadow</td>
+</tr>
+<tr>
+<td>缩放投影图层</td>
+<td>zoom layer</td>
+<td>剪影</td>
+<td>silhouette</td>
+<td>轮廓线</td>
+<td align="left">outline</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="建筑术式"><a href="#建筑术式" class="headerlink" title="建筑术式"></a>建筑术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>太空</td>
+<td>space</td>
+<td>城市风景</td>
+<td>cityscape</td>
+<td>建物</td>
+<td align="left">building architecture</td>
+</tr>
+<tr>
+<td>摩天楼</td>
+<td>skyscraper</td>
+<td>废墟</td>
+<td>ruins</td>
+<td>西罗马建筑</td>
+<td align="left">greco-roman architecture</td>
+</tr>
+<tr>
+<td>鸟居</td>
+<td>torii</td>
+<td>大自然</td>
+<td>nature</td>
+<td>哥特式建筑</td>
+<td align="left">gothic architecture</td>
+</tr>
+<tr>
+<td>田园</td>
+<td>field</td>
+<td>森林</td>
+<td>forest</td>
+<td>东亚建物</td>
+<td align="left">east asian architecture</td>
+</tr>
+<tr>
+<td>山脉</td>
+<td>mountain</td>
+<td>海洋</td>
+<td>ocean</td>
+<td>海边</td>
+<td align="left">beach</td>
+</tr>
+<tr>
+<td>湖泊</td>
+<td>lake</td>
+<td>河流</td>
+<td>river</td>
+<td>温泉</td>
+<td align="left">onsen</td>
+</tr>
+<tr>
+<td>星空</td>
+<td>starry sky</td>
+<td>室外</td>
+<td>outdoors</td>
+<td>室内</td>
+<td align="left">indoors</td>
+</tr>
+<tr>
+<td>塌塌米</td>
+<td>tatami</td>
+<td>无人</td>
+<td>no humans</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="风格术式"><a href="#风格术式" class="headerlink" title="风格术式"></a>风格术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>提取高质量数据</td>
+<td>masterpiece</td>
+<td>高分辨率</td>
+<td>highres</td>
+<td>统一风格</td>
+<td align="left">Unity Creations</td>
+</tr>
+<tr>
+<td>轮廓加深</td>
+<td>contour deepening</td>
+<td>纯色块</td>
+<td>flat color</td>
+<td>单色</td>
+<td align="left">monochrome</td>
+</tr>
+<tr>
+<td>灰度</td>
+<td>greyscale</td>
+<td>高对比度度</td>
+<td>high contrast</td>
+<td>部分着色</td>
+<td align="left">partially colored</td>
+</tr>
+<tr>
+<td>色差色失焦</td>
+<td>chromatic aberration</td>
+<td>CG</td>
+<td>game cg</td>
+<td>漫画</td>
+<td align="left">comic</td>
+</tr>
+<tr>
+<td>动画截图</td>
+<td>capanime screencap</td>
+<td>素描</td>
+<td>sketch</td>
+<td>像素风</td>
+<td align="left">pixel art</td>
+</tr>
+<tr>
+<td>Q版</td>
+<td>chibi</td>
+<td>新艺术运动(慕夏)</td>
+<td>art nouveau</td>
+<td>现实的</td>
+<td align="left">realistic</td>
+</tr>
+<tr>
+<td>复古风格</td>
+<td>retro artstyle</td>
+<td>1980风格</td>
+<td>1980s (style)</td>
+<td>1990风格</td>
+<td align="left">1990s (style)</td>
+</tr>
+<tr>
+<td>女神杂志</td>
+<td>megami magazine</td>
+<td>同人志风</td>
+<td>doujinshi doujin cover</td>
+<td>卡牌风</td>
+<td align="left">card games</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="媒体术式"><a href="#媒体术式" class="headerlink" title="媒体术式"></a>媒体术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>照片</td>
+<td>photo (medium)</td>
+<td>水彩</td>
+<td>watercolor (medium)</td>
+<td>签字笔</td>
+<td align="left">nib pen (medium)</td>
+</tr>
+<tr>
+<td>铅笔画</td>
+<td>graphite (medium)</td>
+<td>油画</td>
+<td>oil painting (medium)</td>
+<td>丙烯颜料</td>
+<td align="left">acrylic paint (medium)</td>
+</tr>
+<tr>
+<td>马克笔</td>
+<td>marker (medium)</td>
+<td>彩色铅笔</td>
+<td>colored pencil (medium)</td>
+<td>原子笔</td>
+<td align="left">ballpoint pen (medium)</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="强化术式"><a href="#强化术式" class="headerlink" title="强化术式"></a>强化术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单人</td>
+<td>solo</td>
+<td>两女</td>
+<td>2girls</td>
+<td>多女</td>
+<td align="left">multiple girls</td>
+</tr>
+<tr>
+<td>三人行</td>
+<td>threesome</td>
+<td>娇小的</td>
+<td>petite</td>
+<td>萝莉</td>
+<td align="left">loli</td>
+</tr>
+<tr>
+<td>熟女</td>
+<td>mature female</td>
+<td>百合</td>
+<td>yuri</td>
+<td>睡觉</td>
+<td align="left">sleeping</td>
+</tr>
+<tr>
+<td>异性</td>
+<td>hetero</td>
+<td>少女(By 匿名)</td>
+<td>young girl</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="头发术式"><a href="#头发术式" class="headerlink" title="头发术式"></a>头发术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>呆毛</td>
+<td>ahoge</td>
+<td>刘海</td>
+<td>bangs</td>
+<td>齐刘海</td>
+<td align="left">blunt_bangs</td>
+</tr>
+<tr>
+<td>卷发</td>
+<td>curly_hair</td>
+<td>马尾</td>
+<td>ponytail</td>
+<td>包子头(两个)</td>
+<td align="left">double_bun</td>
+</tr>
+<tr>
+<td>包子头</td>
+<td>hair_bun</td>
+<td>钻头卷&#x2F;公主卷</td>
+<td>drill_hair</td>
+<td>短马尾</td>
+<td align="left">short_ponytail</td>
+</tr>
+<tr>
+<td>侧马尾</td>
+<td>side_ponytail</td>
+<td>双马尾</td>
+<td>twintails</td>
+<td>凌乱发型</td>
+<td align="left">messy_hair</td>
+</tr>
+<tr>
+<td>姬发式</td>
+<td>hime_cut</td>
+<td>辫子</td>
+<td>braid</td>
+<td>双辫子</td>
+<td align="left">twin_braids</td>
+</tr>
+<tr>
+<td>长鬓角</td>
+<td>payot</td>
+<td>波浪发型</td>
+<td>wavy_hair</td>
+<td>闪亮头发</td>
+<td align="left">shiny hair</td>
+</tr>
+<tr>
+<td>彩色内毛</td>
+<td>colored inner hair</td>
+<td>尖端挑染</td>
+<td>colored tips</td>
+<td>渐变头发</td>
+<td align="left">gradient hair</td>
+</tr>
+<tr>
+<td>高马尾</td>
+<td>high ponytail</td>
+<td>辫子</td>
+<td>braid</td>
+<td>卷发</td>
+<td align="left">curly hair</td>
+</tr>
+<tr>
+<td>不对称浏海</td>
+<td>asymmetrical bangs</td>
+<td>凌乱头发</td>
+<td>messy hair</td>
+<td>蝴蝶结发</td>
+<td align="left">bow-shaped hair</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="颜色术式"><a href="#颜色术式" class="headerlink" title="颜色术式"></a>颜色术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>金发&#x2F;金眼</td>
+<td>blonde_hair&#x2F;yellow_eyes</td>
+<td>白发&#x2F;白眼</td>
+<td>white_hair&#x2F;white_eyes</td>
+<td>棕发&#x2F;棕眼</td>
+<td align="left">brown_hair&#x2F;brown_e</td>
+</tr>
+<tr>
+<td>银发&#x2F;银眼</td>
+<td>silver_hair&#x2F;silver_eyes</td>
+<td>黑发&#x2F;黑眼</td>
+<td>black_hair&#x2F;black_ey</td>
+<td>紫发&#x2F;紫眼</td>
+<td align="left">purple_hair&#x2F;purple_ey</td>
+</tr>
+<tr>
+<td>灰发&#x2F;灰眼</td>
+<td>grey_hair&#x2F;grey_eyes</td>
+<td>红发&#x2F;红眼</td>
+<td>red_hair&#x2F;red_eyes</td>
+<td>蓝发&#x2F;蓝眼</td>
+<td align="left">blue_hair&#x2F;blue_eyes</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="头部术式"><a href="#头部术式" class="headerlink" title="头部术式"></a>头部术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>不看镜头</td>
+<td>looking away</td>
+<td>回头看</td>
+<td>looking back</td>
+<td>往下看</td>
+<td align="left">looking down</td>
+</tr>
+<tr>
+<td>往上看</td>
+<td>looking up</td>
+<td>遥望</td>
+<td>looking afar</td>
+<td>盯着</td>
+<td align="left">staring</td>
+</tr>
+<tr>
+<td>对视</td>
+<td>eye contact</td>
+<td>斜视</td>
+<td>sideways glance</td>
+<td>开嘴</td>
+<td align="left">parted lips</td>
+</tr>
+<tr>
+<td>开口</td>
+<td>open mouth</td>
+<td>闭嘴</td>
+<td>closed mouth</td>
+<td>吐舌</td>
+<td align="left">tongue out</td>
+</tr>
+<tr>
+<td>舔嘴唇</td>
+<td>licking lips</td>
+<td>咬紧牙关</td>
+<td>clenched teeth</td>
+<td>微笑</td>
+<td align="left">smile</td>
+</tr>
+<tr>
+<td>浅笑</td>
+<td>light smile</td>
+<td>露齿笑</td>
+<td>grin</td>
+<td>坏笑</td>
+<td align="left">evil smileevil grin</td>
+</tr>
+<tr>
+<td>得意笑</td>
+<td>smirk</td>
+<td>自鸣得意</td>
+<td>smug doyagao</td>
+<td>幸灾乐祸</td>
+<td align="left">troll face</td>
+</tr>
+<tr>
+<td>诱人的微笑</td>
+<td>seductive smile</td>
+<td>呼吸</td>
+<td>breath</td>
+<td>摸头</td>
+<td align="left">headpat</td>
+</tr>
+<tr>
+<td>哭哭</td>
+<td>crying</td>
+<td>张眼哭</td>
+<td>crying with eyes open</td>
+<td>脸贴脸</td>
+<td align="left">cheek-to-cheek</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="姿势术式"><a href="#姿势术式" class="headerlink" title="姿势术式"></a>姿势术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>站立</td>
+<td>standing</td>
+<td>弯腰</td>
+<td>bent over</td>
+<td>弓背</td>
+<td align="left">arched back</td>
+</tr>
+<tr>
+<td>拉伸</td>
+<td>stretching</td>
+<td>蹲着</td>
+<td>squatting</td>
+<td>侧躺</td>
+<td align="left">on side</td>
+</tr>
+<tr>
+<td>趴着</td>
+<td>on stomach</td>
+<td>躺着</td>
+<td>lying on back</td>
+<td>坐着</td>
+<td align="left">sitting</td>
+</tr>
+<tr>
+<td>w坐割座</td>
+<td>wariza</td>
+<td>跨坐</td>
+<td>straddling</td>
+<td>四肢着地</td>
+<td align="left">all fours</td>
+</tr>
+<tr>
+<td>双腿过头</td>
+<td>legs over head</td>
+<td>自拍</td>
+<td>selfie</td>
+<td>通过腿看</td>
+<td align="left">looking through legs</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="手部术式"><a href="#手部术式" class="headerlink" title="手部术式"></a>手部术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>伸出双臂</td>
+<td>outstretched arms</td>
+<td>伸出单臂</td>
+<td>outstretched arm</td>
+<td>伸出单手</td>
+<td align="left">outstretched hand</td>
+</tr>
+<tr>
+<td>伸手触及</td>
+<td>reaching</td>
+<td>张开双臂</td>
+<td>spread arms</td>
+<td>殭尸姿势</td>
+<td align="left">zombie pose</td>
+</tr>
+<tr>
+<td>单抬臂</td>
+<td>arm up</td>
+<td>双抬臂</td>
+<td>arms up</td>
+<td>展示腋下</td>
+<td align="left">presenting armpit</td>
+</tr>
+<tr>
+<td>手臂放头后</td>
+<td>arms behind head</td>
+<td>手臂放后面</td>
+<td>arms behind back</td>
+<td>双手叉腰</td>
+<td align="left">hands on hips</td>
+</tr>
+<tr>
+<td>手放嘴上</td>
+<td>hand to own mouth</td>
+<td>手放脸上</td>
+<td>hand on own face</td>
+<td>抱自己的腿</td>
+<td align="left">hugging own legs</td>
+</tr>
+<tr>
+<td>手臂支撑</td>
+<td>arm support</td>
+<td>拨头发</td>
+<td>hand in own hair</td>
+<td>双手拨头发</td>
+<td align="left">hands in hair</td>
+</tr>
+<tr>
+<td>调整头发</td>
+<td>adjusting hair</td>
+<td>扎头发</td>
+<td>tying hair</td>
+<td>牵手</td>
+<td align="left">holding hands</td>
+</tr>
+<tr>
+<td>手指相扣</td>
+<td>interlocked fingers</td>
+<td>双手相扣</td>
+<td>own hands clasped</td>
+<td>张开手指</td>
+<td align="left">spread fingers</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="腿部术式"><a href="#腿部术式" class="headerlink" title="腿部术式"></a>腿部术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>双腿交叉</td>
+<td>crossed legs</td>
+<td>手夹腿间</td>
+<td>hands between legs</td>
+<td>尾巴夹腿间</td>
+<td align="left">tail between legs</td>
+</tr>
+<tr>
+<td>抬腿</td>
+<td>leg up</td>
+<td>抬双腿</td>
+<td>legs up</td>
+<td>双腿分开</td>
+<td align="left">legs apart</td>
+</tr>
+<tr>
+<td>膝盖向上</td>
+<td>knees up</td>
+<td>双膝并拢脚分开</td>
+<td>knees together feet apart</td>
+<td>膝到胸</td>
+<td align="left">knees to chest</td>
+</tr>
+<tr>
+<td>内八</td>
+<td>pigeon-toed</td>
+<td>M字腿</td>
+<td>m legs</td>
+<td>足部屈曲</td>
+<td align="left">plantar flexion</td>
+</tr>
+<tr>
+<td>展示脚部</td>
+<td>presenting foot</td>
+<td>伸展脚趾</td>
+<td>spread toes</td>
+<td>脚悬空</td>
+<td align="left">feet up</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="脸部术式"><a href="#脸部术式" class="headerlink" title="脸部术式"></a>脸部术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>脸红</td>
+<td>blush</td>
+<td>尴尬害羞</td>
+<td>embarrassed</td>
+<td>恍惚放荡</td>
+<td align="left">torogao</td>
+</tr>
+<tr>
+<td>酒醉</td>
+<td>drunk</td>
+<td>阿嘿颜</td>
+<td>ahegao</td>
+<td>戏弄调戏脸</td>
+<td align="left">naughty face</td>
+</tr>
+<tr>
+<td>皱眉蹙眼</td>
+<td>wince</td>
+<td>阴暗脸</td>
+<td>shaded face</td>
+<td>厌恶</td>
+<td align="left">disgust</td>
+</tr>
+<tr>
+<td>恼火</td>
+<td>annoyed</td>
+<td>高潮</td>
+<td>orgasm</td>
+<td>噘嘴</td>
+<td align="left">pout</td>
+</tr>
+<tr>
+<td>紧张</td>
+<td>nervous</td>
+<td>困惑</td>
+<td>confused</td>
+<td>害怕</td>
+<td align="left">scared</td>
+</tr>
+<tr>
+<td>疼痛</td>
+<td>pain</td>
+<td>尖叫</td>
+<td>screaming</td>
+<td>惊讶</td>
+<td align="left">surprised</td>
+</tr>
+<tr>
+<td>脸色苍白</td>
+<td>turn pale</td>
+<td>悲伤</td>
+<td>sad</td>
+<td>忧郁</td>
+<td align="left">gloom (expression) depressed</td>
+</tr>
+<tr>
+<td>叹息</td>
+<td>sigh</td>
+<td>无表情</td>
+<td>expressionless</td>
+<td>想睡的</td>
+<td align="left">sleepy</td>
+</tr>
+<tr>
+<td>认真</td>
+<td>serious</td>
+<td>皱眉</td>
+<td>frown</td>
+<td>V字眉</td>
+<td align="left">v shaped eyebrows</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="眼镜术式"><a href="#眼镜术式" class="headerlink" title="眼镜术式"></a>眼镜术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>眼透头发</td>
+<td>eyes visible through hair</td>
+<td>单遮眼</td>
+<td>hair over one eye one eye covered</td>
+<td>绷带遮单眼</td>
+<td align="left">bandage over one eye</td>
+</tr>
+<tr>
+<td>闭眼</td>
+<td>closed eyes</td>
+<td>闭单眼</td>
+<td>one eye closed</td>
+<td>半开眼</td>
+<td align="left">half-closed eyes</td>
+</tr>
+<tr>
+<td>瞇眼</td>
+<td>squinting</td>
+<td>吊眼角</td>
+<td>tsurime</td>
+<td>下垂眼</td>
+<td align="left">tareme</td>
+</tr>
+<tr>
+<td>上看的眼睛</td>
+<td>upturned eyes</td>
+<td>失神眼</td>
+<td>empty eyes</td>
+<td>睁大眼睛</td>
+<td align="left">wide-eyed</td>
+</tr>
+<tr>
+<td>发光眼睛</td>
+<td>glowing eyes</td>
+<td>圈圈眼</td>
+<td>ringed eyes</td>
+<td>爱心瞳</td>
+<td align="left">heart-shaped pupils</td>
+</tr>
+<tr>
+<td>水平瞳孔</td>
+<td>horizontal pupils</td>
+<td>猫瞳</td>
+<td>slit pupils</td>
+<td>收缩的瞳孔</td>
+<td align="left">constricted pupils</td>
+</tr>
+<tr>
+<td>符号瞳</td>
+<td>symbol-shaped pupils</td>
+<td>异色瞳</td>
+<td>heterochromia</td>
+<td>没有瞳孔</td>
+<td align="left">no pupils</td>
+</tr>
+<tr>
+<td>发亮瞳孔</td>
+<td>bright pupils</td>
+<td>眼睫毛</td>
+<td>eyelashes</td>
+<td>眼影</td>
+<td align="left">eyeshadow</td>
+</tr>
+<tr>
+<td>眼线</td>
+<td>eyeliner</td>
+<td>三白眼</td>
+<td>sanpaku</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="服装术式"><a href="#服装术式" class="headerlink" title="服装术式"></a>服装术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bikini</td>
+<td>比基尼</td>
+<td>系绳比基尼</td>
+<td>string bikini</td>
+<td>解开比基尼</td>
+<td align="left">untied bikini</td>
+</tr>
+<tr>
+<td>front-tie bikini top</td>
+<td>前系带比基尼上着</td>
+<td>侧系带比基尼下着</td>
+<td>side-tie bikini bottom</td>
+<td>微小比基尼</td>
+<td align="left">micro bikini</td>
+</tr>
+<tr>
+<td>swimsuit</td>
+<td>泳装</td>
+<td>连体泳衣</td>
+<td>one-piece swimsuit</td>
+<td>学校泳衣</td>
+<td align="left">school swimsuit</td>
+</tr>
+<tr>
+<td>竞赛泳衣</td>
+<td>competition swimsuit</td>
+<td>高叉泳衣</td>
+<td>highleg swimsuit</td>
+<td>运动服</td>
+<td align="left">sportswear</td>
+</tr>
+<tr>
+<td>排球服</td>
+<td>volleyball uniform</td>
+<td>旗袍</td>
+<td>china dress</td>
+<td>水手服</td>
+<td align="left">serafuku</td>
+</tr>
+<tr>
+<td>校服</td>
+<td>school uniform</td>
+<td>紧身衣</td>
+<td>leotard</td>
+<td>高领衬衫</td>
+<td align="left">collared shirt</td>
+</tr>
+<tr>
+<td>和服</td>
+<td>kimono</td>
+<td>布鲁玛</td>
+<td>buruma</td>
+<td>无肩带紧身衣</td>
+<td align="left">strapless leotard</td>
+</tr>
+<tr>
+<td>高叉紧身衣</td>
+<td>highleg leotard</td>
+<td>丁字紧身衣</td>
+<td>thong leotard</td>
+<td>衣服下紧身衣</td>
+<td align="left">leotard under clothes</td>
+</tr>
+<tr>
+<td>紧身衣服</td>
+<td>taut clothes</td>
+<td>紧身衬衫</td>
+<td>taut shirt</td>
+<td>薄纱连衣裙</td>
+<td align="left">sheer tulle dress</td>
+</tr>
+</tbody></table>
+<p>　　</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>雪纺连衣裙</td>
+<td>chiffon dress</td>
+<td>连身丝袜</td>
+<td>bodystocking</td>
+<td>紧身衣裤</td>
+<td>bodysuit</td>
+</tr>
+<tr>
+<td>背心</td>
+<td>tank top</td>
+<td>连身裙</td>
+<td>dress</td>
+<td>露背连身裙</td>
+<td>backless dress</td>
+</tr>
+<tr>
+<td>绕颈连身裙</td>
+<td>halter dress</td>
+<td>毛衣连身裙</td>
+<td>sweater dress</td>
+<td>露背装</td>
+<td>backless outfit</td>
+</tr>
+<tr>
+<td>睡袍</td>
+<td>nightgown</td>
+<td>大衣</td>
+<td>coat</td>
+<td>高领毛衣</td>
+<td>turtleneck sweater</td>
+</tr>
+<tr>
+<td>罗纹毛衣</td>
+<td>ribbed sweater</td>
+<td>露肩毛衣</td>
+<td>off-shoulder sweater</td>
+<td>开胸毛衣</td>
+<td>open-chest sweater</td>
+</tr>
+<tr>
+<td>肩膀切口</td>
+<td>shoulder cutout</td>
+<td>臀部切口</td>
+<td>hip vent</td>
+<td>心型切口</td>
+<td>heart cutout</td>
+</tr>
+<tr>
+<td>后背切口</td>
+<td>back cutout</td>
+<td>下胸切口</td>
+<td>underboob cutout</td>
+<td>束腹</td>
+<td>corset</td>
+</tr>
+<tr>
+<td>小可爱露腹短上衣</td>
+<td>crop top</td>
+<td>赛车服</td>
+<td>racing suit</td>
+<td>护士服</td>
+<td>nurse</td>
+</tr>
+<tr>
+<td>乳胶紧身衣</td>
+<td>latex</td>
+<td>白大褂</td>
+<td>lab_coat</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="裙子术式"><a href="#裙子术式" class="headerlink" title="裙子术式"></a>裙子术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>裙子</td>
+<td>skirt</td>
+<td>迷你裙</td>
+<td>miniskirt</td>
+<td>百褶裙</td>
+<td align="left">pleated skirt</td>
+</tr>
+<tr>
+<td>铅笔裙</td>
+<td>pencil skirt</td>
+<td>格子裙</td>
+<td>plaid skirt</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="裤子术式"><a href="#裤子术式" class="headerlink" title="裤子术式"></a>裤子术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>紧身裤</td>
+<td>leggings</td>
+<td>短裤</td>
+<td>shorts</td>
+<td>牛仔短裤</td>
+<td align="left">denim shorts</td>
+</tr>
+<tr>
+<td>裤子</td>
+<td>pants</td>
+<td>瑜伽裤</td>
+<td>yoga pants</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="袜子术式"><a href="#袜子术式" class="headerlink" title="袜子术式"></a>袜子术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>裤袜</td>
+<td>pantyhose</td>
+<td>网裤袜</td>
+<td>fishnet pantyhose</td>
+<td>绑腿连裤袜</td>
+<td align="left">thighband pantyhose</td>
+</tr>
+<tr>
+<td>拉下裤袜</td>
+<td>pantyhose pull</td>
+<td>接缝裤袜</td>
+<td>seamed legwear</td>
+<td>过膝袜</td>
+<td align="left">thighhighs</td>
+</tr>
+<tr>
+<td>膝下袜</td>
+<td>kneehighs</td>
+<td>吊袜带</td>
+<td>garter straps garter belt</td>
+<td>袜子</td>
+<td align="left">socks</td>
+</tr>
+<tr>
+<td>无趾护腿</td>
+<td>toeless legwear</td>
+<td>黑丝</td>
+<td>black stocking</td>
+<td>白丝</td>
+<td align="left">white stocking</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="鞋子术式"><a href="#鞋子术式" class="headerlink" title="鞋子术式"></a>鞋子术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>高跟鞋</td>
+<td>high heels</td>
+<td>运动鞋</td>
+<td>sneakers</td>
+<td>交叉系带鞋</td>
+<td align="left">cross-laced footwear</td>
+</tr>
+<tr>
+<td>靴子</td>
+<td>boots</td>
+<td>系带靴</td>
+<td>lace-up boots</td>
+<td>短靴</td>
+<td align="left">ankle boots</td>
+</tr>
+<tr>
+<td>膝下靴</td>
+<td>knee boots</td>
+<td>过膝长靴</td>
+<td>thigh boots</td>
+<td>乐福鞋</td>
+<td align="left">loafers</td>
+</tr>
+<tr>
+<td>不穿鞋</td>
+<td>no shoes</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="手套术式"><a href="#手套术式" class="headerlink" title="手套术式"></a>手套术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>手套</td>
+<td>gloves</td>
+<td>肘部手套</td>
+<td>elbow gloves</td>
+<td>猫猫手套</td>
+<td align="left">paw gloves</td>
+</tr>
+<tr>
+<td>无指手套</td>
+<td>fingerless gloves</td>
+<td>袖子</td>
+<td>sleeves</td>
+<td>分离式袖子</td>
+<td align="left">detached sleeves</td>
+</tr>
+<tr>
+<td>宽袖</td>
+<td>wide sleeves</td>
+<td>丝带饰边袖子</td>
+<td>ribbon-trimmed sleeves</td>
+<td>无袖</td>
+<td align="left">sleeveless</td>
+</tr>
+<tr>
+<td>手腕袖口</td>
+<td>wrist cuffs</td>
+<td>婚礼手套</td>
+<td>bridal gauntlets</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="配饰术式"><a href="#配饰术式" class="headerlink" title="配饰术式"></a>配饰术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>兔尾</td>
+<td>rabbit tail</td>
+<td>吊带</td>
+<td>suspenders</td>
+<td>围巾</td>
+<td align="left">scarf</td>
+</tr>
+<tr>
+<td>围裙</td>
+<td>apron</td>
+<td>发带</td>
+<td>hair ribbon</td>
+<td>丝带</td>
+<td align="left">ribbon</td>
+</tr>
+<tr>
+<td>腰带</td>
+<td>belt</td>
+<td>女仆头饰</td>
+<td>maid headdress</td>
+<td>颈带</td>
+<td align="left">neck ribbon</td>
+</tr>
+<tr>
+<td>帽带</td>
+<td>hat ribbon</td>
+<td>大腿带</td>
+<td>thigh strap</td>
+<td>薄纱面纱</td>
+<td align="left">veil mouth veil</td>
+</tr>
+<tr>
+<td>婚礼面纱</td>
+<td>bridal veil</td>
+<td>光环</td>
+<td>halo</td>
+<td>翅膀</td>
+<td align="left">wings</td>
+</tr>
+<tr>
+<td>铃铛</td>
+<td>bell</td>
+<td>发饰</td>
+<td>hair ornament</td>
+<td>面罩</td>
+<td align="left">mask</td>
+</tr>
+<tr>
+<td>流苏</td>
+<td>tassel</td>
+<td>牛铃</td>
+<td>cowbell</td>
+<td>发环</td>
+<td align="left">hair rings</td>
+</tr>
+<tr>
+<td>发夹</td>
+<td>hairclip</td>
+<td>发花</td>
+<td>hair flower</td>
+<td>蝴蝶结</td>
+<td align="left">hair bow</td>
+</tr>
+<tr>
+<td>发簪</td>
+<td>hair stick</td>
+<td></td>
+<td></td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="欧派术式"><a href="#欧派术式" class="headerlink" title="欧派术式"></a>欧派术式</h3><p>　　</p>
+<table>
+<thead>
+<tr>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th>魔法内容</th>
+<th>术式描述</th>
+<th align="left">魔法内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>胸肌</td>
+<td>chest</td>
+<td>胸部</td>
+<td>breasts</td>
+<td>贫乳(A</td>
+<td align="left">flat_chest</td>
+</tr>
+<tr>
+<td>小胸部(B</td>
+<td>small_breasts</td>
+<td>中等胸部(C</td>
+<td>medium_breasts</td>
+<td>大胸部(D</td>
+<td align="left">large_breasts</td>
+</tr>
+<tr>
+<td>巨乳(E</td>
+<td>huge_breasts</td>
+<td>魔乳(F</td>
+<td>gigantic_breasts</td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://jcvvv.github.io">锦尘</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jcvvv.github.io/2022/10/04/Novel%20AI/">https://jcvvv.github.io/2022/10/04/Novel%20AI/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jcvvv.github.io" target="_blank">锦尘</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF/">技术</a><a class="post-meta__tags" href="/tags/%E5%B0%8F%E7%99%BD%E5%90%91/">小白向</a><a class="post-meta__tags" href="/tags/%E9%9A%8F%E4%BE%BF%E8%81%8A%E8%81%8A/">随便聊聊</a></div><div class="post_share"><div class="social-share" data-image="/pic/cover/12.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/15/Black%20Magic/"><img class="prev-cover" src="/pic/cover/14.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Novel AI 黑魔法</div></div></a></div><div class="next-post pull-right"><a href="/2022/10/01/Python%20Experiment/"><img class="next-cover" src="/pic/cover/8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">python实验报告合集</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/10/15/Black%20Magic/" title="Novel AI 黑魔法"><img class="cover" src="/pic/cover/14.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-15</div><div class="title">Novel AI 黑魔法</div></div></a></div><div><a href="/2022/10/01/Python%20Experiment/" title="python实验报告合集"><img class="cover" src="/pic/cover/8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-01</div><div class="title">python实验报告合集</div></div></a></div><div><a href="/2022/09/29/How%20to%20build%20blog/" title="使用 Hexo+GitHub 搭建个人博客"><img class="cover" src="/pic/cover/10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-29</div><div class="title">使用 Hexo+GitHub 搭建个人博客</div></div></a></div><div><a href="/2022/09/30/Wisdom%20of%20Asking%20Questions/" title="提问的智慧"><img class="cover" src="/pic/cover/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-30</div><div class="title">提问的智慧</div></div></a></div><div><a href="/2022/07/15/Welcome%20to%20My%20Blog/" title="欢迎来到我的博客"><img class="cover" src="/pic/cover/1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-15</div><div class="title">欢迎来到我的博客</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锦尘</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JCvvv" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/475586532?spm_id_from=333.1007.0.0" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="mailto:1747624698@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">前期准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">框架搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">加载模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">5.</span> <span class="toc-text">调数详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8F%E5%94%B1%E9%AD%94%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">咏唱魔法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9E%8D%E5%90%88%E5%92%92%E8%AF%AD"><span class="toc-number">6.1.</span> <span class="toc-text">融合咒语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%92%8F%E5%94%B1%E5%89%8D%E7%BC%80"><span class="toc-number">6.2.</span> <span class="toc-text">咏唱前缀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E8%A7%92%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.3.</span> <span class="toc-text">视角术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%BB%E9%9D%A2%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.4.</span> <span class="toc-text">画面术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%A4%B4%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.5.</span> <span class="toc-text">镜头术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.6.</span> <span class="toc-text">背景术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AD%91%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.7.</span> <span class="toc-text">建筑术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%8E%E6%A0%BC%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.8.</span> <span class="toc-text">风格术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.9.</span> <span class="toc-text">媒体术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%8C%96%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.10.</span> <span class="toc-text">强化术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E5%8F%91%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.11.</span> <span class="toc-text">头发术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.12.</span> <span class="toc-text">颜色术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E9%83%A8%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.13.</span> <span class="toc-text">头部术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A7%BF%E5%8A%BF%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.14.</span> <span class="toc-text">姿势术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E9%83%A8%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.15.</span> <span class="toc-text">手部术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%85%BF%E9%83%A8%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.16.</span> <span class="toc-text">腿部术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%84%B8%E9%83%A8%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.17.</span> <span class="toc-text">脸部术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%BC%E9%95%9C%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.18.</span> <span class="toc-text">眼镜术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E8%A3%85%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.19.</span> <span class="toc-text">服装术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%99%E5%AD%90%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.20.</span> <span class="toc-text">裙子术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%A4%E5%AD%90%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.21.</span> <span class="toc-text">裤子术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%9C%E5%AD%90%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.22.</span> <span class="toc-text">袜子术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9E%8B%E5%AD%90%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.23.</span> <span class="toc-text">鞋子术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%A5%97%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.24.</span> <span class="toc-text">手套术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E9%A5%B0%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.25.</span> <span class="toc-text">配饰术式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%B4%BE%E6%9C%AF%E5%BC%8F"><span class="toc-number">6.26.</span> <span class="toc-text">欧派术式</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/15/Black%20Magic/" title="Novel AI 黑魔法">Novel AI 黑魔法</a><time datetime="2022-10-14T16:00:00.000Z" title="发表于 2022-10-15 00:00:00">2022-10-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/04/Novel%20AI/" title="Novel AI 魔咒汇总">Novel AI 魔咒汇总</a><time datetime="2022-10-03T16:00:00.000Z" title="发表于 2022-10-04 00:00:00">2022-10-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/01/Python%20Experiment/" title="python实验报告合集">python实验报告合集</a><time datetime="2022-09-30T16:00:00.000Z" title="发表于 2022-10-01 00:00:00">2022-10-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/30/Wisdom%20of%20Asking%20Questions/" title="提问的智慧">提问的智慧</a><time datetime="2022-09-29T16:00:00.000Z" title="发表于 2022-09-30 00:00:00">2022-09-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/29/How%20to%20build%20blog/" title="使用 Hexo+GitHub 搭建个人博客">使用 Hexo+GitHub 搭建个人博客</a><time datetime="2022-09-28T16:00:00.000Z" title="发表于 2022-09-29 00:00:00">2022-09-29</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/foot.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锦尘</div><div class="footer_custom_text">欢迎你，不知道从哪来的朋友</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
