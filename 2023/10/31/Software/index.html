@@ -1,0 +1,824 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>软件工程作业合集 | 锦尘</title><meta name="keywords" content="软件工程"><meta name="author" content="锦尘"><meta name="copyright" content="锦尘"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="第一章请谈一下关于软件工程的整体认识和印象 软件工程是一门较为年轻的学科,起源于20世纪60年代,目的是通过工程化的方法来规范和提高软件开发过程。  软件工程的主要目标是开发高质量、低成本、可靠和可维护的软件产品,以更好地满足用户需求。  软件工程覆盖了软件开发生命周期的所有阶段,从需求分析、设计、编码、测试到运维。它提供了各种开发模型、方法论、最佳实践。  软件工程强调工程纪律,注重软件过程的标">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程作业合集">
+<meta property="og:url" content="https://jcvvv.github.io/2023/10/31/Software/index.html">
+<meta property="og:site_name" content="锦尘">
+<meta property="og:description" content="第一章请谈一下关于软件工程的整体认识和印象 软件工程是一门较为年轻的学科,起源于20世纪60年代,目的是通过工程化的方法来规范和提高软件开发过程。  软件工程的主要目标是开发高质量、低成本、可靠和可维护的软件产品,以更好地满足用户需求。  软件工程覆盖了软件开发生命周期的所有阶段,从需求分析、设计、编码、测试到运维。它提供了各种开发模型、方法论、最佳实践。  软件工程强调工程纪律,注重软件过程的标">
+<meta property="og:locale">
+<meta property="og:image" content="https://jcvvv.github.io/pic/cover/31.jpg">
+<meta property="article:published_time" content="2023-10-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-01T13:57:39.277Z">
+<meta property="article:author" content="锦尘">
+<meta property="article:tag" content="软件工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jcvvv.github.io/pic/cover/31.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jcvvv.github.io/2023/10/31/Software/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '软件工程作业合集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-01 21:57:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa-solid fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/pic/cover/31.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锦尘</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa-solid fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">软件工程作业合集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-30T16:00:00.000Z" title="发表于 2023-10-31 00:00:00">2023-10-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-01T13:57:39.277Z" title="更新于 2023-11-01 21:57:39">2023-11-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">11,120</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>39分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="软件工程作业合集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><h3 id="请谈一下关于软件工程的整体认识和印象"><a href="#请谈一下关于软件工程的整体认识和印象" class="headerlink" title="请谈一下关于软件工程的整体认识和印象"></a>请谈一下关于软件工程的整体认识和印象</h3><ol>
+<li><p>软件工程是一门较为年轻的学科,起源于20世纪60年代,目的是通过工程化的方法来规范和提高软件开发过程。</p>
+</li>
+<li><p>软件工程的主要目标是开发高质量、低成本、可靠和可维护的软件产品,以更好地满足用户需求。</p>
+</li>
+<li><p>软件工程覆盖了软件开发生命周期的所有阶段,从需求分析、设计、编码、测试到运维。它提供了各种开发模型、方法论、最佳实践。</p>
+</li>
+<li><p>软件工程强调工程纪律,注重软件过程的标准化和计量化,以减少依赖个人经验和意外因素。</p>
+</li>
+<li><p>但是软件工程本身也在不断发展和完善,需要灵活应对不同类型软件项目的特点。比如敏捷开发就相对注重团队协作和应对变化。</p>
+</li>
+<li><p>软件行业发展迅速,软件工程仍需要持续的研究与创新,以适应新技术新需求。AI和自动化也将深刻影响软件工程实践。</p>
+</li>
+<li><p>整体来说,软件工程为软件开发实践提供了规范化的指导框架,但也需要根据不同情形灵活调整应用,这是一门不断进步的学科。</p>
+</li>
+</ol>
+<h3 id="系统分析师和系统构架设计师有何区别"><a href="#系统分析师和系统构架设计师有何区别" class="headerlink" title="系统分析师和系统构架设计师有何区别?"></a>系统分析师和系统构架设计师有何区别?</h3><ol>
+<li><p>系统分析师主要负责需求分析,和客户交流确定产品各方面需求,制定功能需求文档。</p>
+</li>
+<li><p>系统架构师则依据需求设计软件系统架构,考量技术选型、框架选择、模块划分、接口设计等系统方面的决策。 </p>
+</li>
+<li><p>系统分析更注重业务,需要理解用户需求;系统架构更注重技术,需要对各种技术方案进行评估设计。</p>
+</li>
+<li><p>系统分析通常在项目前期,需要和客户充分交流;系统架构遍布整个开发周期,需要给团队提供指导。</p>
+</li>
+<li><p>系统分析结果直接影响需求文档;系统架构直接影响整体系统实现方式。</p>
+</li>
+<li><p>系统分析师转向产品经理也比较常见;架构师通常深入技术,成长为高级架构师。</p>
+</li>
+<li><p>两者都需要遵循工程规范,但分析更注重需求描述,架构更注重方案设计。</p>
+</li>
+</ol>
+<p>综上所述,系统分析和系统架构都对软件设计非常重要,前者确定需求,后者确定实现方式,两者缺一不可,需要紧密协作配合。</p>
+<h3 id="应用软件工程（实施分阶段原理等）会增加系统工作量吗"><a href="#应用软件工程（实施分阶段原理等）会增加系统工作量吗" class="headerlink" title="应用软件工程（实施分阶段原理等）会增加系统工作量吗?"></a>应用软件工程（实施分阶段原理等）会增加系统工作量吗?</h3><ol>
+<li><p>从整体上看,软件工程会增加系统分析、设计和文档方面的工作量,但会降低编码和测试的工作量。</p>
+</li>
+<li><p>引入软件工程最重要的是在设计阶段投入精力,定义清晰的架构和接口,降低系统间耦合。这需要更多设计工作。</p>
+</li>
+<li><p>但良好的设计会减少编码期间的问题和重构工作,系统维护也更加简单。整体工作量不会增加,可能还会减少。</p>
+</li>
+<li><p>形式化的文档确实增加了一定工作量,但有助于减少 oral communication 的误解,也便于新人理解系统。</p>
+</li>
+<li><p>越复杂的系统,引入软件工程原理带来的收益越大。它避免了技术债务的累积。</p>
+</li>
+<li><p>软件工程的价值体现在生命周期中,特别是系统演进阶段。短期可能增加工作量,长期会减少修bug和重构工作。</p>
+</li>
+<li><p>关键是软件工程要灵活应用,避免形式主义。复杂系统引入适当软件工程discipline是明智的。</p>
+</li>
+</ol>
+<p>综上所述,合理应用软件工程可以更好地控制生命周期的系统工作量,减少技术债务。但需要灵活性,避免增加非必要的额外负担。</p>
+<h3 id="练习题2"><a href="#练习题2" class="headerlink" title="练习题2"></a>练习题2</h3><p>场景：某软件公司产品交付经常延迟。</p>
+<p>问题分析:</p>
+<ol>
+<li><p>这个问题的直接原因是研发团队开发进度常常无法按计划完成。</p>
+</li>
+<li><p>研发进度滞后的原因有以下几点:</p>
+</li>
+</ol>
+<ul>
+<li><p>需求不够清晰,开发过程中需要反复确认需求;</p>
+</li>
+<li><p>项目管理不够细致,对时间节点控制不足; </p>
+</li>
+<li><p>测试环境准备不充分,导致测试周期被延长。</p>
+</li>
+</ul>
+<ol start="3">
+<li>这几个子问题又有相互影响:</li>
+</ol>
+<ul>
+<li><p>需求不清晰导致项目计划难以制定;</p>
+</li>
+<li><p>项目计划不准导致测试环境准备不充分;</p>
+</li>
+<li><p>测试失败需要重新提交bug修复开发,进一步延长周期。</p>
+</li>
+</ul>
+<ol start="4">
+<li>问题的关键在于需求、计划和测试之间存在环路关系和相互影响,需要同时改进这几方面才能有效解决交付延迟的问题。</li>
+</ol>
+<p>这是一个问题分析的例子,问题本身不难定位,但子问题之间存在复杂逻辑关系,需要整体考虑这些因素才能有效解决问题。</p>
+<h3 id="练习题3"><a href="#练习题3" class="headerlink" title="练习题3"></a>练习题3</h3><p>错误-故障-失效的区别:</p>
+<ul>
+<li><p>错误:软件开发或运维过程中的人为失误行为,例如编写错误的代码逻辑。</p>
+</li>
+<li><p>故障:错误导致的缺陷,使得软件无法按预期运行,例如程序崩溃。</p>
+</li>
+<li><p>失效:故障导致用户无法正常使用软件的情况,例如无法登陆系统。</p>
+</li>
+</ul>
+<p>错误-故障-失效的例子:</p>
+<p>场景一：</p>
+<ul>
+<li>错误:开发人员在代码中错误使用了变量,导致逻辑错误。</li>
+<li>故障:由于这个逻辑错误,软件计算结果发生偏差,出现异常崩溃情况。</li>
+<li>失效:软件崩溃导致用户无法正常使用该软件的计算功能。</li>
+</ul>
+<p>场景二：</p>
+<ul>
+<li>错误:产品经理在需求文档中,对软件的一个功能描述不清晰。 </li>
+<li>故障:开发团队根据这一不清晰需求,实现了与预期不符的功能。</li>
+<li>失效:软件交付使用后,用户发现该功能与需求不匹配,无法完成工作。</li>
+</ul>
+<p>场景三：</p>
+<ul>
+<li>错误:架构师在设计数据库时,某两个实体关系设计错误。</li>
+<li>故障:根据这个数据库设计开发,导致两个模块间数据交换出现问题。</li>
+<li>失效:两个模块间数据不一致,导致软件整体运行出现问题。</li>
+</ul>
+<p>场景四：</p>
+<ul>
+<li>错误:测试人员准备的测试数据不完整,未覆盖到一些业务场景。</li>
+<li>故障:测试覆盖不全面,一些潜在缺陷未被发现。</li>
+<li>失效:软件上线后用户遇到了测试中未发现的缺陷导致的系统故障。</li>
+</ul>
+<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><h3 id="如何称得上一名优秀的程序员"><a href="#如何称得上一名优秀的程序员" class="headerlink" title="如何称得上一名优秀的程序员?"></a>如何称得上一名优秀的程序员?</h3><p>要成为一名优秀的程序员,关键的几个方面包括:</p>
+<ol>
+<li>良好的编程技能:</li>
+</ol>
+<ul>
+<li><p>掌握至少一两门主流编程语言的语法和特性</p>
+</li>
+<li><p>了解数据结构、算法等基础知识,能编写高效和可维护的代码</p>
+</li>
+<li><p>具备代码重构、测试驱动开发等良好编程实践素养</p>
+</li>
+</ul>
+<ol start="2">
+<li>持续学习:</li>
+</ol>
+<ul>
+<li><p>不断学习新技术,跟上技术发展趋势</p>
+</li>
+<li><p>主动阅读技术博客、文档,参加行业交流活动</p>
+</li>
+<li><p>有系统地提升编程深度,不停止在技术上成长</p>
+</li>
+</ul>
+<ol start="3">
+<li>良好的团队合作精神:</li>
+</ol>
+<ul>
+<li><p>能与其他开发者高效协作,重视代码review</p>
+</li>
+<li><p>具有较强的沟通能力,文档编写能力</p>
+</li>
+<li><p>重视代码质量,编写可读性好的代码和注释</p>
+</li>
+</ul>
+<ol start="4">
+<li>用户价值导向:</li>
+</ol>
+<ul>
+<li><p>关注产品和业务需求,理解用户痛点</p>
+</li>
+<li><p>努力通过技术满足业务需求,解决用户问题</p>
+</li>
+</ul>
+<p>综上,一个优秀的程序员不仅要有扎实的编程技能,还需要持续学习和成长,并在团队协作、满足用户需求等方面展现出价值。这需要长期的积累和努力。</p>
+<h3 id="系统架构师应该具备的素质是什么"><a href="#系统架构师应该具备的素质是什么" class="headerlink" title="系统架构师应该具备的素质是什么?"></a>系统架构师应该具备的素质是什么?</h3><p>一个优秀的系统架构师应该具备以下关键素质:</p>
+<ol>
+<li>全面的技术视野</li>
+</ol>
+<p>需要对主流编程语言、操作系统、网络、数据库等都有充分的理解,才能设计出整体优秀的系统架构。</p>
+<ol start="2">
+<li>需求分析能力</li>
+</ol>
+<p>能够理解产品或业务的需求,定义架构需求,是架构设计的基础。</p>
+<ol start="3">
+<li>系统设计能力</li>
+</ol>
+<p>需要能够进行抽象思考,定义模块划分、接口设计、通信机制等系统关键点。</p>
+<ol start="4">
+<li>技术选型鉴别力</li>
+</ol>
+<p>评估不同技术方案优劣,选择最合适的技术方案实施。</p>
+<ol start="5">
+<li>成本敏感性</li>
+</ol>
+<p>考虑不同方案的性能、可靠性与成本权衡,给定成本预算下设计最优解。</p>
+<ol start="6">
+<li>团队协作能力</li>
+</ol>
+<p>系统架构设计需要与开发团队高效协作。</p>
+<ol start="7">
+<li>对业务的理解</li>
+</ol>
+<p>了解业务需求和系统在业务中的作用至关重要。</p>
+<ol start="8">
+<li>沟通表达能力</li>
+</ol>
+<p>需要讲清架构设计思路,撰写优秀的架构文档。</p>
+<p>综上,系统架构师首先需要扎实的技术能力,其次是根据业务需求进行创新的系统设计能力,以及团队协作和沟通能力。这需要长期积累与实践。</p>
+<h3 id="练习题4"><a href="#练习题4" class="headerlink" title="练习题4"></a>练习题4</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">    id1(购买机票)--&gt;id2(确认起始站)</span><br><span class="line">    id1(购买机票)--&gt;id3(确认日期)</span><br><span class="line">    id1(购买机票)--&gt;id4(确认购买)</span><br><span class="line">    id4--&gt;id5(选择航班)</span><br><span class="line">    id5--&gt;id6(选择位置)</span><br></pre></td></tr></table></figure>
+
+<h3 id="练习题11"><a href="#练习题11" class="headerlink" title="练习题11"></a>练习题11</h3><ol>
+<li><p>系统设计和程序设计阶段需要考虑到未来需求的变化,提前设计好模块的接口和扩展机制,增加软件的可扩展性。</p>
+</li>
+<li><p>当需求发生变更时,如果变更在可接受范围内,通过迭代的方式在原有架构上进行修改即可。如果变更较大,需要增加新的子系统来实现。</p>
+</li>
+<li><p>随着迭代次数增多,代码架构会逐渐偏离最初设计。当迭代到一定程度时,需要返工进行系统设计和代码重构。</p>
+</li>
+<li><p>良好的系统设计和程序设计增加了软件在需求变更时的灵活性。但迭代过度会导致维护成本增加。</p>
+</li>
+<li><p>软件团队需要在可扩展性、迭代开发和代码重构之间找到平衡,既满足变更需求,也保证软件质量。</p>
+</li>
+</ol>
+<p>综上所述,软件设计阶段对未来变更需求的预判和扩展性设计,以及控制迭代次数避免过度编码的方法论,可以帮助软件团队获得良好的灵活性,更好地应对需求变更。</p>
+<h3 id="敏捷开发是一种全新理论吗"><a href="#敏捷开发是一种全新理论吗" class="headerlink" title="敏捷开发是一种全新理论吗?"></a>敏捷开发是一种全新理论吗?</h3><ol>
+<li><p>敏捷开发不能说是一种全新理论,它吸收融合了多种软件开发方法的优点。</p>
+</li>
+<li><p>敏捷开发强调以用户为中心,通过迭代开发和频繁交付软件,快速响应需求变更。这建立在逐步优化软件的基础上。</p>
+</li>
+<li><p>敏捷开发采用的很多实践,如小版本发布、频繁测试、pair programming等,都有一定历史积淀。它们不是敏捷开发的全新创造。</p>
+</li>
+<li><p>但是,敏捷开发确实在软件开发理论和实践中引入了一些新的概念和组合:</p>
+</li>
+</ol>
+<ul>
+<li><p>强调团队与用户紧密协作、团队自治</p>
+</li>
+<li><p>推崇工作软件优先于详细文档 </p>
+</li>
+<li><p>更注重响应变化而非遵循计划</p>
+</li>
+</ul>
+<ol start="5">
+<li><p>综上所述,敏捷开发对现有理论与实践进行了创新性整合,形成了一套可操作的敏捷框架,推动了软件开发模式变革。但它的很多元素都有一定基础。</p>
+</li>
+<li><p>敏捷开发更多是一种理念和价值观,而非全新理论。它为我们带来持续 evolution 和 innovation 的软件开发文化。</p>
+</li>
+</ol>
+<h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><h3 id="信息系统项目管理师考试题目"><a href="#信息系统项目管理师考试题目" class="headerlink" title="信息系统项目管理师考试题目"></a>信息系统项目管理师考试题目</h3><p>如果一个案例中涉及到合同管理,项目管理控制和项目沟通等诸多方面,在项目实际运行过程中,出现了甲方随意变更、不配合验收、甲乙双方沟通存在障碍等情形,试问如何从合同管理、过程控制和项目沟通管理三个方面来应对?</p>
+<ol>
+<li>从合同管理角度,应确保合同条款明确甲方变更的程序和后果,加强变更管理,避免甲方随意变更。对验收标准也应详细约定,以减少纠纷。</li>
+<li>从过程控制角度,项目管理方要强化里程碑管理,及时跟踪项目进度和质量。出现偏差时应及时采取纠正措施,并沟通协调各方。 </li>
+<li>从沟通管理角度,应加强与甲方的沟通交流,建立问题提前预警机制。同时针对沟通障碍采取措施,如设置专人对接、加强会议效率等。</li>
+<li>整合各方资源,建立问题协调机制,出现问题时能快速响应和协调。同时强化项目进度和资源控制,降低项目风险。</li>
+<li>在项目实施各阶段,都要强化沟通、控制和协调,实现项目目标。必要时可以引入第三方进行调解或仲裁。</li>
+</ol>
+<p>综上所述,项目管理需要从多方面入手,统筹考虑,才能应对复杂情形,确保项目顺利实施。</p>
+<h3 id="练习题2-1"><a href="#练习题2-1" class="headerlink" title="练习题2"></a>练习题2</h3><p>（1）每个活的前驱</p>
+<p>A活动没有前驱，B活动的前驱是A，C活动的前驱是A，D活动的前驱是B，E活动的前驱是A，F活动的前驱是C，G活动的前驱是E，H活动的前驱是G和F，I活动的前驱是B和D，J活动的前驱是I和G，K活动的前驱是J和H，L活动的前驱是J和K</p>
+<p>（2）每个活动的最早开始时间，最晚开始时间，时间差</p>
+<table>
+<thead>
+<tr>
+<th>活动</th>
+<th>最早开始时间</th>
+<th>最晚开始时间</th>
+<th>时间差</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AB</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>AE</td>
+<td>1</td>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr>
+<td>AC</td>
+<td>1</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>BD</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>BI</td>
+<td>4</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr>
+<td>CF</td>
+<td>6</td>
+<td>10</td>
+<td>4</td>
+</tr>
+<tr>
+<td>DI</td>
+<td>3</td>
+<td>9</td>
+<td>0</td>
+</tr>
+<tr>
+<td>EG</td>
+<td>5</td>
+<td>9</td>
+<td>4</td>
+</tr>
+<tr>
+<td>FH</td>
+<td>9</td>
+<td>13</td>
+<td>4</td>
+</tr>
+<tr>
+<td>GH</td>
+<td>8</td>
+<td>11</td>
+<td>3</td>
+</tr>
+<tr>
+<td>GJ</td>
+<td>8</td>
+<td>14</td>
+<td>6</td>
+</tr>
+<tr>
+<td>HK</td>
+<td>11</td>
+<td>14</td>
+<td>3</td>
+</tr>
+<tr>
+<td>IJ</td>
+<td>11</td>
+<td>11</td>
+<td>0</td>
+</tr>
+<tr>
+<td>JK</td>
+<td>13</td>
+<td>16</td>
+<td>3</td>
+</tr>
+<tr>
+<td>JL</td>
+<td>13</td>
+<td>13</td>
+<td>0</td>
+</tr>
+<tr>
+<td>KL</td>
+<td>15</td>
+<td>18</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<p>关键路径为：A-&gt;B-&gt;D-&gt;I-&gt;J-&gt;L</p>
+<h3 id="练习题3-1"><a href="#练习题3-1" class="headerlink" title="练习题3"></a>练习题3</h3><p>过程同上，关键路径为：A-&gt;B-&gt;C-&gt;E-&gt;F-&gt;I-&gt;K-&gt;L</p>
+<h3 id="练习题12"><a href="#练习题12" class="headerlink" title="练习题12"></a>练习题12</h3><ol>
+<li><p>基于代码行数的生产率测度存在一定问题。不同语言实现同一功能所需代码行数差异很大,预先难以准确测算。堆积代码可短期提升代码行数,但不利于代码质量。</p>
+</li>
+<li><p>选择更好的软件生产率测度方式:</p>
+</li>
+</ol>
+<ul>
+<li><p>基于功能点或规模的测度法,按交付的功能数目来测量生产率。不受语言影响。</p>
+</li>
+<li><p>基于交付价值的测度法,按照软件交付的业务价值来测量生产率。关注交付效果。</p>
+</li>
+<li><p>基于缺陷度的测度法,按软件质量好坏评估生产率。缺陷越少表示生产率越高。</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>生产率测度还需要考虑项目复杂度、团队素质等因素。不能机械化地应用。</p>
+</li>
+<li><p>在项目开始阶段,可以参考历史数据制定初步的生产率预估值,但实施中要根据具体情况修正。重点是跟踪交付进度和质量,而非盲目达成生产率指标。</p>
+</li>
+<li><p>软件生产率测度需要全面考虑,才能客观反映项目实际进展情况。测度方法不能简单化,也不能成为压力来源。</p>
+</li>
+</ol>
+<h2 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h2><h2 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h2><p>如何拒绝需求分析过程中某些不合理的用户需求？</p>
+<p>当用户提出不合理的需求时，根据不同情况采取以下处理方法是关键：</p>
+<ol>
+<li><p><strong>增添使用文档</strong>：当用户对系统了解不够时，提供适当的使用文档是一个有效的解决方案。这可以帮助用户更好地理解系统的功能和操作。使用文档应该清晰、详细，以确保用户能够轻松上手。此方法有助于提高用户满意度，同时避免不必要的开发工作和资源消耗。</p>
+</li>
+<li><p><strong>解释潜在问题</strong>：如果用户提出新功能的需求明显违反了现有逻辑，可能会引发潜在的BUG。在这种情况下，采用通俗易懂的语言向用户解释潜在问题是至关重要的。提供具体示例和技术原因，帮助用户理解为什么这个需求可能会导致困难。这有助于建立客户的理解，减少不必要的冲突和期望不合理。</p>
+</li>
+<li><p><strong>处理复杂改动</strong>：当用户提出的新功能需要对软件架构进行调整或可能导致项目变动时，重要的是在合同和协议中明确记录相关信息。同时，向客户传达这些改动可能带来的工期变动、价格变化等信息。这种透明性可以帮助客户了解项目的实际状况，以及为何某些需求可能具有挑战性。在这种情况下，与客户进行密切的合作和沟通，以找到满足需求的最佳解决方案，同时保持项目的可行性。</p>
+</li>
+</ol>
+<p>总之，以客观和透明的方式处理不合理的用户需求是关键。这需要沟通、解释和建立共识，以确保项目的成功和客户的满意度。同时，与客户合作，找到平衡，满足合理的需求，同时在必要时提供替代方案或解释。</p>
+<h2 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h2><p>在软件工程中，分析阶段类的大致种类通常包括边界类、实体类和控制类，这些类别有助于帮助分析和建模系统的需求和功能。</p>
+<p><strong>1.边界类（Boundary Class）：</strong></p>
+<ul>
+<li><strong>含义</strong>：边界类用于表示系统与外部的界面，包括用户界面、系统接口和设备接口。这些类主要负责与外部实体的交互，将外部的请求、操作和事件传递给系统内部的控制类和实体类。</li>
+<li><strong>依赖性</strong>：边界类通常依赖于外部环境，包括业务主角的操作习惯、外部条件的限制以及通信协议。当外部的GUI或通信协议发生变化时，只需要修改边界类而不需要修改控制类和实体类，这有助于降低系统的维护成本。</li>
+<li><strong>种类</strong>：边界类可以分为多种种类，包括用户界面类、系统接口类和设备接口类，每种类别用于不同类型的交互。</li>
+</ul>
+<p><strong>作用</strong>：</p>
+<ul>
+<li><p><strong>用户界面类</strong>：用户界面类用于构建系统的图形用户界面（GUI），用户通过它与系统进行交互。它负责接收用户输入，显示系统输出，并将用户操作传递给控制类来执行相关的操作和用例任务。</p>
+</li>
+<li><p><strong>系统接口类</strong>：系统接口类用于与其他系统进行通信，包括与外部服务、API和其他系统的交互。它充当了系统与外部世界的桥梁，确保数据和信息的交换。</p>
+</li>
+<li><p><strong>设备接口类</strong>：设备接口类用于与外部设备和传感器进行通信，例如，用于监测外部事件的传感器。它负责将来自设备的数据传递给系统内部，以触发相应的操作。</p>
+</li>
+</ul>
+<p>边界类的存在有助于实现系统的模块化，降低了系统组件之间的耦合度。当系统需要与外部环境进行交互时，边界类提供了一个良好的抽象层，使系统更容易适应变化和维护。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">class Boundart Class</span><br><span class="line">Boundart Class  : UserInterface GUI or API</span><br><span class="line">Boundart Class  : ExternalSystemInterface Interface</span><br><span class="line">Boundart Class  : DeviceInterface Interface</span><br><span class="line">Boundart Class  : +processUserInput() </span><br><span class="line">Boundart Class  : +communicateWithExternalSystem() </span><br><span class="line">Boundart Class  : +interactWithDevice() </span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中：</p>
+<ul>
+<li>类名 “Boundary Class” 位于矩形的顶部。</li>
+<li>类的属性包括 “UserInterface”、”ExternalSystemInterface” 和 “DeviceInterface”，它们表示边界类与用户界面、外部系统接口以及设备接口的关联。</li>
+<li>“+” 表示公有属性和方法，表示这些属性和方法是对外部可见的。</li>
+<li>方法 “processUserInput()” 用于处理用户输入。</li>
+<li>方法 “communicateWithExternalSystem()” 用于与外部系统进行通信。</li>
+<li>方法 “interactWithDevice()” 用于与外部设备进行交互。</li>
+</ul>
+<p><strong>2. 实体类（Entity Class）</strong>：</p>
+<ul>
+<li><strong>含义</strong>：实体类是用于表示系统中的实体或对象的类。这些实体通常对应于现实生活中的对象、概念或数据存储，它们包含了相关的属性和行为，用于描述和操作这些实体。实体类通常代表系统中的持久性数据或概念。</li>
+<li><strong>属性</strong>：实体类的属性表示实体的特征或信息，这些信息需要被永久存储。属性通常对应于实体的特征，如姓名、地址、日期等。</li>
+<li><strong>行为</strong>：实体类的行为表示实体可以执行的操作或方法。这些操作可能包括创建、修改、删除实体，以及执行与实体相关的其他操作。</li>
+</ul>
+<p><strong>实体对象</strong>：</p>
+<ul>
+<li><strong>含义</strong>：实体对象是实体类的实例。它们是实体的具体表现，包含特定的属性值，通常用来保存和更新现实世界中的信息。</li>
+<li><strong>永久性</strong>：实体对象通常具有长期的存在，它们的属性和关系通常在系统的整个生存期内都需要保留。</li>
+<li><strong>例子</strong>：例如，一个学生信息管理系统可以有一个实体类 “Student”，而每个学生的具体信息（如姓名、学号、成绩）则是 “Student” 类的实体对象。这些学生对象在学生系统中的存在是长期的，并且它们的信息需要被持久存储。</li>
+</ul>
+<p>实体类和实体对象是面向对象分析和设计中的重要概念，用于建模系统中的数据和实体，以便更好地满足业务需求和操作。通过合理定义实体类，可以确保系统能够有效地管理和操作相关信息，同时保持数据的一致性和长期可用性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">class Class Name</span><br><span class="line">Class Name  : Attribute1 DataType1</span><br><span class="line">Class Name  : Attribute1 DataType2</span><br><span class="line">Class Name  : +Method1(param1 DataType1) ReturnType</span><br><span class="line">Class Name  : +Method1(param2 DataType2) ReturnType</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中：</p>
+<ul>
+<li>Class Name 是实体类的名称，通常位于矩形的顶部。</li>
+<li>Attribute1: DataType1 表示类的属性，其中 - 表示私有属性，Attribute1 是属性名，DataType1 是属性的数据类型。</li>
+<li>Method1(param1: DataType1): ReturnType 表示类的方法，其中 + 表示公有方法，Method1 是方法名，(param1: DataType1) 表示方法的参数，ReturnType 表示方法的返回类型。</li>
+</ul>
+<p>**3.制类(Control Class)**：</p>
+<ul>
+<li><strong>含义</strong>：控制类用于对一个或多个用例所特有的控制行为进行建模，它负责实现用例的业务逻辑，包括处理输入、执行操作、处理错误等。控制类的设计通常与用例实现紧密相关。</li>
+<li><strong>多对多关系</strong>：控制类与用例之间的关系通常是多对多的，一个控制类可以实现多个用例，反之亦然。这种关系的灵活性有助于将系统的功能模块化，并根据具体情况对控制类进行设计和组织。</li>
+<li><strong>独立性</strong>：控制类的独立性有助于将业务逻辑从实体类和边界类中分离出来，这有助于实现业务逻辑的统一化和提高代码的复用性。</li>
+<li><strong>生命周期</strong>：通常，控制类对象在用例执行时被创建，用于处理该用例的逻辑，一旦用例执行完成，控制类对象可以被销毁，以释放资源。</li>
+</ul>
+<p><strong>用例、控制类、边界类之间的关系</strong>：</p>
+<ul>
+<li>用例通过边界类与系统进行交互。</li>
+<li>当一个用例被执行时，边界类通常会调用相应的控制类，生成一个控制类对象来执行用例的业务逻辑。</li>
+<li>控制类可以在执行用例期间操作实体类，从而执行必要的数据操作。</li>
+</ul>
+<p><strong>控制类的适用性</strong>：</p>
+<ul>
+<li>控制类的使用通常取决于用例的复杂性和变化性。如果用例的逻辑较为简单且固定，边界类本身可能足以处理业务逻辑，而不需要额外的控制类。</li>
+<li>如果用例的逻辑较为复杂，或者业务逻辑可能随着时间的推移而发生变化，那么引入控制类是有利的，因为它将逻辑封装在一个独立的类中，使修改和维护更容易。</li>
+</ul>
+<p>总之，控制类在软件设计中是一个有用的概念，可以根据系统的需求和用例的复杂性来确定是否需要引入控制类，以实现更好的模块化和可维护性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">class Control Class</span><br><span class="line">Control Class  : Attribute1 DataType1</span><br><span class="line">Control Class  : Attribute1 DataType2</span><br><span class="line">Control Class  : + Method1(param1 DataType1) ReturnType</span><br><span class="line">Control Class  : + Method1(param2 DataType2) ReturnType</span><br></pre></td></tr></table></figure>
+
+<p>在上面的示例中：</p>
+<ul>
+<li>类名 “Control Class” 位于矩形的顶部。</li>
+<li>类的属性包括 “attribute1”、”attribute2” 等，它们表示控制类的属性，通常用于存储控制类的状态信息。</li>
+<li>“+” 表示公有属性和方法，表示这些属性和方法是对外部可见的。</li>
+<li>方法 “method1(param1: DataType1): ReturnType” 用于执行控制类的操作，接受参数 “param1” 并返回 “ReturnType”。</li>
+<li>方法 “method2(param2: DataType2): ReturnType” 是控制类的另一个方法。</li>
+</ul>
+<p>这些类别通常在面向对象分析和设计中使用，以帮助开发人员更好地理解系统的结构、功能和交互。通过清晰地定义和组织这些类，可以更容易地开始开发过程，并确保系统能够满足用户需求。这些类别的组合和关系可以用来绘制类图，以便更好地可视化系统的结构和交互。</p>
+<h2 id="题目三"><a href="#题目三" class="headerlink" title="题目三"></a>题目三</h2><h3 id="习题12"><a href="#习题12" class="headerlink" title="习题12"></a>习题12</h3><p>针对用联机电话号码簿替换电话公司给你的号码簿这样的问题，编写一套UML模型（用例图、MSC图、类图)。给出名字时，要求该号码簿应该能够提供电话号码;它还应该能够列出不同地区的区号，并给出你所在地区的紧急求救电话号码。</p>
+<p>为了解决这个问题，我们可以创建一个电话号码簿系统的UML模型，包括用例图、MSC图（时序图）和类图。以下是这个模型的三个部分：</p>
+<ol>
+<li><p>用例图（Use Case Diagram）：</p>
+<p>用例图描述了系统的不同用例（功能）以及这些用例之间的关系。在这个情景下，我们有以下主要用例：</p>
+<ul>
+<li><strong>提供电话号码</strong>（Provide Phone Number）：用户可以查询电话号码，输入一个名字，然后系统会返回相应的电话号码。</li>
+<li><strong>列出区号</strong>（List Area Codes）：用户可以查看不同地区的区号列表。</li>
+<li><strong>提供紧急求救电话号码</strong>（Provide Emergency Contact）：用户可以查询紧急求救电话号码，系统会返回所在地区（济南）的紧急求救电话号码。</li>
+</ul>
+<p>用例之间的关系通常是关联关系，如用户可以执行多个用例，用例也可以被多个用户执行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    用户--输入名字--&gt;返回电话号码</span><br><span class="line">    用户--查询--&gt;列出区号</span><br><span class="line">    用户--查询--&gt;提供紧急求救电话号码</span><br><span class="line">    subgraph ide1 [电话号码簿系统]</span><br><span class="line">    返回电话号码</span><br><span class="line">    列出区号</span><br><span class="line">    提供紧急求救电话号码</span><br><span class="line">    end</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>MSC图（Message Sequence Chart）：</p>
+<p>MSC图是一种时序图，用于详细说明用例的执行流程和消息交互。以下是“提供电话号码”用例的简单MSC图示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    用户-&gt;&gt;电话号码簿系统: 提供电话号码</span><br><span class="line">   电话号码簿系统-&gt;&gt;用户: 返回电话号码</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类图（Class Diagram）：</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">    class PhoneBook</span><br><span class="line">    PhoneBook : contacts  </span><br><span class="line">    PhoneBook : areas</span><br><span class="line">    PhoneBook : +getPhoneNumber()</span><br><span class="line">   	PhoneBook : +listAreaCodes()</span><br><span class="line">    PhoneBook : +getEmergencyContact()</span><br><span class="line">    </span><br><span class="line">    class Contact</span><br><span class="line">    Contact : name</span><br><span class="line">    Contact : phoneNumber</span><br><span class="line">    </span><br><span class="line">    class Area</span><br><span class="line">    Area : areaName</span><br><span class="line">    Area : areaCode</span><br></pre></td></tr></table></figure>
+
+<p>这个UML模型将有助于理解系统的基本结构和功能，包括用户如何与系统交互以获取所需的信息。在实际开发中，这些UML图将用作设计的基础，以帮助开发和实施电话号码簿系统。</p>
+<h3 id="习题17"><a href="#习题17" class="headerlink" title="习题17"></a>习题17</h3><p>为讲座调度系统编写一个Z规格说明。系统保存哪一个演讲者将在哪一天进行演讲的相关记录。对每一个演讲者，不应该安排多于一次的演讲;任何一天不能安排多于4次的演讲;应该提供从安排中增加或删除演讲的操作，以及下列操作：交换两个演讲的日期，列出安排在特定日期的演讲，列出安排特定演讲者演讲的日期，以及向每一个演讲者发送关于其演讲日期的提示信息。你可以定义任何有助于简化规格说明的额外操作。</p>
+<p>以下是我设计的一个简化Z规格说明，覆盖了系统的基本功能和操作。规格中包括数据类型定义、状态定义、基本规则、操作定义、操作前置条件、操作行为定义和操作后置条件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">-- 基本数据类型定义</span><br><span class="line">Given that</span><br><span class="line">    MAX_SPEAKERS = 100   -- 最大演讲者数</span><br><span class="line">    MAX_SPEECHES_PER_DAY = 4  -- 每天最多演讲次数</span><br><span class="line">    MAX_DAYS = 365   -- 最大天数</span><br><span class="line"></span><br><span class="line">Then</span><br><span class="line">    SPEAKER = 1..MAX_SPEAKERS  -- 演讲者标识</span><br><span class="line">    DAY = 1..MAX_DAYS   -- 天数标识</span><br><span class="line"></span><br><span class="line">-- 系统状态定义</span><br><span class="line">state</span><br><span class="line">    speakers： SPEAKER -&gt; DAY  -- 记录每个演讲者的演讲日期</span><br><span class="line">    speechesPerDay： DAY -&gt; 0..MAX_SPEECHES_PER_DAY  -- 记录每天的演讲次数</span><br><span class="line"></span><br><span class="line">-- 基本规则</span><br><span class="line">where</span><br><span class="line">    -- 每个演讲者只能被安排一次演讲</span><br><span class="line">    (∀ s： SPEAKER | ∃! d： DAY | speakers(s) = d)</span><br><span class="line"></span><br><span class="line">    -- 任何一天不能安排多于4次的演讲</span><br><span class="line">    (∀ d： DAY | speechesPerDay(d) ≤ MAX_SPEECHES_PER_DAY)</span><br><span class="line"></span><br><span class="line">-- 操作定义</span><br><span class="line">operations</span><br><span class="line">    AddSpeech： SPEAKER × DAY  -- 增加一个演讲</span><br><span class="line">    ExchangeSpeeches： SPEAKER × DAY × SPEAKER × DAY  -- 交换两个演讲的日期</span><br><span class="line">    ListSpeechesByDate： DAY → POW(SPEAKER)  -- 列出安排在特定日期的演讲者</span><br><span class="line">    ListSpeechesBySpeaker： SPEAKER → POW(DAY)  -- 列出特定演讲者的演讲日期</span><br><span class="line">    SendReminder： DAY → DAY  -- 向每一个演讲者发送关于其演讲日期的提示信息</span><br><span class="line"></span><br><span class="line">-- 操作前置条件</span><br><span class="line">where</span><br><span class="line">    -- 增加演讲的前置条件</span><br><span class="line">    pre AddSpeech</span><br><span class="line">    (∀ s： SPEAKER， d： DAY |</span><br><span class="line">        (s， d) ∉ speakers</span><br><span class="line">        ∧ speechesPerDay(d) &lt; MAX_SPEECHES_PER_DAY)</span><br><span class="line"></span><br><span class="line">    -- 交换演讲的前置条件</span><br><span class="line">    pre ExchangeSpeeches</span><br><span class="line">    (∀ s1， s2： SPEAKER， d1， d2： DAY |</span><br><span class="line">        (s1， d1) ∈ speakers</span><br><span class="line">        ∧ (s2， d2) ∈ speakers</span><br><span class="line">        ∧ d1 ≠ d2)</span><br><span class="line"></span><br><span class="line">-- 操作行为定义</span><br><span class="line">    AddSpeech</span><br><span class="line">    speakers ：= speakers ∪ &#123;s1 ↦ d1&#125;</span><br><span class="line">    speechesPerDay(d1) ：= speechesPerDay(d1) + 1</span><br><span class="line"></span><br><span class="line">    ExchangeSpeeches</span><br><span class="line">    speakers ：= (speakers ∖ &#123;s1 ↦ d1， s2 ↦ d2&#125;) ∪ &#123;s1 ↦ d2， s2 ↦ d1&#125;</span><br><span class="line"></span><br><span class="line">    SendReminder</span><br><span class="line">    speakers ：= speakers ∪ &#123;s ↦ d | s， d ∈ speakers&#125;</span><br><span class="line"></span><br><span class="line">-- 操作后置条件</span><br><span class="line">where</span><br><span class="line">    -- 增加演讲的后置条件</span><br><span class="line">    post AddSpeech</span><br><span class="line">    (speakers = speakers ∪ &#123;s1 ↦ d1&#125;</span><br><span class="line">    ∧ speechesPerDay(d1) = speechesPerDay(d1) + 1)</span><br><span class="line"></span><br><span class="line">    -- 交换演讲的后置条件</span><br><span class="line">    post ExchangeSpeeches</span><br><span class="line">    (speakers = (speakers ∖ &#123;s1 ↦ d1， s2 ↦ d2&#125;) ∪ &#123;s1 ↦ d2， s2 ↦ d1&#125;)</span><br><span class="line"></span><br><span class="line">    -- 发送提醒的后置条件</span><br><span class="line">    post SendReminder</span><br><span class="line">    (speakers = speakers ∪ &#123;s ↦ d | s， d ∈ speakers&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="网络日记"><a href="#网络日记" class="headerlink" title="网络日记"></a>网络日记</h2><p>在暑假参加学生在线实训的时候，选题就是为i山大小程序增加一个山大日记的功能，现在来回顾一下当时大体的设计思路并添加用户画像的板块。</p>
+<h3 id="需求简述"><a href="#需求简述" class="headerlink" title="需求简述"></a>需求简述</h3><h4 id="需求背景"><a href="#需求背景" class="headerlink" title="需求背景"></a>需求背景</h4><p>在当前快速发展的时代，社会的各个层面都经历着相当大的压力。特别是在山东大学这样具有悠久历史和广泛影响力的学府中，学生们承受着来自学业、社交和个人发展方面的多重挑战。为了满足那些热爱记录生活并分享经历的同学的需求，我们引入了这一全新的日记功能，让他们能够自由地记录天气和心情，个性化设计分享界面，并享受引人入胜的动效设计和清爽的UI界面。此外，用户还可以轻松导出包含图片和简短描述的日记，这将帮助他们在日常生活中记录自己的感动瞬间，记录个人成长历程，有效缓解生活压力，以及丰富情感世界。</p>
+<p>这个更新的版本将不仅为山东大学的学生，而且也为其他社会各个层面的人们，提供一个更加愉悦和有益的方式来记录生活中的点滴，分享彼此的成长经历，增强情感交流，同时也有助于更好地理解自己在这个充满挑战和机遇的时代中的位置。</p>
+<h4 id="价值评估"><a href="#价值评估" class="headerlink" title="价值评估"></a>价值评估</h4><p>产品的多样丰富的功能确实可以吸引用户分享乐趣，特别是在一个信息和社交驱动的时代。这将增加用户互动和粘性，使产品更具吸引力。</p>
+<p>市场的广泛性是一个重要因素，因为许多人都有记录生活和情感经历的需求。这种需求在不同年龄段和职业背景的用户中都存在，使产品的潜在市场覆盖范围更大。</p>
+<p>综合评估显示，满足用户日记需求的产品将在市场上有价值。这种产品将不仅满足情感表达的需求，还可以帮助用户记录重要时刻，追踪个人成长，缓解压力，加强社交互动等。因此，产品在上线时有望取得成功。</p>
+<p>总结，产品似乎满足了吸引用户、市场需求以及上线条件的要求，这使得它有望在市场上获得成功。不过，成功上线后，持续的用户反馈和改进将继续是关键因素，以确保产品不断满足用户的期望和需求。</p>
+<h4 id="产品简介"><a href="#产品简介" class="headerlink" title="产品简介"></a>产品简介</h4><h5 id="产品定位"><a href="#产品定位" class="headerlink" title="产品定位"></a>产品定位</h5><p>“山大日记”是一款面向山东大学全体同学的新媒体娱乐分享软件，旨在为用户提供一个娱乐平台，让他们能够在其中分享日常生活、互动交流，以及探索创意的娱乐特效。</p>
+<h5 id="产品综述"><a href="#产品综述" class="headerlink" title="产品综述"></a>产品综述</h5><ul>
+<li>产品名称： 山大日记</li>
+<li>产品定位： 娱乐平台</li>
+<li>产品特色：<ol>
+<li>可以与山东大学全体同学分享日常生活，促进校园社交互动。</li>
+<li>用户可以分享视频和照片，同时享受定期推出的创新娱乐特效，为分享内容增色不断。</li>
+<li>拥有美观的用户界面(UI)设计，以及简洁而富有趣味的动效设计，提供用户友好的体验。</li>
+<li>用户之间可以互相关注，建立互动关系，私信交流，增进社交互动和友谊。</li>
+</ol>
+</li>
+<li>目标人群： 针对那些积极活跃、喜欢互相分享生活和创造性娱乐内容的山东大学学生。</li>
+</ul>
+<p>这个定位和特色使”山大日记”成为一个具有吸引力的社交媒体平台，有助于增强校园社交，提供娱乐和互动机会，以满足山东大学学生的娱乐和社交需求。</p>
+<h3 id="产品说明"><a href="#产品说明" class="headerlink" title="产品说明"></a>产品说明</h3><h4 id="用户视图"><a href="#用户视图" class="headerlink" title="用户视图"></a>用户视图</h4><p>普通用户视图</p>
+<ul>
+<li>注册&#x2F;登录：可以通过微信快速注册和登录小程序</li>
+<li>发帖：在指定分类下发表帖子</li>
+<li>回帖：在帖子下进行回复讨论</li>
+<li>点赞收藏：对感兴趣的帖子进行点赞或收藏</li>
+<li>查看帖子：可以查看不同分类下的帖子列表或搜索帖子</li>
+<li>个人中心：可以查看和编辑自己的个人信息</li>
+</ul>
+<p>管理员视图</p>
+<ul>
+<li>登录系统：管理员需要通过账号密码登录后台系统</li>
+<li>用户管理：可以查看所有用户，也可以封禁不良用户</li>
+<li>帖子管理：可以浏览、删除、修改所有帖子</li>
+<li>词库管理：可以增加违规关键词</li>
+<li>数据统计：可以查看各种数据统计图表，如用户量变化、活跃度等</li>
+</ul>
+<h4 id="产品功能结构图"><a href="#产品功能结构图" class="headerlink" title="产品功能结构图"></a>产品功能结构图</h4><p><strong>用户功能：</strong></p>
+<ol>
+<li><p><strong>用户登录：</strong> 用户可以使用个人账户登录到应用，这将允许他们访问他们的个人日记和与其他用户互动。</p>
+</li>
+<li><p><strong>用户注册：</strong> 新用户可以创建个人账户，提供必要的信息以注册。</p>
+</li>
+<li><p><strong>创建日记：</strong> 登录后的用户可以创建新的日记条目，包括文本内容、图片、视频等。</p>
+</li>
+<li><p><strong>编辑日记：</strong> 用户可以编辑他们已经创建的日记，允许他们对内容进行修改和更新。</p>
+</li>
+<li><p><strong>发布新日记：</strong> 用户可以选择将他们的日记发布到应用中，使其他用户可以浏览和互动。</p>
+</li>
+<li><p><strong>回顾历史日记：</strong> 用户可以访问以前创建的日记，以便回顾和回忆过去的经历。</p>
+</li>
+</ol>
+<p><strong>管理员功能（管理员通常用于管理用户和应用内容）：</strong></p>
+<ol>
+<li><p><strong>管理员登录：</strong> 管理员可以使用特定权限的账户登录到应用，以执行管理任务。</p>
+</li>
+<li><p><strong>用户管理：</strong> 管理员可以管理用户账户，包括审核新用户注册、禁止或删除用户账户等。</p>
+</li>
+<li><p><strong>日记管理：</strong> 管理员可以监督应用内的日记内容，删除不适当的内容或处理违规行为。</p>
+</li>
+</ol>
+<p>这些功能将为用户提供创建、管理和回顾个人日记的能力，同时允许管理员监督应用的内容和用户。它们构成了一个基本的用户和管理员操作功能，以确保应用的正常运行和用户的满意度。</p>
+<p><img src="/%E5%9B%BE%E7%89%871.png" alt="图片1"></p>
+<p><img src="/pic/Software/1.png" width="90%"></p>
+<h4 id="产品信息结构图"><a href="#产品信息结构图" class="headerlink" title="产品信息结构图"></a>产品信息结构图</h4><p><strong>新建日记：</strong></p>
+<ol>
+<li><p><strong>创建新日记：</strong> 用户可以点击此选项以创建一个新的日记条目。他们应该能够输入文本、添加图片或视频，并选择日期、天气、心情等信息。</p>
+</li>
+<li><p><strong>保存草稿：</strong> 用户可以选择将正在编辑的日记保存为草稿，以便稍后继续编辑。</p>
+</li>
+</ol>
+<p><strong>主页：</strong></p>
+<ol>
+<li><p><strong>浏览日记：</strong> 用户可以在主页上看到其他用户发布的日记，以及相关的信息，如发布者的用户名、日期和内容摘要。</p>
+</li>
+<li><p><strong>互动：</strong> 用户可以对其他用户的日记进行互动，包括点赞、评论和分享。</p>
+</li>
+<li><p><strong>搜索和过滤：</strong> 用户可以使用搜索和过滤选项来查找特定日期、主题或用户的日记。</p>
+</li>
+<li><p><strong>关注和粉丝：</strong> 用户可以查看和管理自己的关注者和粉丝，以便与其他用户建立社交关系。</p>
+</li>
+</ol>
+<p><strong>历史日记：</strong></p>
+<ol>
+<li><p><strong>查看历史日记：</strong> 用户可以访问他们以前创建的日记，以便回顾和回忆过去的经历。</p>
+</li>
+<li><p><strong>编辑历史日记：</strong> 用户可以编辑他们以前创建的日记，以进行修改和更新。</p>
+</li>
+<li><p><strong>删除历史日记：</strong> 用户可以选择删除不再需要的历史日记。</p>
+</li>
+</ol>
+<p>这些功能将帮助用户在新建、管理和回顾日记方面实现应用的信息结构要求。主页部分允许用户与其他用户互动，浏览和发现新内容，而历史日记部分则有助于他们管理旧的日记条目。</p>
+<p><img src="/pic/Software/2.png" width="90%"></p>
+<h3 id="需求描述与视图"><a href="#需求描述与视图" class="headerlink" title="需求描述与视图"></a>需求描述与视图</h3><h4 id="非功能性需求"><a href="#非功能性需求" class="headerlink" title="非功能性需求"></a>非功能性需求</h4><p><strong>快速响应不变数据：</strong></p>
+<ul>
+<li>使用缓存：对于不变数据，可以使用缓存机制，如CDN（内容分发网络）或缓存服务器，以加快数据的响应速度。</li>
+<li>高性能数据库：选择高性能数据库系统，进行合理的数据库优化以快速检索和提供不变数据。</li>
+</ul>
+<p><strong>安全性要求：</strong></p>
+<ul>
+<li>身份验证和授权：实施强大的身份验证和授权机制，确保只有经过认证的用户能够访问数据和功能。</li>
+<li>数据加密：使用数据传输加密（例如，HTTPS）以保护数据在传输过程中的安全性。</li>
+<li>漏洞扫描和修复：定期进行应用和系统的漏洞扫描，及时修复发现的漏洞。</li>
+</ul>
+<p><strong>路由网关认证：</strong></p>
+<ul>
+<li>使用API网关：部署API网关，对外部流量进行认证，并确保只有经过认证的请求可以进入系统。</li>
+</ul>
+<p><strong>DDoS 攻击防护：</strong></p>
+<ul>
+<li>DDoS保护服务：选择可靠的DDoS防护服务提供商，以检测和缓解潜在的DDoS攻击。</li>
+<li>流量分析：使用流量分析工具来检测异常流量模式，快速采取措施来阻止攻击。</li>
+</ul>
+<p><strong>可靠性：</strong></p>
+<ul>
+<li>健康检查：实施服务健康检查，确保应用程序可用性。使用负载均衡器来自动路由流量到健康的实例。</li>
+<li>容错机制：构建容错机制，以防止单点故障，如备份服务器和自动故障恢复。</li>
+</ul>
+<p><strong>可维护性：</strong></p>
+<ul>
+<li>编码规范：遵循编码规范和最佳实践，以确保代码质量和可维护性。</li>
+<li>文档和注释：编写清晰的文档和代码注释，使代码易于理解和维护。</li>
+<li>版本控制：使用版本控制系统，如Git，来管理代码变更和合并请求。</li>
+<li>自动化测试：实施自动化单元测试、集成测试和端到端测试，以捕获和预防代码错误。</li>
+</ul>
+<p>这些方法和技术将有助于满足你的应用的性能、安全性、可靠性和可维护性需求。确保在开发和维护过程中严格遵循这些最佳实践，以提供高质量的应用程序。</p>
+<h4 id="产品界面逻辑图"><a href="#产品界面逻辑图" class="headerlink" title="产品界面逻辑图"></a>产品界面逻辑图</h4><p><img src="/pic/Software/7.png" width="90%"></p>
+<p><img src="/pic/Software/6.png" width="90%"></p>
+<p><img src="/pic/Software/5.png" width="90%"></p>
+<p><img src="/pic/Software/4.png" width="90%"></p>
+<h4 id="功能流程图"><a href="#功能流程图" class="headerlink" title="功能流程图"></a>功能流程图</h4><p><img src="/pic/Software/3.png" width="90%"></p>
+<h3 id="用户画像"><a href="#用户画像" class="headerlink" title="用户画像"></a>用户画像</h3><p>用户画像是关于应用程序用户的详细描述，通常包括他们的个人信息、偏好、行为和特点。创建用户画像有助于更好地理解目标受众，以便优化产品功能和体验。以下是关于用户画像的一些示例：</p>
+<p><strong>用户画像 - 山大日记应用用户：</strong></p>
+<ol>
+<li><p><strong>基本信息：</strong></p>
+<p>用户的基本信息，例如年龄、性别、学历、居住地等。</p>
+</li>
+<li><p><strong>兴趣和特点：</strong></p>
+<ul>
+<li>喜欢记录生活：用户热衷于记录日常生活中的重要时刻，喜欢分享自己的经历。</li>
+<li>社交活跃：愿意与其他用户互动，评论、点赞和分享其他用户的日记。</li>
+<li>创意倾向：喜欢使用特效、滤镜和创新方式来美化他们的日记内容。</li>
+<li>校园参与者：可能参与学校社团、活动和组织，愿意分享这些经历。</li>
+</ul>
+</li>
+<li><p><strong>使用习惯：</strong></p>
+<ul>
+<li>每天使用频率：用户可能每天使用应用来记录生活点滴。</li>
+<li>设备：主要使用智能手机访问应用。</li>
+<li>活跃时间：可能在空闲时间、课间休息、晚上或周末使用应用。</li>
+</ul>
+</li>
+<li><p><strong>需求和期望：</strong></p>
+<ul>
+<li>隐私保护：关心隐私安全，希望能够自行控制日记的可见性和隐私设置。</li>
+<li>互动和社交：期望与其他用户建立社交联系，通过评论和点赞表达情感。</li>
+<li>创意工具：喜欢使用媒体编辑工具和特效功能来增强日记内容的吸引力。</li>
+</ul>
+</li>
+</ol>
+<p>了解用户画像有助于应用程序的开发团队更好地满足用户需求，提供更适合他们的功能和体验。根据用户画像，你可以制定市场策略、用户界面设计和功能规划，以吸引和保留目标用户。此外，可以通过用户反馈和数据分析来不断改进应用，以更好地满足用户的期望。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://jcvvv.github.io">锦尘</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jcvvv.github.io/2023/10/31/Software/">https://jcvvv.github.io/2023/10/31/Software/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jcvvv.github.io" target="_blank">锦尘</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></div><div class="post_share"><div class="social-share" data-image="/pic/cover/31.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/01/Internship%20report/"><img class="prev-cover" src="/pic/cover/32.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">认知实习汇总</div></div></a></div><div class="next-post pull-right"><a href="/2023/10/30/SMS/"><img class="next-cover" src="/pic/cover/17.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">SMS短信嗅探实验报告</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锦尘</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JCvvv" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/475586532?spm_id_from=333.1007.0.0" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="mailto:1747624698@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E8%B0%88%E4%B8%80%E4%B8%8B%E5%85%B3%E4%BA%8E%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%9A%84%E6%95%B4%E4%BD%93%E8%AE%A4%E8%AF%86%E5%92%8C%E5%8D%B0%E8%B1%A1"><span class="toc-number">1.1.</span> <span class="toc-text">请谈一下关于软件工程的整体认识和印象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E5%B8%88%E5%92%8C%E7%B3%BB%E7%BB%9F%E6%9E%84%E6%9E%B6%E8%AE%BE%E8%AE%A1%E5%B8%88%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">系统分析师和系统构架设计师有何区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%EF%BC%88%E5%AE%9E%E6%96%BD%E5%88%86%E9%98%B6%E6%AE%B5%E5%8E%9F%E7%90%86%E7%AD%89%EF%BC%89%E4%BC%9A%E5%A2%9E%E5%8A%A0%E7%B3%BB%E7%BB%9F%E5%B7%A5%E4%BD%9C%E9%87%8F%E5%90%97"><span class="toc-number">1.3.</span> <span class="toc-text">应用软件工程（实施分阶段原理等）会增加系统工作量吗?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%982"><span class="toc-number">1.4.</span> <span class="toc-text">练习题2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%983"><span class="toc-number">1.5.</span> <span class="toc-text">练习题3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">第二章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%A7%B0%E5%BE%97%E4%B8%8A%E4%B8%80%E5%90%8D%E4%BC%98%E7%A7%80%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98"><span class="toc-number">2.1.</span> <span class="toc-text">如何称得上一名优秀的程序员?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%B8%88%E5%BA%94%E8%AF%A5%E5%85%B7%E5%A4%87%E7%9A%84%E7%B4%A0%E8%B4%A8%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.2.</span> <span class="toc-text">系统架构师应该具备的素质是什么?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%984"><span class="toc-number">2.3.</span> <span class="toc-text">练习题4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%9811"><span class="toc-number">2.4.</span> <span class="toc-text">练习题11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E6%98%AF%E4%B8%80%E7%A7%8D%E5%85%A8%E6%96%B0%E7%90%86%E8%AE%BA%E5%90%97"><span class="toc-number">2.5.</span> <span class="toc-text">敏捷开发是一种全新理论吗?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0"><span class="toc-number">3.</span> <span class="toc-text">第三章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B8%88%E8%80%83%E8%AF%95%E9%A2%98%E7%9B%AE"><span class="toc-number">3.1.</span> <span class="toc-text">信息系统项目管理师考试题目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%982-1"><span class="toc-number">3.2.</span> <span class="toc-text">练习题2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%983-1"><span class="toc-number">3.3.</span> <span class="toc-text">练习题3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%9812"><span class="toc-number">3.4.</span> <span class="toc-text">练习题12</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0"><span class="toc-number">4.</span> <span class="toc-text">第四章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="toc-number">5.</span> <span class="toc-text">题目一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="toc-number">6.</span> <span class="toc-text">题目二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="toc-number">7.</span> <span class="toc-text">题目三</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A0%E9%A2%9812"><span class="toc-number">7.1.</span> <span class="toc-text">习题12</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A0%E9%A2%9817"><span class="toc-number">7.2.</span> <span class="toc-text">习题17</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%97%A5%E8%AE%B0"><span class="toc-number">8.</span> <span class="toc-text">网络日记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E7%AE%80%E8%BF%B0"><span class="toc-number">8.1.</span> <span class="toc-text">需求简述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E8%83%8C%E6%99%AF"><span class="toc-number">8.1.1.</span> <span class="toc-text">需求背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%B7%E5%80%BC%E8%AF%84%E4%BC%B0"><span class="toc-number">8.1.2.</span> <span class="toc-text">价值评估</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E7%AE%80%E4%BB%8B"><span class="toc-number">8.1.3.</span> <span class="toc-text">产品简介</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E5%AE%9A%E4%BD%8D"><span class="toc-number">8.1.3.1.</span> <span class="toc-text">产品定位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E7%BB%BC%E8%BF%B0"><span class="toc-number">8.1.3.2.</span> <span class="toc-text">产品综述</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E8%AF%B4%E6%98%8E"><span class="toc-number">8.2.</span> <span class="toc-text">产品说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%A7%86%E5%9B%BE"><span class="toc-number">8.2.1.</span> <span class="toc-text">用户视图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E5%8A%9F%E8%83%BD%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">8.2.2.</span> <span class="toc-text">产品功能结构图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E4%BF%A1%E6%81%AF%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">8.2.3.</span> <span class="toc-text">产品信息结构图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E6%8F%8F%E8%BF%B0%E4%B8%8E%E8%A7%86%E5%9B%BE"><span class="toc-number">8.3.</span> <span class="toc-text">需求描述与视图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E5%8A%9F%E8%83%BD%E6%80%A7%E9%9C%80%E6%B1%82"><span class="toc-number">8.3.1.</span> <span class="toc-text">非功能性需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A7%E5%93%81%E7%95%8C%E9%9D%A2%E9%80%BB%E8%BE%91%E5%9B%BE"><span class="toc-number">8.3.2.</span> <span class="toc-text">产品界面逻辑图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">8.3.3.</span> <span class="toc-text">功能流程图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%94%BB%E5%83%8F"><span class="toc-number">8.4.</span> <span class="toc-text">用户画像</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/01/Internship%20report/" title="认知实习汇总">认知实习汇总</a><time datetime="2023-10-31T16:00:00.000Z" title="发表于 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/31/Software/" title="软件工程作业合集">软件工程作业合集</a><time datetime="2023-10-30T16:00:00.000Z" title="发表于 2023-10-31 00:00:00">2023-10-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/30/SMS/" title="SMS短信嗅探实验报告">SMS短信嗅探实验报告</a><time datetime="2023-10-29T16:00:00.000Z" title="发表于 2023-10-30 00:00:00">2023-10-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/20/Data%20Mining/" title="数据挖掘实验报告">数据挖掘实验报告</a><time datetime="2023-10-19T16:00:00.000Z" title="发表于 2023-10-20 00:00:00">2023-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/28/Github%20Profile/" title="GitHub Profile美化">GitHub Profile美化</a><time datetime="2023-07-27T16:00:00.000Z" title="发表于 2023-07-28 00:00:00">2023-07-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/foot.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 锦尘</div><div class="footer_custom_text">欢迎你，不知道从哪来的朋友</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
