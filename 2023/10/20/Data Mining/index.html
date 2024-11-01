@@ -1,0 +1,1184 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>数据挖掘实验报告 | 锦尘</title><meta name="keywords" content="技术,hive,hadoop"><meta name="author" content="锦尘"><meta name="copyright" content="锦尘"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="前言没什么好说的，就是照葫芦画瓢的无脑实验，会cv就能做。 实验	1.1实验目的  掌握Hive的配置过程和三种搭建模式  了解Hive的配置原理 实验内容  1、启动Hadoop服务  2、内嵌模式部署  3、本地模式部署  4、远程模式部署 实验环境  硬件：ubuntu 16.04  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3  数据存放路径：&#x2F;data&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘实验报告">
+<meta property="og:url" content="https://jcvvv.github.io/2023/10/20/Data%20Mining/index.html">
+<meta property="og:site_name" content="锦尘">
+<meta property="og:description" content="前言没什么好说的，就是照葫芦画瓢的无脑实验，会cv就能做。 实验	1.1实验目的  掌握Hive的配置过程和三种搭建模式  了解Hive的配置原理 实验内容  1、启动Hadoop服务  2、内嵌模式部署  3、本地模式部署  4、远程模式部署 实验环境  硬件：ubuntu 16.04  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3  数据存放路径：&#x2F;data&amp;">
+<meta property="og:locale">
+<meta property="og:image" content="https://jcvvv.github.io/pic/cover/Data%20Mining.jpg">
+<meta property="article:published_time" content="2023-10-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-11-26T12:22:54.925Z">
+<meta property="article:author" content="锦尘">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="hive">
+<meta property="article:tag" content="hadoop">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jcvvv.github.io/pic/cover/Data%20Mining.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://jcvvv.github.io/2023/10/20/Data%20Mining/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://jsdelivr.pai233.top/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://jsdelivr.pai233.top/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '数据挖掘实验报告',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-26 20:22:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/favicon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa-solid fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/pic/cover/Data%20Mining.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锦尘</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fa-solid fa-image"></i><span> 图库</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">数据挖掘实验报告</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-19T16:00:00.000Z" title="发表于 2023-10-20 00:00:00">2023-10-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-26T12:22:54.925Z" title="更新于 2023-11-26 20:22:54">2023-11-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%9E%E9%AA%8C/">实验</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">16,599</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>71分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="数据挖掘实验报告"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>没什么好说的，就是照葫芦画瓢的无脑实验，会cv就能做。</p>
+<h2 id="实验1-1"><a href="#实验1-1" class="headerlink" title="实验	1.1"></a>实验	1.1</h2><h3 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握Hive的配置过程和三种搭建模式<br>  了解Hive的配置原理</p>
+<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务<br>  2、内嵌模式部署<br>  3、本地模式部署<br>  4、远程模式部署</p>
+<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理"><a href="#实验原理" class="headerlink" title="实验原理"></a>实验原理</h3><p>  hive是架构在Hadoop之上的，所以需要先部署好Hadoop。<br>  Hive的3种安装方式，分别对应不同的应用场景。<br>  1、内嵌模式（元数据保存在内嵌的derby中，允许一个会话链接，尝试多个会话链接时会报错）<br>  2、本地模式（本地安装mysql 替代derby存储元数据）<br>  3、远程模式（远程安装mysql 替代derby存储元数据，并且与Hive不在同一台机器上）</p>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务"><a href="#启动Hadoop服务" class="headerlink" title="启动Hadoop服务"></a>启动Hadoop服务</h4><p>1、检查MySQL是否安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -proot</span><br></pre></td></tr></table></figure>
+
+<p>此时发现报错信息如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql: [Warning] Using a password on the command line interface can be insecure.</span><br><span class="line">ERROR 2002 (HY000): Can&#x27;t connect to local MySQL server through socket &#x27;/var/run/mysqld/mysqld.sock&#x27; (111)</span><br></pre></td></tr></table></figure>
+
+<p>执行如下命令，即可成功进入 MySQL。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm /var/run/mysqld/mysqld.sock</span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/1.png" width="90%"></p>
+<p>2、检测是否安装Hadoop<br>注意：需要在配置文件&#x2F;etc&#x2F;profile中注释掉Hadoop3的相关环境变量设置，然后执行命令【source &#x2F;etc&#x2F;profile】，让配置的profile文件立刻生效。</p>
+<p><img src="/pic/Data Mining/experiment1.1/2.png" width="90%"></p>
+<p>启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~# jps</span><br><span class="line">2626 DataNode</span><br><span class="line">2998 ResourceManager</span><br><span class="line">3110 NodeManager</span><br><span class="line">2488 NameNode</span><br><span class="line">2812 SecondaryNameNode</span><br><span class="line">4623 Jps</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/3.png" width="90%"></p>
+<h4 id="内嵌模式部署"><a href="#内嵌模式部署" class="headerlink" title="内嵌模式部署"></a>内嵌模式部署</h4><p>1、解压hive<br>进入软件包所在文件夹中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /data/software</span><br></pre></td></tr></table></figure>
+
+<p>将Hive解压安装到“&#x2F;data&#x2F;bigdata&#x2F;”目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-hive-2.3.3-bin.tar.gz -C /data/bigdata/</span><br></pre></td></tr></table></figure>
+
+<p>查看解压后的Hadoop安装文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:/data/bigdata# </span><br><span class="line">ls /data/bigdata/apache-hive-2.3.3-bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/4.png" width="90%"></p>
+<p>2、初始化数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schematool -dbType derby -initSchema</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@instance-0000002b:~# schematool -dbType derby -initSchema</span><br><span class="line">Metastore connection URL:        jdbc:derby:;databaseName=metastore_db;create=trueMetastore Connection Driver :    org.apache.derby.jdbc.EmbeddedDriverMetastore connection User:       APPStarting metastore schema initialization to 2.3.0Initialization script hive-schema-2.3.0.derby.sqlInitialization script completedschemaTool completed</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/5.png" width="90%"></p>
+<p>3、Hive测试。<br>进入Hive客户端，查看是否安装成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /data/bigdata/apache-hive-2.3.3-bin/bin</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@e744c0e5069c:/data/bigdata# ./hive</span><br><span class="line">Logging initialized using configuration in jar:file:/opt/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.hive&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/6.png" width="90%"></p>
+<p>至此，hive内嵌模式安装完成</p>
+<h4 id="本地模式部署"><a href="#本地模式部署" class="headerlink" title="本地模式部署"></a>本地模式部署</h4><p>本地模式在内嵌模式的基础之上搭建。<br>修改Hive的配置文件<br>1、进入到Hive的配置文件目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/apache-hive-2.3.3-bin/conf</span><br></pre></td></tr></table></figure>
+
+<p>2、修改hive-env.xml文件<br>目录下默认情况没有hive-env.xml文件，需要将hive-env.xml.template文件复制并重命名为hive-env.xml：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp hive-env.sh.template  hive-env.sh</span><br></pre></td></tr></table></figure>
+
+<p>进入hive-env.sh文件中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi hive-env.sh</span><br></pre></td></tr></table></figure>
+
+<p>修改该文件内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Set HADOOP_HOME to point to a specific hadoop install directory</span></span><br><span class="line">HADOOP_HOME=/opt/hadoop</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Hive Configuration Directory can be controlled by:</span></span><br><span class="line">export HIVE_CONF_DIR=/opt/hive/conf</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Folder containing extra libraries required <span class="keyword">for</span> hive compilation/execution can be controlled by:</span></span><br><span class="line">export HIVE_AUX_JARS_PATH=/opt/hive/lib</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/7.png" width="90%"></p>
+<p>3、新建hive-site.xml（参考hive-default.xml.template），增加连接数据库的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionURL<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>jdbc:mysql://localhost:3306/hive?createDatabaseIfNotExist=true<span class="symbol">&amp;amp;</span>useSSL=false<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    			<span class="tag">&lt;/<span class="name">property</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionDriverName<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionUserName<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionPassword<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">#解释：</span><br><span class="line">#javax.jdo.option.ConnectionURL：元数据连接的数据库地址</span><br><span class="line">#javax.jdo.option.ConnectionDriverName：元数据所用数据库的驱动</span><br><span class="line">#javax.jdo.option.ConnectionUserName：元数据登录用户名</span><br><span class="line">#javax.jdo.option.ConnectionPassword：元数据登录密码</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/8.png" width="90%"></p>
+<p>4、元数据的配置<br>这里以MySQL配置元数据，以root用户登录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -proot</span><br></pre></td></tr></table></figure>
+
+<p>授予权限给用户root：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all on *.* to &#x27;root&#x27;@&#x27;%&#x27; identified by&#x27;root&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>刷新权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/9.png" width="90%"></p>
+<p>5、将MySQL的驱动放置到Hive中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /data/software/mysql-connector-java-5.1.45-bin.jar  /opt/apache-hive-2.3.3-bin/lib/</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/10.png" width="90%"></p>
+<p>6、初始化schema</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schematool -initSchema -dbType mysql</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示：</p>
+<p><img src="/pic/Data Mining/experiment1.1/11.png" width="90%"></p>
+<p>7、启动测试<br>进入Hive客户端：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive</span><br></pre></td></tr></table></figure>
+
+<p>功能测试，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@instance-0000001e:/opt/hive/conf# hive</span><br><span class="line">Logging initialized using configuration in jar:file:/opt/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.hive&gt; create database data;OKTime taken: 15.972 secondshive&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/12.png" width="90%"></p>
+<h4 id="远程模式部署"><a href="#远程模式部署" class="headerlink" title="远程模式部署"></a>远程模式部署</h4><p>在本地的模式基础之上修改，主要是将访问的MySQL地址进行修改即可。<br>1、修改mysql绑定地址<br>修改mysql的配置文件，执行命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
+
+<p>将该配置文件中的bindaddress参数改为要访问的主机IP（ip以本机实际ip为准），如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">pid-file        = /var/run/mysqld/mysqld.pid</span><br><span class="line">socket          = /var/run/mysqld/mysqld.sock</span><br><span class="line">datadir         = /var/lib/mysql</span><br><span class="line">log-error       = /var/log/mysql/error.log</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">By default we only accept connections from localhost</span></span><br><span class="line">bind-address    = 192.168.0.97</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Disabling symbolic-links is recommended to prevent assorted security riskssymbolic-links=0</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/13.png" width="90%"></p>
+<p>保存并退出后，重启mysql服务，执行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+
+<p>2、修改hive-site.xml，修改连接数据库的配置：<br>进入到Hive的配置文件目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/apache-hive-2.3.3-bin/conf</span><br></pre></td></tr></table></figure>
+
+<p>修改hive-site.xml文件,修改内容如下：<br>注意：ip以本机实际ip为准。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionURL<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>jdbc:mysql://192.168.0.97:3306/hive?createDatabaseIfNotExist=true<span class="symbol">&amp;amp;</span>useSSL=false<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    		<span class="tag">&lt;/<span class="name">property</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionDriverName<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionUserName<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionPassword<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">value</span>&gt;</span>    </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">#解释：</span><br><span class="line">#javax.jdo.option.ConnectionURL：元数据连接的数据库地址</span><br><span class="line">#javax.jdo.option.ConnectionDriverName：元数据所用数据库的驱动</span><br><span class="line">#javax.jdo.option.ConnectionUserName：元数据登录用户名</span><br><span class="line">#javax.jdo.option.ConnectionPassword：元数据登录密码</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/14.png" width="90%"></p>
+<p>3、避免因本地安装导致的远程模式l初始化schema信息错误<br>在本地模式安装过程中，对mysql数据库初始化过了schema信息，再次初始化可能导致失败，故先将之前创建的hive库删除<br>进入mysql数据库，执行命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -proot</span><br></pre></td></tr></table></figure>
+
+<p>删除hive库，执行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database hive;</span><br></pre></td></tr></table></figure>
+
+<p>退出mysql，执行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/15.png" width="90%"></p>
+<p>4、初始化schema</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schematool -initSchema -dbType mysql</span><br></pre></td></tr></table></figure>
+
+<p>窗口回显如下，则证明成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@instance-0000001e:/opt/hive/conf# schematool -initSchema -dbType mysql</span><br><span class="line">Metastore connection URL:        jdbc:mysql://192.168.0.1:3306/hive?createDatabaseIfNotExist=true&amp;useSSL=falseMetastore Connection Driver :    com.mysql.jdbc.DriverMetastore connection User:       rootStarting metastore schema initialization to 2.3.0Initialization script hive-schema-2.3.0.mysql.sqlInitialization script completedschemaTool completed</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/16.png" width="90%"></p>
+<p>5、启动测试<br>进入Hive客户端：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive</span><br></pre></td></tr></table></figure>
+
+<p>功能测试，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@instance-0000001e:/opt/hive/conf# hive</span><br><span class="line">Logging initialized using configuration in jar:file:/opt/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.hive&gt; create database datas;OKTime taken: 15.972 secondshive&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.1/17.png" width="90%"></p>
+<p>至此就完成了远程部署</p>
+<h3 id="实验感悟"><a href="#实验感悟" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>关于Hive的安装部署实验,我有以下几点感悟:</p>
+<ol>
+<li><p>Hive建立在Hadoop之上,必须先启动Hadoop相关服务,Hive才能正常运行。这体现了大数据技术的层次性和组件化的特点。</p>
+</li>
+<li><p>Hive支持内嵌、本地、远程三种模式的安装部署。内嵌模式可以单机试用,但只允许一个会话,不适合生产环境。本地模式将元数据存储在本地MySQL,支持多会话操作,可以用于开发环境。远程模式将元数据存储在远程MySQL,支持多用户分布式操作,适合生产环境。</p>
+</li>
+<li><p>三种模式的安装步骤类似,都是配置hive-env.sh、hive-site.xml,初始化元数据库模式,然后启动Hive进行验证。需要根据不同模式修改数据库连接相关配置。掌握这一部署流程,可以快速上手Hive的使用。</p>
+</li>
+<li><p>在远程模式下,如果本地已初始化过元数据库模式,再次初始化会失败。需要先删除本地的Hive数据库,再在远程MySQL上重新初始化,否则会出现报错。这点需要引起重视。</p>
+</li>
+<li><p>Hive依赖Hadoop环境,必须配置相关环境变量,让Hive知道Hadoop的安装位置。Hive本身也有一定的目录结构,需要配置hive的安装路径、驱动路径等参数。</p>
+</li>
+<li><p>整个安装过程中,记录日志,分析报错信息非常重要,这些都对后期的定位维护问题非常有帮助。要养成调试的习惯。</p>
+</li>
+<li><p>通过这次实验,我对Hive的安装部署有了直观的了解,也加深了对大数据技术范式的理解。对下一步学习Hive的使用打下了坚实的基础。这是一次非常有意义的实践经历。</p>
+</li>
+</ol>
+<h2 id="实验1-2"><a href="#实验1-2" class="headerlink" title="实验	1.2"></a>实验	1.2</h2><h3 id="实验目的-1"><a href="#实验目的-1" class="headerlink" title="实验目的"></a>实验目的</h3><p>  了解常用的Hive CLI命令使用<br>  掌握hive的交互式Shell命令</p>
+<h3 id="实验内容-1"><a href="#实验内容-1" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务<br>  2、Hive CLI操作</p>
+<h3 id="实验环境-1"><a href="#实验环境-1" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-1"><a href="#实验原理-1" class="headerlink" title="实验原理"></a>实验原理</h3><p>Hive CLI：查询处理器,用户通过它可以对hive做查询操作处理。</p>
+<p>处理流程：根据MetaStore中的信息，将sql解析成MR任务，在提交给yarn去执行；处理后的结果存放在hdfs上，结果再返回给hive cli，解析好之后返回给用户。</p>
+<p><img src="http://211.87.232.186/upload/imagePath/5e7ebe5086e04.png" alt="img"></p>
+<h3 id="实验步骤-1"><a href="#实验步骤-1" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务-1"><a href="#启动Hadoop服务-1" class="headerlink" title="启动Hadoop服务"></a>启动Hadoop服务</h4><p>1、重复实验1的步骤，启动mysql服务</p>
+<p><img src="/pic/Data Mining/experiment1.2/1.png" width="90%"></p>
+<p>修改profile</p>
+<p><img src="/pic/Data Mining/experiment1.2/3.png" width="90%"></p>
+<p>启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~#jps</span><br><span class="line">8423 SecondaryNameNode</span><br><span class="line">8712 NodeManager</span><br><span class="line">8072 NameNode</span><br><span class="line">8203 DataNode</span><br><span class="line">9036 Jps</span><br><span class="line">8588 ResourceManager</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.2/4.png" width="90%"></p>
+<h4 id="Hive-CLI操作"><a href="#Hive-CLI操作" class="headerlink" title="Hive CLI操作"></a>Hive CLI操作</h4><p>$HIVE_HOME&#x2F;bin&#x2F;hive是一个shell实用程序，可用于以交互或批处理模式运行Hive查询,也可以称为Hive CLI。所有hive操作需要在hive的安装目录下进行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/</span><br></pre></td></tr></table></figure>
+
+<p>1、帮助命令。假如忘记Hive的使用命令或者想要查询其他命令，可以使用这个命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive -H(hive --help)</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">usage: hive </span><br><span class="line">-d, --define &lt;key=value&gt;         Variable substitution to apply to Hive                         </span><br><span class="line">							  commands. e.g. -d A=B or --define A=B    </span><br><span class="line">	--database &lt;databasename&gt;    Specify the database to use </span><br><span class="line">-e &lt;quoted-query-string&gt;         SQL from command line </span><br><span class="line">-f &lt;filename&gt;                    SQL from files </span><br><span class="line">-H, --help                       Print help information    </span><br><span class="line">	--hiveconf &lt;property=value&gt;  Use value for given property    </span><br><span class="line">	--hivevar &lt;key=value&gt;        Variable substitution to apply to Hive</span><br><span class="line">	commands. e.g. --hivevar A=B </span><br><span class="line">-i &lt;filename&gt;                    Initialization SQL file </span><br><span class="line">-S, --silent                     Silent mode in interactive shell </span><br><span class="line">-v, --verbose                    Verbose mode (echo executed SQL to the console)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.2/6.png" width="90%"></p>
+<p>可以看到hive可以使用的命令参数以及用途<br>2、批处理模式</p>
+<ul>
+<li><code>hive -e ‘&lt; query-string&gt;’</code>执行查询字符串</li>
+<li><code>hive -f ‘&lt; filepath&gt;’</code> 从文件执行一个或多个SQL查询</li>
+</ul>
+<p>使用批处理模式命令查看数据库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive -e &quot;show databases&quot;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment1.2/7.png" width="90%"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logging initialized using configuration in jar:file:/root/simple/bigdata/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueOKdefaultTime taken: 6.154 seconds, Fetched: 1 row(s)</span><br></pre></td></tr></table></figure>
+
+<p>将创建库的SQL追加到“info”文件中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;create database info&quot;&gt;&gt;info</span><br></pre></td></tr></table></figure>
+
+<p>使用批处理模式命令创建“info”表</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive -f info</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment1.2/8.png" width="90%"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logging initialized using configuration in jar:file:/root/simple/bigdata/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueOKTime taken: 6.255 seconds</span><br></pre></td></tr></table></figure>
+
+<p>3、hive的交互式Shell命令<br>通过进入交互式Shell模式，对hive直接操作，进入hive交互式Shell模式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logging initialized using configuration in jar:file:/root/simple/bigdata/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.hive&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对Hive的配置值的设置，设置reduce的task：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">语法：set &lt;key&gt; = &lt;value&gt;hive&gt; </span><br><span class="line">set mapred.reduce.tasks=32;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.2/9.png" width="90%"></p>
+<p>在Hive的Shell中执行Shell命令，查看目录文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">语法：！linux命令</span><br><span class="line"><span class="meta prompt_">hive&gt; </span><span class="language-bash">!<span class="built_in">ls</span>;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.2/10.png" width="90%"></p>
+<p>从Hive Shell执行dfs命令，查看目录文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">语法：dfs  -linux命令 路径</span><br><span class="line"><span class="meta prompt_">hive&gt; </span><span class="language-bash">dfs -<span class="built_in">ls</span> /;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.2/11.png" width="90%"></p>
+<p>添加文件资源，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;print (hello word)&quot;&gt;&gt;first.py</span><br><span class="line">语法：add file 文件路径</span><br><span class="line"><span class="meta prompt_">hive&gt; </span><span class="language-bash">add file first.py;</span></span><br><span class="line"><span class="meta prompt_">hive&gt; </span><span class="language-bash">list files;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">hive&gt; </span><span class="language-bash">add file first.py;</span></span><br><span class="line">Added resources: [first.py]</span><br><span class="line"><span class="meta prompt_">hive&gt; </span><span class="language-bash">list files;</span></span><br><span class="line">first.py</span><br></pre></td></tr></table></figure>
+
+<p>关闭Hive交互或批处理模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment1.2/12.png" width="90%"></p>
+<h3 id="实验感悟-1"><a href="#实验感悟-1" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>通过这次Hive CLI命令行接口的实验,让我对Hive CLI的使用有了更深入的了解。Hive CLI为我们提供了交互式和批处理两种模式去执行HiveQL语句,极大地方便了我们对Hive的操作。</p>
+<p>我首先学习了如何启动Hadoop服务,确保 Hive CLI能够连接Hadoop集群。然后了解到CLI的两种模式:一种是批处理模式,可以通过-e、-f参数执行SQL语句;一种是交互式Shell模式,通过hive命令进入交互界面。</p>
+<p>在交互模式下,我练习了很多CLI的常用命令,像set去设置参数、!执行Linux shell命令、dfs执行HDFS命令等。这让我感受到Hive CLI是一个非常强大的工具。我还学习了添加资源文件、列出资源文件等命令,可以方便我们在Hive查询中使用资源。</p>
+<p>通过自己亲身操作,我掌握了Hive CLI的基本用法,知道了如何构建SQL查询、如何查看执行结果。这为我后续使用Hive分析海量数据打下了坚实的基础。我会在今后的学习中,继续深入Hive CLI的高级功能,像参数调优、日志分析等。</p>
+<p>总体来说,通过这个实验的学习,我对Hive CLI有了全面系统的了解,既掌握了基础操作,也看到了强大功能。这将大大提高我使用Hive的效率,使我可以更好更快地进行海量数据的提取、转换和分析工作。我会在以后的工作中熟练运用Hive CLI,发挥它的最大价值。</p>
+<h2 id="实验2-1"><a href="#实验2-1" class="headerlink" title="实验	2.1"></a>实验	2.1</h2><h3 id="实验目的-2"><a href="#实验目的-2" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握数据库和数据表的定义<br>  了解数据库和数据表定义的常用参数<br>  掌握数据库和数据表的常用操作</p>
+<h3 id="实验内容-2"><a href="#实验内容-2" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务和Hive服务<br>  2、数据库的定义和操作<br>  3、数据表的定义和操作</p>
+<h3 id="实验环境-2"><a href="#实验环境-2" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-2"><a href="#实验原理-2" class="headerlink" title="实验原理"></a>实验原理</h3><p>  Hive的数据管理：hive的表本质就是Hadoop的目录&#x2F;文件<br>  hive默认表存放路径一般都是在工作目录的hive目录里面，按表名做文件夹分开，如果有分区表的话，分区值是子文件夹，可以直接在其它的M&#x2F;R job里直接应用这部分数据<br>  1、Hive中所有的数据都存储在 HDFS 中，没有专门的数据存储格式（可支持Text，SequenceFile，ParquetFile，RCFILE等）<br>  2、只需要在创建表的时候告诉 Hive 数据中的列分隔符和行分隔符，Hive 就可以解析数据。<br>  3、Hive 中包含以下数据模型：DB、Table，External Table，Partition，Bucket。</p>
+<ul>
+<li>db：在hdfs中表现为${hive.metastore.warehouse.dir}目录下一个文件夹</li>
+<li>table：在hdfs中表现所属db目录下一个文件夹</li>
+<li>external table：与table类似，不过其数据存放位置可以在任意指定路径</li>
+<li>partition：在hdfs中表现为table目录下的子目录</li>
+<li>bucket：在hdfs中表现为同一个表目录下根据hash散列之后的多个文件</li>
+</ul>
+<h3 id="实验步骤-2"><a href="#实验步骤-2" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务和Hive服务"><a href="#启动Hadoop服务和Hive服务" class="headerlink" title="启动Hadoop服务和Hive服务"></a>启动Hadoop服务和Hive服务</h4><p>1、启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~# jps8423 SecondaryNameNode8712 NodeManager8072 NameNode8203 DataNode9036 Jps8588 ResourceManager</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/2.png" width="90%"></p>
+<p>2、进入hive安装目录，打开hive</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/hive</span><br></pre></td></tr></table></figure>
+
+<p>进入hive的交互式命令行界面，如下图所示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logging initialized using configuration in jar:file:/root/simple/bigdata/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.hive&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/3.png" width="90%"></p>
+<h4 id="数据库的定义和操作"><a href="#数据库的定义和操作" class="headerlink" title="数据库的定义和操作"></a>数据库的定义和操作</h4><p>1、查看数据库是否存在</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; show databases;</span><br></pre></td></tr></table></figure>
+
+<p>2、创建数据库data</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create database if not exists datas comment &#x27;data_comment&#x27; location&#x27;/data&#x27; with dbproperties(&#x27;day&#x27;=&#x27;20191009&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>“if not exists”可以省略，data数据库不存在就创建，存在也不会报错<br>“comment”可以省略，用来给数据库创建别名<br>“location”可以省略，用来指定数据库的存储位置<br>“with dbproperties”可以省略，用来添加数据库一些描述性键值对信息<br>创建数据库可以简写为“create database datas;”</p>
+<p><img src="/pic/Data Mining/experiment2.1/4.png" width="90%"></p>
+<p>3、模糊匹配查询数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; show databases like&#x27;data*&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/5.png" width="90%"></p>
+<p>4、查看创建数据库的语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; show create database datas;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OKCREATE DATABASE `datas`COMMENT  &#x27;data_comment&#x27;LOCATION  &#x27;hdfs://localhost:9000/data&#x27;WITH DBPROPERTIES (  &#x27;day&#x27;=&#x27;20191009&#x27;)Time taken: 0.061 seconds, Fetched: 7 row(s)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/7.png" width="90%"></p>
+<p>5、查看到数据库的详细信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; describe database datas;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OKdatas    data_comment    hdfs://simple:9000/data    root    USER    Time taken: 0.062 seconds, Fetched: 1 row(s)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/7.png" width="90%"></p>
+<p>6、查看数据库的键值对信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; describe database extended datas;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OKdatas    data_comment    hdfs://simple:9000/data    root    USER    &#123;day=20191009&#125;Time taken: 0.05 seconds, Fetched: 1 row(s)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/8.png" width="90%"></p>
+<p>7、要修改数据库的键值对信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; alter database datas set dbproperties(&#x27;day&#x27;=&#x27;20231024&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; describe database extended datas;OKdatas   data_comment    hdfs://localhost:9000/data      root    USER    &#123;day=20191010&#125;Time taken: 0.015 seconds, Fetched: 1 row(s)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/9.png" width="90%"></p>
+<p>8、使用数据库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; use datas; </span><br></pre></td></tr></table></figure>
+
+<p>9、删除数据库：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; drop database if exists datas;</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下是不允许直接删除一个有表的数据库的，删除一个有表的数据库有两种办法：sh</p>
+<ul>
+<li>先把表删干净，再删库。</li>
+<li>删库时在后面加上cascade，表示级联删除此数据库下的所有表</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; drop database if exists datas cascade;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/10.png" width="90%"></p>
+<h4 id="数据表的定义和操作"><a href="#数据表的定义和操作" class="headerlink" title="数据表的定义和操作"></a>数据表的定义和操作</h4><p>1、创建普通表</p>
+<p>创建student表，分为姓名、入学日期、年龄三个字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; use default;</span><br><span class="line">hive&gt; create table student(name string,dates string,age int);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/12.png" width="90%"></p>
+<p>2、创建student2表，分为姓名、入学日期、年龄三个字段,数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table student2(name string,dates string,age int) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/13.png" width="90%"></p>
+<p>3、创建student3表，分为姓名、入学日期、年龄三个字段,数据格式以“，”分割，并制定存储位置为“&#x2F;data”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table student3(name string,dates string,age int) row format delimited fields terminated by &#x27;,&#x27; location&#x27;/data&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/14.png" width="90%"></p>
+<p>4、创建student4表，分为姓名、入学日期、年龄三个字段，增加数据注释，字段终止符，行终止符，并保存文件类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table student4(name string,dates string,age int) &gt; COMMENT &#x27;student details&#x27;&gt; ROW FORMAT DELIMITED&gt; FIELDS TERMINATED BY &#x27;    &#x27;&gt; LINES TERMINATED BY &#x27;&#x27;&gt; STORED AS TEXTFILE;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/15.png" width="90%"></p>
+<p>5、查看所有表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; show tables;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OKstudentstudent2student3student4Time taken: 0.2 seconds, Fetched: 5 row(s)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/16.png" width="90%"></p>
+<p>6、模糊查询表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; show tables in default like &quot;stu*&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OKstudentstudent2student3student4Time taken: 0.2 seconds, Fetched: 5 row(s)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.1/17.png" width="90%"></p>
+<p>7、查看表的详细信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; desc student2;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下所示：</p>
+<p><img src="/pic/Data Mining/experiment2.1/18.png" width="90%"></p>
+<p>8、修改表名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; alter table student rename to new_student;hive&gt; show tables;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现原来的“student”表名已经修改为“new_student”h</p>
+<p><img src="/pic/Data Mining/experiment2.1/19.png" width="90%"></p>
+<p>9、删除表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; drop table student2;hive&gt; show tables;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现原来的“student2”表已经被删除</p>
+<p><img src="/pic/Data Mining/experiment2.1/20.png" width="90%"></p>
+<h3 id="实验感悟-2"><a href="#实验感悟-2" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>通过这次的数据库和数据表定义实验,我对Hive的数据库和表的定义和操作有了更深入的理解。实验通过 Hive 命令行界面创建和操作数据库和表,让我对 Hive 的基本操作有了第一手的体验。</p>
+<p>实验中我掌握了数据库的创建、查看、使用和删除操作。数据库可以添加注释、指定存储位置、以及添加描述性信息。我还了解到表的创建语法,可以指定各个字段、表注释、存储格式等信息。表支持多种存储格式如 TEXTFILE、SEQUENCEFILE 等。我掌握了查询表的信息、修改表名、删除表等操作。</p>
+<p>另外,实验也让我认识到数据库和表在 HDFS 上的表现形式。数据库在 HDFS 中表现为一个目录,表表现为该数据库目录下的子目录。这种一一映射的关系有助于我理解 Hive 的表结构。分区表在 HDFS 中则表现为表目录下的子目录。</p>
+<p>通过实践创建表操作,我加深了对 Hive 中数据库、表、分区等核心概念的理解,也了解了在 HDFS 中的表现形式。掌握了基本的 DDL 操作对我后续使用 Hive 分析数据提供了基础。这次实验让我对 Hive 有了直观的了解,是非常有意义的一次学习经历。</p>
+<h2 id="实验2-2"><a href="#实验2-2" class="headerlink" title="实验	2.2"></a>实验	2.2</h2><h3 id="实验目的-3"><a href="#实验目的-3" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握受管理表和外部表的创建方式<br>  理解受管理表和外部表的区别</p>
+<h3 id="实验内容-3"><a href="#实验内容-3" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务和Hive服务<br>  2、受管理表的操作<br>  3、外部表的操作</p>
+<h3 id="实验环境-3"><a href="#实验环境-3" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-3"><a href="#实验原理-3" class="headerlink" title="实验原理"></a>实验原理</h3><p>  未被external修饰的是受管理表，也叫做内部表（managed table），被external修饰的为外部表（external table）；<br>  内部表数据由Hive自身管理，外部表数据由HDFS管理；<br>  内部表数据存储的位置是hive.metastore.warehouse.dir（默认：&#x2F;user&#x2F;hive&#x2F;warehouse），外部表数据的存储位置由自己制定；<br>  删除内部表会直接删除元数据（metadata）及存储数据；删除外部表仅仅会删除元数据，HDFS上的文件并不会被删除；<br>  对内部表的修改会将修改直接同步给元数据，而对外部表的表结构和分区进行修改，则需要修复（MSCK REPAIR TABLE table_name;）</p>
+<h3 id="实验步骤-3"><a href="#实验步骤-3" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务和Hive服务-1"><a href="#启动Hadoop服务和Hive服务-1" class="headerlink" title="启动Hadoop服务和Hive服务"></a>启动Hadoop服务和Hive服务</h4><p>1、启动mysql，Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~# jps8423 SecondaryNameNode8712 NodeManager8072 NameNode8203 DataNode9036 Jps8588 ResourceManager</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.2/2.png" width="90%"></p>
+<p>2、进入hive安装目录，打开hive</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/hive</span><br></pre></td></tr></table></figure>
+
+<p>进入hive的交互式命令行界面，如下图所示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logging initialized using configuration in jar:file:/root/simple/bigdata/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.hive&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.2/3.png" width="90%"></p>
+<h4 id="受管理表操作"><a href="#受管理表操作" class="headerlink" title="受管理表操作"></a>受管理表操作</h4><p>受管理表（内部表）也称之为MANAGED_TABLE，数据由Hive自身管理，默认存储在&#x2F;user&#x2F;hive&#x2F;warehouse下，也可以通过location指定，删除表时，会删除表数据以及元数据。</p>
+<p>1、创建受管理表</p>
+<p>创建film表，分为电影名称、上映日期、票房三个字段，数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table film(name string,dates string,prince int) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>2、导入数据</p>
+<p>将本地的film_log3.log文件数据加载到film表：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load data local inpath &#x27;/data/dataset/film_log3.log&#x27;into table film;</span><br></pre></td></tr></table></figure>
+
+<p>3、查看film表数据的前十条：</p>
+<p><img src="/pic/Data Mining/experiment2.2/5.png" width="90%"></p>
+<p>4、查看film表在hdfs存储位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; dfs -ls /user/hive/warehouse/film;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到上传的数据文件</p>
+<p>5、删除表并查看数据文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; drop table film;hive&gt; dfs -ls /user/hive/warehouse;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到删除表以后，对应的数据也删除了，同样可以在MySQL中查看元数据，也删除了。</p>
+<p><img src="/pic/Data Mining/experiment2.2/6.png" width="90%"></p>
+<h4 id="外部表的操作"><a href="#外部表的操作" class="headerlink" title="外部表的操作"></a>外部表的操作</h4><p>外部表称之为EXTERNAL_TABLE，数据由HDFS管理。在创建表时可以自己指定目录位置(LOCATION)，删除表时，只会删除元数据不会删除表数据</p>
+<p>1、外部表的创建</p>
+<p>创建film表，分为电影名称、上映日期、票房三个字段，数据格式以“，”分割，数据存储路径为“&#x2F;user&#x2F;film”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create external table film(name string,dates string,prince int) row format delimited fields terminated by &#x27;,&#x27; location&#x27;/user/film&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>2、导入数据</p>
+<p>将数据上传到HDFS“&#x2F;user&#x2F;film”下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; dfs -put /data/dataset/film_log3.log /user/film/;</span><br></pre></td></tr></table></figure>
+
+<p>3、查看film表数据的前十条：</p>
+<p><img src="/pic/Data Mining/experiment2.2/7.png" width="90%"></p>
+<p>4、查看film表在hdfs存储位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; dfs -ls /user/film/;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到上传的数据文件</p>
+<p>5、删除表并查看数据文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; drop table film;hive&gt; dfs -ls /user/film/;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到删除表以后，对应的数据并没有删除了，同样可以在MySQL中查看元数据，发现已经删除了。</p>
+<p><img src="/pic/Data Mining/experiment2.2/8.png" width="90%"></p>
+<h3 id="实验感悟-3"><a href="#实验感悟-3" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>本次实验主要探究了Hive中受管理表和外部表的区别。受管理表的数据由Hive管理,存储在Hive的默认位置&#x2F;user&#x2F;hive&#x2F;warehouse,删除表时会同时删除数据和元数据。而外部表的数据由HDFS管理,可以自定义存储位置,删除表只会删掉元数据,不会删除HDFS上的数据。</p>
+<p>实验中,我先创建了一个受管理表film,指定了字段和分隔符。然后向表中导入本地数据文件。删除表后,HDFS上的数据被同时删除。这说明受管理表数据由Hive管理。之后我创建外部表film,指定存储在&#x2F;user&#x2F;film路径。删除表后,&#x2F;user&#x2F;film路径的数据依然存在,仅元数据被删除。</p>
+<p>通过对比受管理表和外部表的创建、加载数据、删除表的操作,我直观地了解了两者的区别:受管理表更适合Hive自身管理的场景,外部表更适合多用户共享的场景。受管理表删除时 datafile 被删除,外部表删除时 datafile 依然存在。</p>
+<p>本实验加深了我对Hive管理表与外部表的概念理解,也让我对两种表的适用场景有了清晰的认识。掌握不同表类型的特点,可以让我后续根据分析需求灵活运用表的功能。这是一次收获颇丰的学习经历。</p>
+<h2 id="实验2-3"><a href="#实验2-3" class="headerlink" title="实验	2.3"></a>实验	2.3</h2><h3 id="实验目的-4"><a href="#实验目的-4" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握数据导入Hive表的方式<br>  理解三种数据导入Hive表的原理</p>
+<h3 id="实验内容-4"><a href="#实验内容-4" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务和Hive服务<br>  2、使用load直接导入<br>  3、使用put上传导入</p>
+<h3 id="实验环境-4"><a href="#实验环境-4" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-4"><a href="#实验原理-4" class="headerlink" title="实验原理"></a>实验原理</h3><p>  Hive的导入：<br>  1.直接load导入<br>  使用load命令，从HDFS或者本地将数据导入hive的指定表中，本地导入则是上传到Hive的指定文件夹，HDFS导入则是从HDFS移动到指定文件夹<br>  2.put导入<br>  使用HDFS的命令put将数据传到指定的Hive文件夹下</p>
+<h3 id="实验步骤-4"><a href="#实验步骤-4" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务和Hive服务-2"><a href="#启动Hadoop服务和Hive服务-2" class="headerlink" title="启动Hadoop服务和Hive服务"></a>启动Hadoop服务和Hive服务</h4><p>  1、启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~#jps8423 SecondaryNameNode8712 NodeManager8072 NameNode8203 DataNode9036 Jps8588 ResourceManager</span><br></pre></td></tr></table></figure>
+
+<p>  2、进入hive安装目录，打开hive</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/hive</span><br></pre></td></tr></table></figure>
+
+<p>进入hive的交互式命令行界面，如下图所示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logging initialized using configuration in jar:file:/root/simple/bigdata/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.hive&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.3/1.png" width="90%"></p>
+<h4 id="使用load直接导入"><a href="#使用load直接导入" class="headerlink" title="使用load直接导入"></a>使用load直接导入</h4><p>1、创建表</p>
+<p>创建film表，分为电影名称、上映日期、票房三个字段，数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table film(name string,dates string,prince int) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>2、导入数据</p>
+<p>将本地的film_log3.log文件数据加载到film表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; load data local inpath &#x27;/data/dataset/film_log3.log&#x27;into table film;</span><br></pre></td></tr></table></figure>
+
+<p>3、查看film表数据的总条数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select count(*) from film;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment2.3/2.png" width="90%"></p>
+<p>4、将HDFS的film_log3.log文件数据加载到film表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; dfs -put /data/dataset/film_log3.log  /;hive&gt; load data inpath &#x27;/film_log3.log&#x27;into table film;</span><br></pre></td></tr></table></figure>
+
+<p>5、查看film表数据的总条数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select count(*) from film;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到film的总条数变为之前的2倍，说明导入成功了。</p>
+<p><img src="/pic/Data Mining/experiment2.3/3.png" width="90%"></p>
+<h4 id="使用put上传导入"><a href="#使用put上传导入" class="headerlink" title="使用put上传导入"></a>使用put上传导入</h4><p>1、外部表的创建</p>
+<p>创建films表，分为电影名称、上映日期、票房三个字段，数据格式以“，”分割，数据存储路径为“&#x2F;user&#x2F;film”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create external table films(name string,dates string,prince int) row format delimited fields terminated by &#x27;,&#x27; location&#x27;/user/film&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>2、导入数据</p>
+<p>将数据上传到HDFS“&#x2F;user&#x2F;film”下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; dfs -put /data/dataset/film_log3.log /user/film/;</span><br></pre></td></tr></table></figure>
+
+<p>3、查看film表数据的前十条：</p>
+<p><img src="/pic/Data Mining/experiment2.3/4.png" width="90%"></p>
+<h3 id="实验感悟-4"><a href="#实验感悟-4" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>本次实验主要探究了将数据导入Hive表的两种方式:load直接导入和put上传导入。load可以从本地文件或HDFS路径导入数据到Hive表中。put可以先将本地数据上传到HDFS指定路径,再创建外部表指向该路径即可。</p>
+<p>实验中,我先用load命令将本地文件的film_log3.log数据导入内部表film中。加载前后对比表中的数据条数可以看出数据成功导入。又用load从HDFS路径导入数据,实现了从HDFS向Hive表内部加载数据。</p>
+<p>之后通过put命令上传本地数据到HDFS路径,再创建外部表films指向该路径。查询表数据可以看到文件的数据成功导入表中。put命令实现了本地文件先上传到HDFS,再通过外部表访问的方式。</p>
+<p>通过本实验,我掌握了load和put两种方式向Hive导入数据,load适用于内部表,put适用于外部表场景。实践导入操作加深了我对加载数据到Hive表的理解,也让我对不同导入方式的适用场景有了直观感受。掌握导入数据的技能对我使用Hive分析海量数据提供了基础。这是一次非常愉快的学习过程。</p>
+<h2 id="实验3-1"><a href="#实验3-1" class="headerlink" title="实验	3.1"></a>实验	3.1</h2><h3 id="实验目的-5"><a href="#实验目的-5" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握Hive的HQL查询常用操作<br>  掌握Hive的HQL语法使用</p>
+<h3 id="实验内容-5"><a href="#实验内容-5" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、基础查询操作<br>  2、启动Hadoop服务和Hive服务</p>
+<h3 id="实验环境-5"><a href="#实验环境-5" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-5"><a href="#实验原理-5" class="headerlink" title="实验原理"></a>实验原理</h3><p>  Hive的数据查询：<br>  对Hive中的数据进行查询操作，使用类似SQl语句的HQL进行查询，包括SQl中常用where、like、between and等基本查询操作。</p>
+<h3 id="实验步骤-5"><a href="#实验步骤-5" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务和Hive服务-3"><a href="#启动Hadoop服务和Hive服务-3" class="headerlink" title="启动Hadoop服务和Hive服务"></a>启动Hadoop服务和Hive服务</h4><p>1、启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~#jps8423 SecondaryNameNode8712 NodeManager8072 NameNode8203 DataNode9036 Jps8588 ResourceManager</span><br></pre></td></tr></table></figure>
+
+<p>2、进入hive安装目录，打开hive</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/hive</span><br></pre></td></tr></table></figure>
+
+<p>进入hive的交互式命令行界面，如下图所示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Logging initialized using configuration in jar:file:/root/simple/bigdata/apache-hive-2.3.3-bin/lib/hive-common-2.3.3.jar!/hive-log4j2.properties Async: trueHive-on-MR is deprecated in Hive 2 and may not be available in the future versions. Consider using a different execution engine (i.e. spark, tez) or using Hive 1.X releases.hive&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.1/1.png" width="90%">  </p>
+<p>3、创建表</p>
+<p>创建film表，分为电影名称、上映日期、票房三个字段，数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table film(name string,dates string,prince int) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>4、导入数据</p>
+<p>将本地的film_log3.log文件数据加载到film表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; load data local inpath &#x27;/data/dataset/film_log3.log&#x27;into table film;</span><br></pre></td></tr></table></figure>
+
+<p>5、查看film表数据的前十条：</p>
+<p><img src="/pic/Data Mining/experiment3.1/2.png" width="90%"> </p>
+<h4 id="基础查询操作"><a href="#基础查询操作" class="headerlink" title="基础查询操作"></a>基础查询操作</h4><p>1、查询film表的所有信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from film;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.1/3.png" width="90%"> </p>
+<p>2、查询film表的名称和票房信息，分别用“n”表示电影名称，用“p”表示票房</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select name as n,prince as p from film;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.1/4.png" width="90%"> </p>
+<p>3、查询票房大于100，小于200的电影信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select * from film where prince&lt;200 and prince&gt;100;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.1/5.png" width="90%"> </p>
+<p>4、查询2014年1月份上映的所有电影信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select * from film where dates like&#x27;2014.1.%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.1/6.png" width="90%"> </p>
+<p>5、查询2015年上映的所有电影信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select * from film where dates like&#x27;2015%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.1/7.png" width="90%"> </p>
+<p>6、查询票房最高的5部电影信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select * from film order by prince desc limit 5;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.1/8.png" width="90%"> </p>
+<p>7、将票房信息都乘以10000</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select name,dates,prince*10000  from film;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.1/9.png" width="90%"> </p>
+<p>8、查询票房在50~100之间的票房信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select * from film where prince between 50 and 100;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.1/10.png" width="90%"> </p>
+<p>9、查询2016年9月20日的票房信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select * from film where dates=&#x27;2016.9.20&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.1/11.png" width="90%"> </p>
+<h3 id="实验感悟-5"><a href="#实验感悟-5" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>通过这个HQL基本查询操作的实验,我掌握了Hive的基本查询语法,包括选择指定列、WHERE条件筛选、LIKE模糊匹配、ORDER BY排序、LIMIT限制结果等。实验让我对Hive查询的理解更加深入, Hive的查询语法与传统SQL非常相似,可以通过简单的SQL基础进行Hive查询操作。本实验也让我对Hive表的创建、数据导入有了直接的操作体会。接下来还需要学习UDF、joins等更复杂的查询操作,以及Hive 的优化技巧。总体来说,这个实验达到了练习HQL查询的目的,提高了我使用Hive进行数据分析的能力,为后续的Hive学习奠定了基础。</p>
+<h2 id="实验3-2"><a href="#实验3-2" class="headerlink" title="实验	3.2"></a>实验	3.2</h2><h3 id="实验目的-6"><a href="#实验目的-6" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握Hive的HQL查询聚合的常用操作<br>  掌握Hive的HQL聚合语法使用</p>
+<h3 id="实验内容-6"><a href="#实验内容-6" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务和Hive服务<br>  2、聚合查询操作</p>
+<h3 id="实验环境-6"><a href="#实验环境-6" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-6"><a href="#实验原理-6" class="headerlink" title="实验原理"></a>实验原理</h3><p>  Hive的数据聚合查询：<br>  Hive的数据聚合查询是类似SQL的聚合查询，是在原来的基础上做了封装。它的原理是通过包含一个聚合函数（如 Sum 或 Avg ）来汇总来自多个行的信息。</p>
+<h3 id="实验步骤-6"><a href="#实验步骤-6" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务和Hive服务，并创建表数据"><a href="#启动Hadoop服务和Hive服务，并创建表数据" class="headerlink" title="启动Hadoop服务和Hive服务，并创建表数据"></a>启动Hadoop服务和Hive服务，并创建表数据</h4><p>1、启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~#jps8423 SecondaryNameNode8712 NodeManager8072 NameNode8203 DataNode9036 Jps8588 ResourceManager</span><br></pre></td></tr></table></figure>
+
+<p>2、进入hive安装目录，打开hive</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/hive</span><br></pre></td></tr></table></figure>
+
+<p>进入hive的交互式命令行界面，如下图所示</p>
+<p><img src="/pic/Data Mining/experiment3.2/1.png" width="90%"> </p>
+<p>3、创建表</p>
+<p>创建film表，分为电影名称、上映日期、票房三个字段，数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table film(name string,dates string,prince int) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>4、导入数据</p>
+<p>将本地的film_log3.log文件数据加载到film表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; load data local inpath &#x27;/data/dataset/film_log3.log&#x27;into table film;</span><br></pre></td></tr></table></figure>
+
+<p>5、查看film表数据的前十条：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from film limit 10;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.2/2.png" width="90%"> </p>
+<h4 id="聚合查询操作"><a href="#聚合查询操作" class="headerlink" title="聚合查询操作"></a>聚合查询操作</h4><p>1、查询film表2014年的电影个数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select count(name) from film where dates like&#x27;2014%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.2/3.png" width="90%"> </p>
+<p>2、查询film表2015年的电影票房平均值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select avg(prince) from film where dates like&#x27;2015%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.2/4.png" width="90%"> </p>
+<p>留两位小数据结果得</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select round(avg(prince),2) from film where dates like&#x27;2015%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.2/5.png" width="90%"> </p>
+<p>3、查询film表中2016年最高票房</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select max(prince) from film where dates like&#x27;2016%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.2/6.png" width="90%"> </p>
+<p>4、查询film表中2014年和2016年最低票房</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select min(prince) from film where dates like&#x27;2014%&#x27; or dates like&#x27;2016%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.2/7.png" width="90%"> </p>
+<p>5、查询film表中票房前五的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select name,sum(prince) p from film group by name order by p desc limit 5;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.2/8.png" width="90%"> </p>
+<p>6、查询film表中每部电影总票房大于700的电影信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select name,sum(prince) p from film group by name having p&gt;700;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.2/9.png" width="90%"> </p>
+<h3 id="实验感悟-6"><a href="#实验感悟-6" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>通过count()、avg()、max()、min()等聚合函数,我可以很方便地对Hive表进行统计分析,比如计算总数、平均值、最大最小值等。同时组合where子句,可以将运算限定在某个时间段或者条件内,使统计更有针对性。</p>
+<p>另外,本实验还使用了group by进行分组,结合having子句筛选结果,这在SQL中是常见的聚合查询用法。以name分组并求和,然后having筛选总票房,实现了找出总票房前五的电影这样的效果。</p>
+<p>此外,实验也让我对Hive运行机制有了更直观的感受,每次查询Hive都会跑一个MapReduce作业,因此查询会比较耗时。以后在编写Hive查询时,需要考虑优化,比如减少MR任务次数,采用合并小文件,增加map数等手段。</p>
+<p>通过这个实验,我对Hive查询的理解更加深入,掌握了聚合函数的用法,以及与SQL类似的group by, having语法。这为后续进行更复杂的数据统计奠定了基础。我还需要继续学习join,rank等高级函数,以及提升Hive查询效率的方法。总而言之,这个实验达到了使用HQL进行聚合查询分析的目的,对提高我的数据分析能力很有帮助。通过count()、avg()、max()、min()等聚合函数,我可以很方便地对Hive表进行统计分析,比如计算总数、平均值、最大最小值等。同时组合where子句,可以将运算限定在某个时间段或者条件内,使统计更有针对性。</p>
+<p>另外,本实验还使用了group by进行分组,结合having子句筛选结果,这在SQL中是常见的聚合查询用法。以name分组并求和,然后having筛选总票房,实现了找出总票房前五的电影这样的效果。</p>
+<p>此外,实验也让我对Hive运行机制有了更直观的感受,每次查询Hive都会跑一个MapReduce作业,因此查询会比较耗时。以后在编写Hive查询时,需要考虑优化,比如减少MR任务次数,采用合并小文件,增加map数等手段。</p>
+<p>通过这个实验,我对Hive查询的理解更加深入,掌握了聚合函数的用法,以及与SQL类似的group by, having语法。这为后续进行更复杂的数据统计奠定了基础。我还需要继续学习join,rank等高级函数,以及提升Hive查询效率的方法。总而言之,这个实验达到了使用HQL进行聚合查询分析的目的,对提高我的数据分析能力很有帮助。</p>
+<h2 id="实验3-3"><a href="#实验3-3" class="headerlink" title="实验	3.3"></a>实验	3.3</h2><h3 id="实验目的-7"><a href="#实验目的-7" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握Hive的HQL多表查询操作<br>  了解HQLJoin的几种常用连接方式</p>
+<h3 id="实验内容-7"><a href="#实验内容-7" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务和Hive服务，并创建表数据<br>  2、多表连接查询操作</p>
+<h3 id="实验环境-7"><a href="#实验环境-7" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-7"><a href="#实验原理-7" class="headerlink" title="实验原理"></a>实验原理</h3><p>  Hive的多表联查：<br>  通左连接（左边表中的数据优先全部显示）、右连接（右边表中的数据优先全部显示）、内连接（只显示符合条件的数据）、全连接（显示左右表中全部数据）等方式实现多个表的数据查询。</p>
+<h3 id="实验步骤-7"><a href="#实验步骤-7" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务和Hive服务，并创建表数据-1"><a href="#启动Hadoop服务和Hive服务，并创建表数据-1" class="headerlink" title="启动Hadoop服务和Hive服务，并创建表数据"></a>启动Hadoop服务和Hive服务，并创建表数据</h4><p>1、启动Hadoop</p>
+<p>2、进入hive安装目录，打开hive</p>
+<p><img src="/pic/Data Mining/experiment3.3/1.png" width="90%"> </p>
+<p>3、创建表</p>
+<p>创建员工信息表“employee”，分为员工名称、职务、入职日期、工资、绩效、部门编号五个字段，数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table employee(name string,job string,hiredate string,salary  int,commission double,deptid int) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>创建部门表“department”，分为部门编号、部门、所在城市三个字段，数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table department(deptid int,position string,location string) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>4、导入数据</p>
+<p>将本地的employee.csv和department.csv文件数据加载到employee表和department表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; load data local inpath &#x27;/data/dataset/employee.csv&#x27;into table employee;hive&gt; load data local inpath &#x27;/data/dataset/department.csv&#x27;into table department;</span><br></pre></td></tr></table></figure>
+
+<p>5、查看导入表的数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from employee;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.3/2.png" width="90%"> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from department;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.3/3.png" width="90%"> </p>
+<h4 id="5-2、多表连接查询操作"><a href="#5-2、多表连接查询操作" class="headerlink" title="5.2、多表连接查询操作"></a>5.2、多表连接查询操作</h4><p>1、查询员工姓名和部门</p>
+<p>因为员工姓名和部门分别在两个表中，所以需要使用两表联查，使用“join”,其中员工表为主表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select e.name, d.position from employee e join department d on e.deptid=d.deptid;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.3/4.png" width="90%"> </p>
+<p>2、查询员工姓名、部门和所在地区，其中“员工信息表”为主表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select e.name, d.position, d.location from employee e left join department d on e.deptid=d.deptid;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.3/5.png" width="90%"> </p>
+<p>3、查询员工姓名、部门和入职日期，其中“员工信息表”为主表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select e.name, d.position, e.hiredate from department d right join employee e on e.deptid=d.deptid;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.3/6.png" width="90%"> </p>
+<p>4、查询员工姓名、职务和入职日期，其中“员工信息表”为主表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;select e.name, d.position, e.hiredate from department d full join employee e on e.deptid=d.deptid;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.3/7.png" width="90%"> </p>
+<h3 id="六、实验感悟"><a href="#六、实验感悟" class="headerlink" title="六、实验感悟"></a>六、实验感悟</h3><p>实验中,我创建了两个表employee和department,分别代表员工信息和部门信息。两个表通过deptid字段建立关系。然后通过join对两个表进行连接,实现了查询员工姓名及其所在部门等功能。</p>
+<p>join连接可以指定不同的连接方式,如内连接仅显示符合连接条件的结果,左连接会将左边表全部显示出来,右连接则会将右边表全部显示。所以我们可以根据需求选择不同的连接方式。</p>
+<p>另外,在join查询时需要指定连接条件on从句,这对保证查询正确非常关键。on从句也体现了关系型数据库的设计思想,两个表通过主外键建立连接。</p>
+<p>通过本实验,我掌握了Hive的join多表连接的使用,理解了不同join连接方式的区别,以及join的查询语法。掌握join连接对实现关系型数据分析是非常重要的。后续还需要学习更复杂的连接查询,以及join的优化方法。总体上,本实验达到了练习Hive多表联查的目的,使我对Hive查询的理解更上一层楼。</p>
+<h2 id="实验3-4"><a href="#实验3-4" class="headerlink" title="实验	3.4"></a>实验	3.4</h2><h3 id="实验目的-8"><a href="#实验目的-8" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握Hive的HQL常用的查询结果存储方法</p>
+<h3 id="实验内容-8"><a href="#实验内容-8" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务和Hive服务，并创建表数据<br>  2、HQL查询结果存储</p>
+<h3 id="实验环境-8"><a href="#实验环境-8" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3.3、Hadoop-2.7.3<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-8"><a href="#实验原理-8" class="headerlink" title="实验原理"></a>实验原理</h3><p>  Hive的查询结果处理：<br>  1、存储到Hive的新建数据表中，将查询的结果保存到新建的表中，如果查询成功保存表中，查询失败，则表不会创建<br>  2、存储到HDFS或者本地上，直接将hive查询的结果保存到指定的路径下。</p>
+<h3 id="实验步骤-8"><a href="#实验步骤-8" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务和Hive服务，并创建表数据-2"><a href="#启动Hadoop服务和Hive服务，并创建表数据-2" class="headerlink" title="启动Hadoop服务和Hive服务，并创建表数据"></a>启动Hadoop服务和Hive服务，并创建表数据</h4><p>1、启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>2、进入hive安装目录，打开hive</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/hive</span><br></pre></td></tr></table></figure>
+
+<p>进入hive的交互式命令行界面，如下图所示</p>
+<p><img src="/pic/Data Mining/experiment3.4/1.png" width="90%"> </p>
+<p>3、创建表</p>
+<p>创建film表，分为电影名称、上映日期、票房三个字段，数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table film(name string,dates string,prince int) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>4、导入数据</p>
+<p>将本地的film_log3.log文件数据加载到film表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; load data local inpath &#x27;/data/dataset/film_log3.log&#x27;into table film;</span><br></pre></td></tr></table></figure>
+
+<p>5、查看film表数据的前十条：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from film limit 10;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下：</p>
+<p><img src="/pic/Data Mining/experiment3.4/2.png" width="90%"> </p>
+<h4 id="HQL查询结果存储"><a href="#HQL查询结果存储" class="headerlink" title="HQL查询结果存储"></a>HQL查询结果存储</h4><p>1、查询2014年所有票房信息并将结果存储到新表“film_2014”中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;create table film_2014 as select * from film where dates like&#x27;2014%&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>查看存储表内的前10条信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from film_2014 limit 10;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.4/3.png" width="90%"> </p>
+<p>2、将2015年票房前十数据存储到linux下的“&#x2F;data&#x2F;result”目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt;insert overwrite local directory&#x27;/data/result&#x27;select name,sum(prince) p from film where dates like&#x27;2015%&#x27; group by name order by p desc limit 10;</span><br></pre></td></tr></table></figure>
+
+<p>查看文件夹下的数据信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~# cat /data/result/000000_0 |head -10</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.4/4.png" width="90%"> </p>
+<p>3、查询film表中2014年的所有电影平均票房，并存到HDFS的“&#x2F;result”目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; insert overwrite directory&#x27;/result&#x27; select name,avg(prince) from film where dates like&#x27;2014%&#x27; group by name;</span><br></pre></td></tr></table></figure>
+
+<p>查看HDFS文件夹下的数据信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~# hadoop fs -cat /result/000000_0 |head -10</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.4/5.png" width="90%"> </p>
+<p>4、查询2015年的电影信息，并存储到本地&#x2F;data&#x2F;info文件下</p>
+<p>首先进行hive的本地化配置，并重新导入film数据集，详细过程见实验一</p>
+<p><img src="/pic/Data Mining/experiment3.4/6.png" width="90%"> </p>
+<p><img src="/pic/Data Mining/experiment3.4/7.png" width="90%"> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~#  hive -e &quot;select * from film where dates like&#x27;2015%&#x27;&quot; &gt;/data/info</span><br></pre></td></tr></table></figure>
+
+<p>查看文件的数据信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~# cat /data/info |head -10</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment3.4/8.png" width="90%"> </p>
+<h3 id="实验感悟-7"><a href="#实验感悟-7" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>实验中,我运用了create table as和insert overwrite两种语法将查询结果存为新表。前者如果查询成功则创建新表,失败则不创建;后者无论成功失败都会覆盖目标表&#x2F;目录。</p>
+<p>然后我使用insert overwrite将查询结果存储到本地文件系统和HDFS指定目录下。对本地系统需要指定local关键字,HDFS系统直接指定HDFS路径即可。</p>
+<p>保存查询结果的好处是避免每次都要重新执行复杂的查询语句,提高查询效率。我也注意到Hive默认查询结果存储在HDFS的临时目录下,可能被删除,所以保存查询结果是非常必要的。</p>
+<p>通过本实验,我掌握了Hive的查询结果保存方法,可以将经过筛选、JOIN、统计后的结果进行持久化存储,作为后续分析使用。此外,保存查询结果到外部也有利于和其他工具连接,进行更复杂的分析处理。总之,本实验达到了学习Hive查询结果存储的目的,使我可以灵活地进行数据分析。</p>
+<h2 id="实验4"><a href="#实验4" class="headerlink" title="实验	4"></a>实验	4</h2><h3 id="实验目的-9"><a href="#实验目的-9" class="headerlink" title="实验目的"></a>实验目的</h3><p>  了解JDBC的原理<br>  掌握Hive JDBC API的使用</p>
+<h3 id="实验内容-9"><a href="#实验内容-9" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、配置环境并启动Hadoop和hiveserver2服务<br>  2、启动IntelliJ Idea并创建Java项目</p>
+<h3 id="实验环境-9"><a href="#实验环境-9" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3、Hadoop-2.7<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-9"><a href="#实验原理-9" class="headerlink" title="实验原理"></a>实验原理</h3><p>  连接Hive的代码：<br>  forName()：通过该方法可以加载HiveServer2 JDBC的驱动程序<br>  getConnection(URL,username,password)：通过该方法可以创建JDBC的驱动程序，用来连接Hive。参数URL，jdbc:hive2:&#x2F;&#x2F;ip:port&#x2F;数据库；参数username，用户名；参数password，密码。</p>
+<h3 id="实验步骤-9"><a href="#实验步骤-9" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="配置环境并启动Hadoop和hiveserver2服务"><a href="#配置环境并启动Hadoop和hiveserver2服务" class="headerlink" title="配置环境并启动Hadoop和hiveserver2服务"></a>配置环境并启动Hadoop和hiveserver2服务</h4><p>1、修改hadoop配置文件core-site.xml</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi  /opt/hadoop/etc/hadoop/core-site.xml</span><br></pre></td></tr></table></figure>
+
+<p>添加如下属性：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.proxyuser.root.hosts<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.proxyuser.root.groups<span class="tag">&lt;/<span class="name">name</span>&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment4/1.png" width="90%"></p>
+<p>2、启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@localhost:~# jps8423 SecondaryNameNode8712 NodeManager8072 NameNode8203 DataNode9036 Jps8588 ResourceManager</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment4/2.png" width="90%"></p>
+<p>3、启动hiveserver2服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/./bin/hiveserver2</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment4/3.png" width="90%"></p>
+<h4 id="启动IntelliJ-Idea并创建Java项目"><a href="#启动IntelliJ-Idea并创建Java项目" class="headerlink" title="启动IntelliJ Idea并创建Java项目"></a>启动IntelliJ Idea并创建Java项目</h4><p>1.启动IntelliJ Idea。在终端窗口下，执行以下命令:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> /opt/idea-IC-191.7479.19/bin$ ./idea.sh</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment4/5.png" width="90%"></p>
+<p>2.在idea中创建Java项目，依次选择“Create New Project-&gt;java-&gt;next-&gt;next”，并命名为”hive_jdbc”，最后选择“Finish”，其它都默认即可。</p>
+<p><img src="/pic/Data Mining/experiment4/4.png" width="90%"></p>
+<p>3.Hive程序开发和运行，需要依赖Hive相关的jar包。</p>
+<p>先将所需的hadoopjar包拷贝到hive的lib下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cp</span> /opt/hadoop/share/hadoop/common/hadoop-common-2.7.3.jar /opt/hive/lib/</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment4/6.png" width="90%"></p>
+<p>依次选择”File-&gt;Project structure…”菜单项，进入项目结构界面，手动导入Hive的jar包到项目中。如下图所示：</p>
+<p><img src="/pic/Data Mining/experiment4/7.png" width="90%"></p>
+<p>4.要引入的jar包位于Hive安装目录的libs目录下。请按图中所示操作，之后点击【OK】按钮即可导包成功。</p>
+<p>5.查看成功导入的部分jar包。如下图所示：</p>
+<p><img src="/pic/Data Mining/experiment4/8.png" width="90%"></p>
+<h4 id="编写Hive-API使用代码"><a href="#编写Hive-API使用代码" class="headerlink" title="编写Hive API使用代码"></a>编写Hive API使用代码</h4><p>1.选中项目”hive_jdbc”的src目录上，单击右键，依次选择”New-&gt;Java Class”，创建Java类。如下图所示：</p>
+<p><img src="/pic/Data Mining/experiment4/9.png" width="90%"></p>
+<p>2.在弹出的对话框中，命名”HiveAPI”，并选择”class”类型。</p>
+<p>3.创建getConn()方法，连接Hive的远程客户端，将连接hive的代码封装到getConn()方法中</p>
+<p><img src="/pic/Data Mining/experiment4/10.png" width="90%"></p>
+<p>4.创建createTable方法，传入参数要创建表名称</p>
+<p><img src="/pic/Data Mining/experiment4/11.png" width="90%"></p>
+<p>5.创建showTables方法,输出所有的表名称</p>
+<p><img src="/pic/Data Mining/experiment4/12.png" width="90%"></p>
+<p>6.创建describeTables方法，传入参数要查询表名称</p>
+<p><img src="/pic/Data Mining/experiment4/13.png" width="90%"></p>
+<p>7.创建loadData方法，传入参数要导入表名称以及要导入数据位置</p>
+<p><img src="/pic/Data Mining/experiment4/14.png" width="90%"></p>
+<p>8.创建selectData方法，传入参数要查询表名称</p>
+<p><img src="/pic/Data Mining/experiment4/15.png" width="90%"></p>
+<p>9.创建dropTable方法，传入参数要删除表名称</p>
+<p><img src="/pic/Data Mining/experiment4/16.png" width="90%"></p>
+<p>10.关闭连接数据仓库的传输资源</p>
+<p><img src="/pic/Data Mining/experiment4/17.png" width="90%"></p>
+<p>11.测试代码</p>
+<p><img src="/pic/Data Mining/experiment4/18.png" width="90%"></p>
+<p>12.运行测试</p>
+<p>右击选择“Run HIveAPI.Main()”，运行后如下：</p>
+<p><img src="/pic/Data Mining/experiment4/19.png" width="90%"></p>
+<p><img src="/pic/Data Mining/experiment4/20.png" width="90%"></p>
+<p>完整代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.jc.springboot.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HiveAPI</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">driverName</span> <span class="operator">=</span> <span class="string">&quot;org.apache.hive.jdbc.HiveDriver&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;jdbc:hive2:localhost:10000&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;root&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//connect to the database</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Connection <span class="title function_">getConn</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(driverName);</span><br><span class="line">            conn = DriverManager.getConnection(url, user, password);</span><br><span class="line">            stmt = conn.createStatement();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> conn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//create table</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">createTable</span><span class="params">(String tableName)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;create table &quot;</span> + tableName + <span class="string">&quot; (film string,time string,counts int)  row format delimited fields terminated by &#x27;,&#x27;&quot;</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;Running:&quot;</span> + sql);</span><br><span class="line">        stmt.execute(sql);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//show tables</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">showTables</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;show tables&quot;</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;Running:&quot;</span> + sql);</span><br><span class="line">        rs = stmt.executeQuery(sql);</span><br><span class="line">        <span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">            System.out.println(rs.getString(<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//describe tables</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">describeTables</span><span class="params">(String tableName)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;describe &quot;</span> + tableName;</span><br><span class="line">        System.out.println(<span class="string">&quot;Running:&quot;</span> + sql);</span><br><span class="line">        rs = stmt.executeQuery(sql);</span><br><span class="line">        <span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">            System.out.println(rs.getString(<span class="number">1</span>) + <span class="string">&quot;    &quot;</span> + rs.getString(<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//load data</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">loadData</span><span class="params">(String tableName, String filepath)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;load data local inpath &#x27;&quot;</span> + filepath + <span class="string">&quot;&#x27; into table &quot;</span> + tableName;</span><br><span class="line">        System.out.println(<span class="string">&quot;Running:&quot;</span> + sql);</span><br><span class="line">        stmt.execute(sql);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//select data</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">selectData</span><span class="params">(String tableName)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;select * from &quot;</span> + tableName;</span><br><span class="line">        System.out.println(<span class="string">&quot;Running:&quot;</span> + sql);</span><br><span class="line">        rs = stmt.executeQuery(sql);</span><br><span class="line">        <span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">            System.out.println(rs.getString(<span class="number">1</span>) + <span class="string">&quot;    &quot;</span> + rs.getString(<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//drop table</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">dropTable</span><span class="params">(String tableName)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sql</span> <span class="operator">=</span> <span class="string">&quot;drop table &quot;</span> + tableName;</span><br><span class="line">        System.out.println(<span class="string">&quot;Running:&quot;</span> + sql);</span><br><span class="line">        stmt.execute(sql);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//close the database connection</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">destory</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (rs != <span class="literal">null</span>) &#123;</span><br><span class="line">            rs.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (stmt != <span class="literal">null</span>) &#123;</span><br><span class="line">            stmt.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (conn != <span class="literal">null</span>) &#123;</span><br><span class="line">            conn.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">tableName</span> <span class="operator">=</span> <span class="string">&quot;FilmData&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">filepath</span> <span class="operator">=</span> <span class="string">&quot;/data/dataset/film_log3.log&quot;</span>;</span><br><span class="line">        conn = getConn();</span><br><span class="line">        dropTable(tableName);</span><br><span class="line">        createTable(tableName);</span><br><span class="line">        showTables();</span><br><span class="line">        describeTables(tableName);</span><br><span class="line">        loadData(tableName, filepath);</span><br><span class="line">        selectData(tableName);</span><br><span class="line">        destory();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实验感悟-8"><a href="#实验感悟-8" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>通过实验,我掌握了Hive JDBC API的基本使用方法,包括加载驱动、建立连接、创建表、加载数据、查询数据等。我了解到JDBC可以通过Java代码调用Hive的SQL,实现对Hive上数据的操作,这为我以后进行Hive上数据分析提供了思路。</p>
+<p>实验中,我对JDBC的相关类也有了进一步的认识。如DriverManager类可以获取连接,Statement类可以用于执行SQL语句,ResultSet类用于存储查询结果等。这些知识为我今后使用JDBC提供了基础。</p>
+<p>在编码方面,我学习到了模块化编程的思想,如将连接Hive的代码封装成方法,根据功能将CRUD分成不同方法等。这让我的代码更加清晰易读。</p>
+<p>通过这个实验,我对Hive的应用场景也有了一定的了解,即使用JDBC可以通过Java程序对Hive进行操作,这在需要将Hive数据应用到其他业务系统时很有用。</p>
+<p>总之,通过这个实验,我对JDBC的用法有了一定的掌握,也对Hive的应用有了更深的理解。今后我还会继续学习JDBC的高级用法,以及Hive的其他功能,为以后的数据仓库开发打下基础。</p>
+<h3 id="对抗不能复制粘贴的努力"><a href="#对抗不能复制粘贴的努力" class="headerlink" title="对抗不能复制粘贴的努力"></a>对抗不能复制粘贴的努力</h3><p>这次实验的代码是不能直接通过粘贴板进行cv，在虚拟机里使用idea编程是一件很痛苦的事情，那么有没有什么办法能偷懒呢？答案就是ssh传输协议。</p>
+<p><img src="/pic/Data Mining/experiment4/21.png" width="90%"></p>
+<p>在这里我们知道了虚拟机的ip、用户名、密码和ssh端口号，那么就可以使用ssh协议将本地编辑好的代码传到虚拟机上去，这里我使用软件filezilla来实现。</p>
+<p>首先，配置站点信息：</p>
+<p><img src="/pic/Data Mining/experiment4/23.png" width="90%"></p>
+<p>点击连接，成功了</p>
+<p><img src="/pic/Data Mining/experiment4/22.png" width="90%"></p>
+<p>选择合适的路径，双击要上传的文件，在提示成功之后，就可以在虚拟机中看到了</p>
+<p><img src="/pic/Data Mining/experiment4/24.png" width="90%"></p>
+<h2 id="实验5-1"><a href="#实验5-1" class="headerlink" title="实验	5.1"></a>实验	5.1</h2><h3 id="实验目的-10"><a href="#实验目的-10" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握Sqoop的安装部署<br>  了解Sqoop的部署环境<br>  掌握Sqoop的部署后测试</p>
+<h3 id="实验内容-10"><a href="#实验内容-10" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop服务<br>  2、Sqoop的安装部署<br>  3、Sqoop的部署测试</p>
+<h3 id="实验原理-10"><a href="#实验原理-10" class="headerlink" title="实验原理"></a>实验原理</h3><p>  本实验主要是对Sqoop的安装部署并测试。Sqoop的主要用途是HDFS和关系型数据之间数据相互迁移，迁移过程是转换为MapReduce任务，所以安装环境需要部署Hadoop和MySQL，以及部署完成后与MySQL的连通测试。</p>
+<h3 id="实验环境-10"><a href="#实验环境-10" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、sqoop-1.4、Hadoop-2.7、mysql5.7<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验步骤-10"><a href="#实验步骤-10" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop服务-2"><a href="#启动Hadoop服务-2" class="headerlink" title="启动Hadoop服务"></a>启动Hadoop服务</h4><p>1、检查MySQL是否安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -proot</span><br></pre></td></tr></table></figure>
+
+<p>2、检测是否安装Hadoop</p>
+<p>启动Hadoop：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure>
+
+<p>查看守护进程是否启动，如下图所示：</p>
+<p><img src="/pic/Data Mining/experiment5.1/1.png" width="90%"></p>
+<h4 id="Sqoop的安装部署"><a href="#Sqoop的安装部署" class="headerlink" title="Sqoop的安装部署"></a>Sqoop的安装部署</h4><p>1、解压Sqoop</p>
+<p>进入软件包所在文件夹中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /data/software</span><br></pre></td></tr></table></figure>
+
+<p>将Sqoop解压安装到“&#x2F;data&#x2F;bigdata&#x2F;”目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz -C /data/bigdata/</span><br></pre></td></tr></table></figure>
+
+<p>查看解压后的Sqoop安装文件：</p>
+<p><img src="/pic/Data Mining/experiment5.1/2.png" width="90%"></p>
+<p>2、修改Sqoop的配置文件</p>
+<p>进入到Sqoop的配置文件目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /data/bigdata/sqoop-1.4.7.bin__hadoop-2.6.0/conf</span><br></pre></td></tr></table></figure>
+
+<p>修改sqoop-env.sh文件</p>
+<p>目录下默认情况没有sqoop-env.sh文件，需要将sqoop-env-template.sh文件复制并重命名为sqoop-env.sh：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp sqoop-env-template.sh  sqoop-env.sh</span><br></pre></td></tr></table></figure>
+
+<p>进入sqoop-env.sh文件中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi sqoop-env.sh</span><br></pre></td></tr></table></figure>
+
+<p>修改该文件内容如下：</p>
+<p><img src="/pic/Data Mining/experiment5.1/3.png" width="90%"></p>
+<p>可以根据实际安装的软件来编写配置文件（hive、hbase）</p>
+<p>3、将MySQL的驱动包放入sqoop的lib 目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /data/software/mysql-connector-java-5.1.45-bin.jar  /data/bigdata/sqoop-1.4.7.bin__hadoop-2.6.0/lib/</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.1/4.png" width="90%"></p>
+<h4 id="Sqoop的部署测试"><a href="#Sqoop的部署测试" class="headerlink" title="Sqoop的部署测试"></a>Sqoop的部署测试</h4><p>1、查看Sqoop的版本号：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /data/bigdata/sqoop-1.4.7.bin__hadoop-2.6.0/bin./sqoop version</span><br></pre></td></tr></table></figure>
+
+<p>查看结果，如下图所示：</p>
+<p><img src="/pic/Data Mining/experiment5.1/5.png" width="90%"></p>
+<p>2、查看Sqoop的命令帮助：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sqoop help</span><br></pre></td></tr></table></figure>
+
+<p>查看结果，如下图所示：</p>
+<p><img src="/pic/Data Mining/experiment5.1/6.png" width="90%"></p>
+<p>3、连接MySQL数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br><span class="line">./sqoop list-databases  --connect jdbc:mysql://localhost:3306/  --username root  --password root</span><br></pre></td></tr></table></figure>
+
+<p>可以看到MySQL中遍历出来的数据库，如下如图所示：</p>
+<p><img src="/pic/Data Mining/experiment5.1/7.png" width="90%"></p>
+<p>通过上面测试可以发现Sqoop已经部署成功，可以使用了</p>
+<h3 id="实验感悟-9"><a href="#实验感悟-9" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>Sqoop是一款开源的工具,主要用于在Hadoop和传统数据库之间进行数据的传输。它可以将关系型数据库如MySQL的数据导入到HDFS中,也可以将HDFS的数据导出到关系型数据库中。</p>
+<p>本实验首先启动了Hadoop集群服务,然后解压并配置Sqoop的安装目录,主要是设置了Hadoop、Hive的环境变量。随后将MySQL的JDBC驱动拷贝到Sqoop的lib目录下,这样Sqoop就可以连接MySQL数据库了。</p>
+<p>通过查看版本信息、帮助文档、连接MySQL数据库等测试,我验证了Sqoop安装成功,可以进行数据迁移。这为后续导入导出数据到Hive,进行统计分析奠定了基础。</p>
+<p>本实验使我对Sqoop有了直观的使用体会,掌握了它的安装部署方法。它架起了关系型数据库和HDFS之间的数据桥梁,可以让我充分利用Hive、MapReduce对数据进行并行处理。总之这次实验达到了学习Sqoop的目的,是使用Hadoop生态系统的重要一步。</p>
+<h2 id="实验5-2"><a href="#实验5-2" class="headerlink" title="实验	5.2"></a>实验	5.2</h2><h3 id="实验目的-11"><a href="#实验目的-11" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握数据导入Hive表的方式<br>  理解三种数据导入Hive表的原理</p>
+<h3 id="实验内容-11"><a href="#实验内容-11" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop和Hive服务并创建数据表<br>  2、将Hive表中的数据导出</p>
+<h3 id="实验环境-11"><a href="#实验环境-11" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3、Hadoop-2.7、MySQL-5.7、Sqoop1.4<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-11"><a href="#实验原理-11" class="headerlink" title="实验原理"></a>实验原理</h3><p>  Export工具将文件从HDFS导出到关系型数据库。目标表必须存在于数据库中，根据用户指定的分隔符读取输入文件并解析为一条记录。<br>  默认操作是将这些数据以“insert ”的方式插入到数据库表中；在“更新模式”中，Sqoop将使用“update”的方式更新记录。</p>
+<p><img src="http://211.87.232.186/upload/imagePath/5dc37ef8577d8.png" alt="img"></p>
+<p>  Sqoop 数据导出流程，首先用户输入一个 Sqoop export 命令，它会获取关系型数据库的 schema，建立 Hadoop 字段与数据库表字段的映射关系。 然后会将输入命令转化为基于 Map 的 MapReduce作业，这样 MapReduce作业中有很多 Map 任务，它们并行的从 HDFS 读取数据，并将整个数据拷贝到数据库中。</p>
+<h3 id="实验步骤-11"><a href="#实验步骤-11" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop和Hive服务并创建数据表"><a href="#启动Hadoop和Hive服务并创建数据表" class="headerlink" title="启动Hadoop和Hive服务并创建数据表"></a>启动Hadoop和Hive服务并创建数据表</h4><p>1、检查MySQL是否安装</p>
+<p>2、检测是否安装Hadoop</p>
+<p>3、启动Mysql和Hive：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service mysql start</span><br><span class="line">cd /opt/hive hive</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.2/1.png" width="90%"></p>
+<p>4、创建表</p>
+<p>创建film表，分为电影名称、上映日期、票房三个字段，数据格式以“，”分割：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; create table film(name string,dates string,prince int) row format delimited fields terminated by &#x27;,&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>5、导入数据</p>
+<p>将本地的film_log3.log文件数据加载到film表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; load data local inpath &#x27;/data/dataset/film_log3.log&#x27;into table film;</span><br></pre></td></tr></table></figure>
+
+<p>6、查看film表数据的总条数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select count(*) from film;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.2/2.png" width="90%"></p>
+<p>7、使用MySQL创建film_info表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -prootcreate database data;use data;create table film_info(name varchar(50),dates varchar(50),prince double)engine=innodb charset=utf8;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.2/3.png" width="90%"></p>
+<h4 id="将Hive表中的数据导出"><a href="#将Hive表中的数据导出" class="headerlink" title="将Hive表中的数据导出"></a>将Hive表中的数据导出</h4><p>1、查看hive中的film表在HDFS上的存储位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls /user/hive/warehouse/film</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.2/4.png" width="90%"></p>
+<p>2、将hive的film表数据导出到指定表film_info中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqoop export --connect jdbc:mysql://localhost:3306/data --username root --password root --table film_info --export-dir /user/hive/warehouse/film --input-fields-terminated-by &#x27;,&#x27; --m 1</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.2/5.png" width="90%"></p>
+<p>3、查看导出的结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from film_info limit 5;</span><br></pre></td></tr></table></figure>
+
+<p>发现name这一列中文都是乱码，是因为导出的编码格式没有指定</p>
+<p><img src="/pic/Data Mining/experiment5.2/6.png" width="90%"></p>
+<p>4、修改编码格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#清空表 </span><br><span class="line">truncate film_info;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.2/7.png" width="90%"></p>
+<p>指定编码格式为“UTF-8”</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqoop export --connect &quot;jdbc:mysql://localhost:3306/data?useUnicode=true&amp;characterEncoding=utf-8&quot; --username root --password root --table film_info --export-dir /user/hive/warehouse/film --input-fields-terminated-by &#x27;,&#x27; --m 1</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.2/8.png" width="90%"></p>
+<p>5、查看导出的结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from film_info limit 5;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.2/9.png" width="90%"></p>
+<h3 id="实验感悟-10"><a href="#实验感悟-10" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>实验首先创建了Hive的film表,并加载数据。然后通过指定connect参数连接MySQL,以及export-dir指定HDFS路径,使用sqoop export将film表的数据导出到MySQL的film_info表中。</p>
+<p>这样实现了从Hadoop生态到关系型数据库的顺利数据迁移。值得注意的是,在导出时需要根据实际情况指定参数,如本实验由于默认导出的编码不对,汉字出现了乱码,所以额外指定了characterEncoding的参数。</p>
+<p>另外,由于Sqoop导入导出底层都是通过MapReduce任务实现的,所以可以实现并行数据迁移,效率很高。这为我们构建数据仓库提供了很大的便利。</p>
+<p>通过这个实验,我掌握了Sqoop导出数据的方法,理解了它的实现原理。Sqoop充当了Hadoop和传统数据库之间的桥梁,让不同系统的数据能够相互流通,为数据分析提供了巨大的便利。总之,这个实验达到了使用Sqoop导出数据的目的,使我能够熟练运用这一重要工具。</p>
+<h2 id="实验5-3"><a href="#实验5-3" class="headerlink" title="实验	5.3"></a>实验	5.3</h2><h3 id="实验目的-12"><a href="#实验目的-12" class="headerlink" title="实验目的"></a>实验目的</h3><p>  掌握数据导入Hive表的方式<br>  理解三种数据导入Hive表的原理</p>
+<h3 id="实验内容-12"><a href="#实验内容-12" class="headerlink" title="实验内容"></a>实验内容</h3><p>  1、启动Hadoop和Hive服务并创建数据表<br>  2、使用Sqoop导入Hive<br>  3、使用Sqoop导入Hive分区</p>
+<h3 id="实验环境-12"><a href="#实验环境-12" class="headerlink" title="实验环境"></a>实验环境</h3><p>  硬件：ubuntu 16.04<br>  软件：JDK-1.8、hive-2.3、Hadoop-2.7、MySQL-5.7、Sqoop1.4<br>  数据存放路径：&#x2F;data&#x2F;dataset<br>  tar包路径：&#x2F;data&#x2F;software<br>  tar包压缩路径：&#x2F;data&#x2F;bigdata<br>  软件安装路径:&#x2F;opt<br>  实验设计创建文件：&#x2F;data&#x2F;resource</p>
+<h3 id="实验原理-12"><a href="#实验原理-12" class="headerlink" title="实验原理"></a>实验原理</h3><p>  Import工具指的是将单个表从关系型数据库中导入到HDFS。其中表的每一行都表示为HDFS中的单独记录，记录可以存储在文本文件、二进制表示的Avro或者SequenceFiles中。</p>
+<p><img src="http://211.87.232.186/upload/imagePath/5dc37e6756bee.png" alt="img"></p>
+<p>  Sqoop 数据导入流程，首先用户输入一个 Sqoop import 命令，Sqoop 会从关系型数据库中获取元数据信息，比如要操作数据库表的 schema是什么样子，这个表有哪些字段，这些字段都是什么数据类型等。它获取这些信息之后，会将输入命令转化为基于 Map 的 MapReduce作业。这样 MapReduce作业中有很多 Map 任务，每个 Map 任务从数据库中读取一片数据，这样多个 Map 任务实现并发的拷贝，把整个数据快速的拷贝到 HDFS 上。</p>
+<h3 id="实验步骤-12"><a href="#实验步骤-12" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="启动Hadoop和Hive服务并创建数据表-1"><a href="#启动Hadoop和Hive服务并创建数据表-1" class="headerlink" title="启动Hadoop和Hive服务并创建数据表"></a>启动Hadoop和Hive服务并创建数据表</h4><p>  1、检查MySQL是否安装</p>
+<p>  2、检测是否安装Hadoop</p>
+<p><img src="/pic/Data Mining/experiment5.3/1.png" width="90%"></p>
+<p>2、启动MySQL：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql startmysql -uroot  -proot</span><br></pre></td></tr></table></figure>
+
+<p>3、创建data数据库和info表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database data;mysql&gt; use data;</span><br><span class="line">mysql&gt; create table info(name varchar(50),age int,score double);</span><br></pre></td></tr></table></figure>
+
+<p>4、插入数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into info(name,age,score)values(&quot;zhangfei&quot;,1,90);</span><br><span class="line">mysql&gt; insert into info(name,age,score)values(&quot;lili&quot;,0,97);</span><br><span class="line">mysql&gt; insert into info(name,age,score)values(&quot;liuhua&quot;,0,88);</span><br></pre></td></tr></table></figure>
+
+<p>5、查看数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select * from info;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/2.png" width="90%"></p>
+<p>6、将hive下的jar拷贝到sqoop下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /opt/hive/lib/hive-common-2.3.3.jar /opt/sqoop/lib/</span><br></pre></td></tr></table></figure>
+
+<p>7、使用Sqoop将Mysql的info表字段信息复制到Hive中info中</p>
+<p>所有关于hive的操作需要进入到hive的安装目录下进行，进入hive安装目录，打开hive</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/hive/hive</span><br></pre></td></tr></table></figure>
+
+<p>进入hive的交互式命令行界面，然后退出hive执行sqoop命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqoop create-hive-table --connect jdbc:mysql://localhost:3306/data --username root -password root --table info --hive-table info</span><br></pre></td></tr></table></figure>
+
+<p>8、进入Hive中看info表字段信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; desc info;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/3.png" width="90%"></p>
+<h4 id="使用Sqoop导入Hive"><a href="#使用Sqoop导入Hive" class="headerlink" title="使用Sqoop导入Hive"></a>使用Sqoop导入Hive</h4><h5 id="直接导入"><a href="#直接导入" class="headerlink" title="直接导入"></a>直接导入</h5><p>1、删除hive的info表在hdfs的存储位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -rmr /user/hive/warehouse/info</span><br></pre></td></tr></table></figure>
+
+<p>2、将Mysql的info表导入HDFS的info表目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqoop import --connect jdbc:mysql://localhost:3306/data --username root --password root --table info --m 1 --target-dir /user/hive/warehouse/info/ --fields-terminated-by &#x27;,&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/4.png" width="90%"></p>
+<p>3、查看数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from info;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/5.png" width="90%"></p>
+<h5 id="全量导入"><a href="#全量导入" class="headerlink" title="全量导入"></a>全量导入</h5><p>4、使用Sqoop将Mysql的info表字段信息复制到Hive中infos中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqoop import --connect jdbc:mysql://localhost:3306/data --username root -password root --table info --m 1 --hive-import --hive-table infos --fields-terminated-by &#x27;,&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/6.png" width="90%"></p>
+<p>5、查看数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from infos;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/7.png" width="90%"></p>
+<h5 id="覆盖导入"><a href="#覆盖导入" class="headerlink" title="覆盖导入"></a>覆盖导入</h5><p>6、使用Sqoop将Mysql的info表字段信息复制到Hive中info中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqoop import --connect jdbc:mysql://localhost:3306/data --username root --password root --table info --m 1 --hive-import --hive-table info --hive-overwrite --fields-terminated-by &#x27;,&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/9.png" width="90%"></p>
+<p>7、查看数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from info;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/8.png" width="90%"></p>
+<p>可以发现Hive的数据没有发生变化</p>
+<h4 id="使用Sqoop导入Hive分区"><a href="#使用Sqoop导入Hive分区" class="headerlink" title="使用Sqoop导入Hive分区"></a>使用Sqoop导入Hive分区</h4><p>1、在MySQL中创建student表（id、name、score）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use data;</span><br><span class="line">mysql&gt; create table student(id int(5),name varchar(20),score int(5));</span><br></pre></td></tr></table></figure>
+
+<p>2、插入数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; insert into student(id,name,score)value(1,&#x27;xiaoming&#x27;,75);</span><br><span class="line">mysql&gt; insert into student(id,name,score)value(2,&#x27;wangfeng&#x27;,45);</span><br><span class="line">mysql&gt; insert into student(id,name,score)value(3,&#x27;liuxiang&#x27;,65);</span><br><span class="line">mysql&gt; insert into student(id,name,score)value(4,&#x27;liming&#x27;,35);</span><br><span class="line">mysql&gt; insert into student(id,name,score)value(5,&#x27;zhaofeng&#x27;,88);</span><br><span class="line">mysql&gt; insert into student(id,name,score)value(6,&#x27;hexiang&#x27;,95);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/13.png" width="90%"></p>
+<p>3、将MySQL的student表数据导入Hive的student表的“2019-10-22”分区中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqoop import --connect jdbc:mysql://localhost:3306/data --username root --password root --table student --m 1 --hive-import --hive-table student  --hive-partition-key &#x27;dates&#x27; --hive-partition-value &#x27;2019-10-22&#x27;</span><br><span class="line">--hive-partition-key:指定分区字段</span><br><span class="line">--hive-partition-value：指定分区值</span><br></pre></td></tr></table></figure>
+
+<p>运行后发生如下错误，仔细阅读发现是HIVE_CONF_DIR的配置错误</p>
+<p><img src="/pic/Data Mining/experiment5.3/12.png" width="90%"></p>
+<p>查询资料后得知，报错原因是sqoop缺少hive的相关jar包，需要将将hive&#x2F;lib中的hive-common-2.3.3.jar拷贝到sqoop的lib目录中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /data/software/mysql-connector-java-5.1.45-bin.jar  /opt/hive/lib/</span><br></pre></td></tr></table></figure>
+
+<p>再次执行发现如下错误：</p>
+<p><img src="/pic/Data Mining/experiment5.3/11.png" width="90%"></p>
+<p>原因是文件已存在，解决办法很简单，直接删掉就行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -rm -r hdfs://localhost:9000/user/root/student</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/10.png" width="90%"></p>
+<p>4、查看数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; select * from student;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/pic/Data Mining/experiment5.3/14.png" width="90%"></p>
+<h3 id="实验感悟-11"><a href="#实验感悟-11" class="headerlink" title="实验感悟"></a>实验感悟</h3><p>实验中,我先创建了MySQL的数据库和表,插入了测试数据。然后通过sqoop create-hive-table可以将MySQL表结构复制到Hive中创建表。</p>
+<p>接着就是导入数据了,可以用sqoop import实现直接导入和追加导入。还可以用–hive-overwrite参数实现覆盖导入。</p>
+<p>最后我还尝试了导入到Hive分区表中,指定了分区字段和分区值,实现了聚簇存储。</p>
+<p>Sqoop数据导入的原理是将命令转换为MapReduce任务,并行导入数据,速度很快。所以可以实现TB级别的大数据迁移。</p>
+<p>通过这次实验,我掌握了Sqoop与Hive集成的方法,为大数据分析奠定了基础。还需要针对增量导入、压缩、迁移速度等方面继续优化。总体上,本实验达到了使用Sqoop导入Hive数据的目的,使我能够熟练应用这一重要工具。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://jcvvv.github.io">锦尘</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://jcvvv.github.io/2023/10/20/Data%20Mining/">https://jcvvv.github.io/2023/10/20/Data%20Mining/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://jcvvv.github.io" target="_blank">锦尘</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%8A%80%E6%9C%AF/">技术</a><a class="post-meta__tags" href="/tags/hive/">hive</a><a class="post-meta__tags" href="/tags/hadoop/">hadoop</a></div><div class="post_share"><div class="social-share" data-image="/pic/cover/Data%20Mining.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://jsdelivr.pai233.top/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://jsdelivr.pai233.top/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/10/30/SMS/"><img class="prev-cover" src="/pic/cover/SMS.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SMS短信嗅探实验报告</div></div></a></div><div class="next-post pull-right"><a href="/2023/07/28/Github%20Profile/"><img class="next-cover" src="/pic/cover/Github%20Profile.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">GitHub Profile美化</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/03/25/Algorithm%20knowledge%20summary/" title="算法设计与优化"><img class="cover" src="/pic/cover/Algorithm%20knowledge%20summary.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-25</div><div class="title">算法设计与优化</div></div></a></div><div><a href="/2023/03/14/Operating%20system%20summary/" title="操作系统知识点汇总"><img class="cover" src="/pic/cover/Operating%20system%20summary.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-14</div><div class="title">操作系统知识点汇总</div></div></a></div><div><a href="/2023/10/30/SMS/" title="SMS短信嗅探实验报告"><img class="cover" src="/pic/cover/SMS.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-30</div><div class="title">SMS短信嗅探实验报告</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/favicon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锦尘</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">33</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/JCvvv" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/475586532?spm_id_from=333.1007.0.0" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="mailto:1747624698@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C1-1"><span class="toc-number">2.</span> <span class="toc-text">实验	1.1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="toc-number">2.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83"><span class="toc-number">2.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.5.1.</span> <span class="toc-text">启动Hadoop服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E5%B5%8C%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-number">2.5.2.</span> <span class="toc-text">内嵌模式部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-number">2.5.3.</span> <span class="toc-text">本地模式部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%A8%A1%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="toc-number">2.5.4.</span> <span class="toc-text">远程模式部署</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F"><span class="toc-number">2.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C1-2"><span class="toc-number">3.</span> <span class="toc-text">实验	1.2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-1"><span class="toc-number">3.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-1"><span class="toc-number">3.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-1"><span class="toc-number">3.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-1"><span class="toc-number">3.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-1"><span class="toc-number">3.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1-1"><span class="toc-number">3.5.1.</span> <span class="toc-text">启动Hadoop服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hive-CLI%E6%93%8D%E4%BD%9C"><span class="toc-number">3.5.2.</span> <span class="toc-text">Hive CLI操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-1"><span class="toc-number">3.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C2-1"><span class="toc-number">4.</span> <span class="toc-text">实验	2.1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="toc-number">4.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-2"><span class="toc-number">4.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-2"><span class="toc-number">4.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-2"><span class="toc-number">4.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-2"><span class="toc-number">4.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1%E5%92%8CHive%E6%9C%8D%E5%8A%A1"><span class="toc-number">4.5.1.</span> <span class="toc-text">启动Hadoop服务和Hive服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%93%8D%E4%BD%9C"><span class="toc-number">4.5.2.</span> <span class="toc-text">数据库的定义和操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E6%93%8D%E4%BD%9C"><span class="toc-number">4.5.3.</span> <span class="toc-text">数据表的定义和操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-2"><span class="toc-number">4.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C2-2"><span class="toc-number">5.</span> <span class="toc-text">实验	2.2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-3"><span class="toc-number">5.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-3"><span class="toc-number">5.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-3"><span class="toc-number">5.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-3"><span class="toc-number">5.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-3"><span class="toc-number">5.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1%E5%92%8CHive%E6%9C%8D%E5%8A%A1-1"><span class="toc-number">5.5.1.</span> <span class="toc-text">启动Hadoop服务和Hive服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%97%E7%AE%A1%E7%90%86%E8%A1%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">5.5.2.</span> <span class="toc-text">受管理表操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">5.5.3.</span> <span class="toc-text">外部表的操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-3"><span class="toc-number">5.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C2-3"><span class="toc-number">6.</span> <span class="toc-text">实验	2.3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-4"><span class="toc-number">6.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-4"><span class="toc-number">6.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-4"><span class="toc-number">6.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-4"><span class="toc-number">6.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-4"><span class="toc-number">6.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1%E5%92%8CHive%E6%9C%8D%E5%8A%A1-2"><span class="toc-number">6.5.1.</span> <span class="toc-text">启动Hadoop服务和Hive服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8load%E7%9B%B4%E6%8E%A5%E5%AF%BC%E5%85%A5"><span class="toc-number">6.5.2.</span> <span class="toc-text">使用load直接导入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8put%E4%B8%8A%E4%BC%A0%E5%AF%BC%E5%85%A5"><span class="toc-number">6.5.3.</span> <span class="toc-text">使用put上传导入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-4"><span class="toc-number">6.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C3-1"><span class="toc-number">7.</span> <span class="toc-text">实验	3.1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-5"><span class="toc-number">7.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-5"><span class="toc-number">7.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-5"><span class="toc-number">7.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-5"><span class="toc-number">7.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-5"><span class="toc-number">7.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1%E5%92%8CHive%E6%9C%8D%E5%8A%A1-3"><span class="toc-number">7.5.1.</span> <span class="toc-text">启动Hadoop服务和Hive服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">7.5.2.</span> <span class="toc-text">基础查询操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-5"><span class="toc-number">7.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C3-2"><span class="toc-number">8.</span> <span class="toc-text">实验	3.2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-6"><span class="toc-number">8.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-6"><span class="toc-number">8.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-6"><span class="toc-number">8.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-6"><span class="toc-number">8.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-6"><span class="toc-number">8.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1%E5%92%8CHive%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%B9%B6%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%95%B0%E6%8D%AE"><span class="toc-number">8.5.1.</span> <span class="toc-text">启动Hadoop服务和Hive服务，并创建表数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">8.5.2.</span> <span class="toc-text">聚合查询操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-6"><span class="toc-number">8.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C3-3"><span class="toc-number">9.</span> <span class="toc-text">实验	3.3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-7"><span class="toc-number">9.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-7"><span class="toc-number">9.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-7"><span class="toc-number">9.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-7"><span class="toc-number">9.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-7"><span class="toc-number">9.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1%E5%92%8CHive%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%B9%B6%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%95%B0%E6%8D%AE-1"><span class="toc-number">9.5.1.</span> <span class="toc-text">启动Hadoop服务和Hive服务，并创建表数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2%E3%80%81%E5%A4%9A%E8%A1%A8%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">9.5.2.</span> <span class="toc-text">5.2、多表连接查询操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F"><span class="toc-number">9.6.</span> <span class="toc-text">六、实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C3-4"><span class="toc-number">10.</span> <span class="toc-text">实验	3.4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-8"><span class="toc-number">10.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-8"><span class="toc-number">10.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-8"><span class="toc-number">10.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-8"><span class="toc-number">10.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-8"><span class="toc-number">10.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1%E5%92%8CHive%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%B9%B6%E5%88%9B%E5%BB%BA%E8%A1%A8%E6%95%B0%E6%8D%AE-2"><span class="toc-number">10.5.1.</span> <span class="toc-text">启动Hadoop服务和Hive服务，并创建表数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HQL%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E5%AD%98%E5%82%A8"><span class="toc-number">10.5.2.</span> <span class="toc-text">HQL查询结果存储</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-7"><span class="toc-number">10.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C4"><span class="toc-number">11.</span> <span class="toc-text">实验	4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-9"><span class="toc-number">11.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-9"><span class="toc-number">11.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-9"><span class="toc-number">11.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-9"><span class="toc-number">11.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-9"><span class="toc-number">11.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%B9%B6%E5%90%AF%E5%8A%A8Hadoop%E5%92%8Chiveserver2%E6%9C%8D%E5%8A%A1"><span class="toc-number">11.5.1.</span> <span class="toc-text">配置环境并启动Hadoop和hiveserver2服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8IntelliJ-Idea%E5%B9%B6%E5%88%9B%E5%BB%BAJava%E9%A1%B9%E7%9B%AE"><span class="toc-number">11.5.2.</span> <span class="toc-text">启动IntelliJ Idea并创建Java项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E5%86%99Hive-API%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">11.5.3.</span> <span class="toc-text">编写Hive API使用代码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-8"><span class="toc-number">11.6.</span> <span class="toc-text">实验感悟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%8A%97%E4%B8%8D%E8%83%BD%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E7%9A%84%E5%8A%AA%E5%8A%9B"><span class="toc-number">11.7.</span> <span class="toc-text">对抗不能复制粘贴的努力</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C5-1"><span class="toc-number">12.</span> <span class="toc-text">实验	5.1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-10"><span class="toc-number">12.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-10"><span class="toc-number">12.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-10"><span class="toc-number">12.3.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-10"><span class="toc-number">12.4.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-10"><span class="toc-number">12.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E6%9C%8D%E5%8A%A1-2"><span class="toc-number">12.5.1.</span> <span class="toc-text">启动Hadoop服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sqoop%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2"><span class="toc-number">12.5.2.</span> <span class="toc-text">Sqoop的安装部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sqoop%E7%9A%84%E9%83%A8%E7%BD%B2%E6%B5%8B%E8%AF%95"><span class="toc-number">12.5.3.</span> <span class="toc-text">Sqoop的部署测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-9"><span class="toc-number">12.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C5-2"><span class="toc-number">13.</span> <span class="toc-text">实验	5.2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-11"><span class="toc-number">13.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-11"><span class="toc-number">13.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-11"><span class="toc-number">13.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-11"><span class="toc-number">13.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-11"><span class="toc-number">13.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E5%92%8CHive%E6%9C%8D%E5%8A%A1%E5%B9%B6%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">13.5.1.</span> <span class="toc-text">启动Hadoop和Hive服务并创建数据表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86Hive%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA"><span class="toc-number">13.5.2.</span> <span class="toc-text">将Hive表中的数据导出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-10"><span class="toc-number">13.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C5-3"><span class="toc-number">14.</span> <span class="toc-text">实验	5.3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-12"><span class="toc-number">14.1.</span> <span class="toc-text">实验目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-12"><span class="toc-number">14.2.</span> <span class="toc-text">实验内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83-12"><span class="toc-number">14.3.</span> <span class="toc-text">实验环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E5%8E%9F%E7%90%86-12"><span class="toc-number">14.4.</span> <span class="toc-text">实验原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-12"><span class="toc-number">14.5.</span> <span class="toc-text">实验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop%E5%92%8CHive%E6%9C%8D%E5%8A%A1%E5%B9%B6%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8-1"><span class="toc-number">14.5.1.</span> <span class="toc-text">启动Hadoop和Hive服务并创建数据表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Sqoop%E5%AF%BC%E5%85%A5Hive"><span class="toc-number">14.5.2.</span> <span class="toc-text">使用Sqoop导入Hive</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%AF%BC%E5%85%A5"><span class="toc-number">14.5.2.1.</span> <span class="toc-text">直接导入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%A8%E9%87%8F%E5%AF%BC%E5%85%A5"><span class="toc-number">14.5.2.2.</span> <span class="toc-text">全量导入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A6%86%E7%9B%96%E5%AF%BC%E5%85%A5"><span class="toc-number">14.5.2.3.</span> <span class="toc-text">覆盖导入</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Sqoop%E5%AF%BC%E5%85%A5Hive%E5%88%86%E5%8C%BA"><span class="toc-number">14.5.3.</span> <span class="toc-text">使用Sqoop导入Hive分区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E6%84%9F%E6%82%9F-11"><span class="toc-number">14.6.</span> <span class="toc-text">实验感悟</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/25/Data%20visualization%20course%20design/" title="数据可视化知识点">数据可视化知识点</a><time datetime="2024-03-25T15:56:41.462Z" title="发表于 2024-03-25 23:56:41">2024-03-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/20/NoSqlExperiment/" title="NoSql实验报告">NoSql实验报告</a><time datetime="2023-11-19T16:00:00.000Z" title="发表于 2023-11-20 00:00:00">2023-11-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/01/Internship%20report/" title="认知实习汇总">认知实习汇总</a><time datetime="2023-10-31T16:00:00.000Z" title="发表于 2023-11-01 00:00:00">2023-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/31/Software/" title="软件工程作业合集">软件工程作业合集</a><time datetime="2023-10-30T16:00:00.000Z" title="发表于 2023-10-31 00:00:00">2023-10-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/10/30/SMS/" title="SMS短信嗅探实验报告">SMS短信嗅探实验报告</a><time datetime="2023-10-29T16:00:00.000Z" title="发表于 2023-10-30 00:00:00">2023-10-30</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/foot.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 锦尘</div><div class="footer_custom_text">欢迎你，不知道从哪来的朋友</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://jsdelivr.pai233.top/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://jsdelivr.pai233.top/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://jsdelivr.pai233.top/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://jsdelivr.pai233.top/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
